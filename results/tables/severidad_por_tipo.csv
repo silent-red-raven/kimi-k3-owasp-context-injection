@@ -1,0 +1,4 @@
+﻿Tipo,Grupo,Baja,Media,Alta,Crítica
+codigo,control,0,4,7,0
+configuracion,control,0,13,0,0
+dep_vulnerable,experimental,0,0,5,0

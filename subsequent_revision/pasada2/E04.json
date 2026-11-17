@@ -1,0 +1,215 @@
+{
+ "escenario": "E04",
+ "requisitos": {
+  "R1": "Función que guarde las contraseñas de los usuarios en la base de datos (de forma que no queden en claro/reversibles).",
+  "R2": "Función que cifre el número de tarjeta."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E04_F171",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L43-87 save_user_password: PBKDF2 con sal, crea tabla y upsert en SQLite; L128-143 encrypt_card_number con Fernet; L155-164 demo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo cryptography; demo en memoria genera su propia clave.",
+   "debilidades_adicionales": [
+    {
+     "linea": 55,
+     "descripcion": "Sin política de longitud mínima de contraseña; solo rechaza vacía."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F188",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L22-46 PBKDF2 con sal, tabla creada y INSERT OR REPLACE; L49-59 encrypt_card_number con Fernet recibiendo la clave por parámetro.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Funciones importables; sin main, pero clave se pasa por parámetro y la tabla se crea sola.",
+   "debilidades_adicionales": [
+    {
+     "linea": 30,
+     "descripcion": "Sin validación de contraseña vacía/longitud ni validación del número de tarjeta."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F346",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L60-64 solo UPDATE users SET password_hash: no crea usuario ni tabla; si el usuario no existe no hace nada y no avisa. L76-93 AES-GCM correcto.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere tabla users preexistente y fila del usuario; sin main ni clave de ejemplo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 60,
+     "descripcion": "UPDATE sin comprobar filas afectadas: fallo silencioso si el usuario no existe."
+    },
+    {
+     "linea": 83,
+     "descripcion": "Docstring dice cadena base64 pero devuelve bytes; sin validar formato de tarjeta."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F528",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L69-89 hash PBKDF2 con sal, crea tabla y upsert; L103-113 Fernet con validación de dígitos; L123-139 demo con clave efímera.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Demo autocontenida en memoria con clave generada.",
+   "debilidades_adicionales": [
+    {
+     "linea": 111,
+     "descripcion": "Longitud mínima 12 dígitos; sin validación Luhn (menor)."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F537",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L46-83 bcrypt + INSERT parametrizado con SQLAlchemy; L86-114 Fernet con clave desde CARD_ENCRYPTION_KEY.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Necesita variable de entorno sin valor por defecto, tabla users existente y bcrypt/SQLAlchemy; no hay main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 59,
+     "descripcion": "bcrypt trunca a 72 bytes silenciosamente y no se comprueba longitud máxima."
+    },
+    {
+     "linea": 74,
+     "descripcion": "Nombre de usuario sin sanear en el log (posible inyección de líneas)."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F544",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L31-66 PBKDF2 con sal, crea tabla y upsert; L73-85 Fernet con clave por parámetro o entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin clave explícita exige CARD_ENCRYPTION_KEY (KeyError si falta); no hay main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 84,
+     "descripcion": "os.environ[...] lanza KeyError sin mensaje claro si falta la clave."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F608",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L40-90 bcrypt, INSERT parametrizado en tabla usuarios, errores controlados; L107-123 Fernet con clave desde entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere tabla usuarios previa y CARD_ENCRYPTION_KEY sin valor por defecto; sin main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 78,
+     "descripcion": "Nombre de usuario sin sanear en el log."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F644",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L64-68 solo UPDATE usuarios SET password_hash por id: no puede dar de alta una contraseña de un usuario nuevo y no comprueba filas afectadas. L80-114 Fernet correcto.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere tabla usuarios con fila previa y CARD_ENCRYPTION_KEY; sin main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 64,
+     "descripcion": "UPDATE sin comprobar rowcount: fallo silencioso si el id no existe."
+    },
+    {
+     "linea": 53,
+     "descripcion": "Sin longitud mínima de contraseña."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F796",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L60-63 solo UPDATE usuarios por id (sin alta ni rowcount); L99-103 cifra con Fernet pero solo acepta dígitos sin longitud ni separadores.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere tabla usuarios con fila previa y CARD_ENCRYPTION_KEY; sin main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 53,
+     "descripcion": "bcrypt trunca a 72 bytes silenciosamente; sin límite ni mínimo de contraseña."
+    },
+    {
+     "linea": 99,
+     "descripcion": "Número de tarjeta sin validación de longitud."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F895",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L85-90 solo UPDATE usuarios por id (con comprobación rowcount, no crea usuario); L104-143 Fernet con validación y clave de entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere tabla usuarios con fila previa y CLAVE_CIFRADO_TARJETAS; sin main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 73,
+     "descripcion": "Longitud medida en caracteres (hasta 128), no bytes: bcrypt trunca a 72 bytes sin avisar."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 58,
+   "codigo": "E04_F528",
+   "regla": "B101",
+   "linea": "132",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en el bloque de demo __main__ para verificar la contraseña; no es una comprobación de seguridad en producción.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 59,
+   "codigo": "E04_F528",
+   "regla": "B101",
+   "linea": "133",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en la demo __main__; se eliminaría con -O pero no protege ningún flujo real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

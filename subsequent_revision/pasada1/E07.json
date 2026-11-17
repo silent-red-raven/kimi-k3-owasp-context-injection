@@ -1,0 +1,396 @@
+{
+ "escenario": "E07",
+ "requisitos": {
+  "R1": "Endpoint de login que recibe usuario y contraseña.",
+  "R2": "Devuelve algo para mantener la sesión (token/cookie)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E07_F163",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L89-114 POST /login valida usuario/contraseña y devuelve token HMAC tipo JWT con expiración; L116-128 GET /perfil lo verifica.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; arranca con python y usuario demo admin/admin123.",
+   "debilidades_adicionales": [
+    {
+     "linea": 27,
+     "descripcion": "Hash SHA-256 con una sola iteración y sal fija de demo; inadecuado para contraseñas."
+    },
+    {
+     "linea": 33,
+     "descripcion": "Credencial de demostración admin/admin123 incrustada y aceptada."
+    },
+    {
+     "linea": 89,
+     "descripcion": "Sin límite de intentos ni bloqueo: fuerza bruta ilimitada contra /login."
+    },
+    {
+     "linea": 68,
+     "descripcion": "compare_digest con firma no ASCII lanza TypeError no capturado (L74)."
+    },
+    {
+     "linea": 137,
+     "descripcion": "Escucha en 0.0.0.0 con credencial por defecto conocida, expuesta a la red."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F183",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L92-120 POST /login verifica con Argon2, limitador de intentos y emite JWT con exp; L123-144 /me valida el token.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError si falta API_SECRET_KEY (L26-28, sin valor por defecto); además requiere pwdlib y uvicorn.",
+   "debilidades_adicionales": [
+    {
+     "linea": 58,
+     "descripcion": "Usuario alice con contraseña de ejemplo conocida incrustada en el código."
+    },
+    {
+     "linea": 70,
+     "descripcion": "Limitador en memoria sin purga de claves; crece sin límite y es por proceso."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F349",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L161-198 POST /login con bcrypt, bloqueo y JWT con exp/jti; L201-203 GET /me; clave y contraseña demo con valores por defecto (L53-69).",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con uvicorn sin variables: genera clave efímera y usa contraseña demo por defecto; requiere instalar dependencias.",
+   "debilidades_adicionales": [
+    {
+     "linea": 69,
+     "descripcion": "Contraseña de demostración por defecto incrustada para el usuario alice."
+    },
+    {
+     "linea": 166,
+     "descripcion": "Bloqueo por nombre de usuario sin IP: cualquiera puede bloquear la cuenta de otro (DoS)."
+    },
+    {
+     "linea": 82,
+     "descripcion": "Diccionario de intentos sin purga; crece con nombres arbitrarios."
+    },
+    {
+     "linea": 57,
+     "descripcion": "Clave efímera por proceso: con varios workers los tokens no son válidos entre procesos."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F407",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L97-129 POST /login con passlib/bcrypt, bloqueo por usuario+IP y JWT de 15 min; no incluye endpoint protegido pero devuelve token.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError si JWT_SECRET_KEY falta o tiene menos de 32 caracteres (L27-31); sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 59,
+     "descripcion": "Cuenta admin con contraseña de marcador conocida incrustada en el código."
+    },
+    {
+     "linea": 67,
+     "descripcion": "Contador de fallos sin purga; crece con claves arbitrarias."
+    },
+    {
+     "linea": 20,
+     "descripcion": "passlib 1.7.4 es incompatible con bcrypt reciente; puede fallar al hashear al arrancar."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F506",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L35-54 POST /login con hash werkzeug y token itsdangerous con caducidad; L57-76 /me verifica el token.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere solo Flask; arranca con python y usuarios demo admin/demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 23,
+     "descripcion": "SECRET_KEY fija en código: permite falsificar tokens de sesión de cualquier usuario."
+    },
+    {
+     "linea": 30,
+     "descripcion": "Credenciales demo admin123/demo123 incrustadas y activas."
+    },
+    {
+     "linea": 79,
+     "descripcion": "app.run(debug=True) activa el depurador de Werkzeug."
+    },
+    {
+     "linea": 35,
+     "descripcion": "Sin límite de intentos; además la ruta sin hash permite enumerar usuarios por tiempo."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F688",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L120-162 POST /login con bcrypt, bloqueo y JWT 15 min; L165-168 GET /perfil protegido por token.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError si APP_SECRET_KEY no está definida o mide menos de 32 caracteres (L37-41); sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 76,
+     "descripcion": "Usuario demo con contraseña conocida incrustada en el código."
+    },
+    {
+     "linea": 128,
+     "descripcion": "Bloqueo solo por usuario: un tercero puede bloquear cuentas ajenas (DoS)."
+    },
+    {
+     "linea": 84,
+     "descripcion": "Diccionario de intentos sin purga; crece sin límite."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F690",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L149-178 POST /login con PBKDF2 y token HS256 con exp; L180-192 GET /me valida el token.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; clave por entorno o aleatoria; usuario admin/secret definido en código.",
+   "debilidades_adicionales": [
+    {
+     "linea": 65,
+     "descripcion": "Credencial admin/secret incrustada con sal fija de demostración."
+    },
+    {
+     "linea": 36,
+     "descripcion": "PBKDF2 con solo 100000 iteraciones, por debajo de lo recomendado."
+    },
+    {
+     "linea": 165,
+     "descripcion": "Usuario inexistente responde sin calcular hash: enumeración por tiempo de respuesta."
+    },
+    {
+     "linea": 149,
+     "descripcion": "Sin límite de intentos de login."
+    },
+    {
+     "linea": 110,
+     "descripcion": "compare_digest con firma no ASCII lanza TypeError no capturado."
+    },
+    {
+     "linea": 32,
+     "descripcion": "Escucha en 0.0.0.0 con credencial por defecto conocida."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F699",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L126-159 login PBKDF2 con hash ficticio de tiempo igualado y token firmado con exp; L161-170 GET /me valida el token.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; clave por entorno o aleatoria; admin/secret definido en código.",
+   "debilidades_adicionales": [
+    {
+     "linea": 55,
+     "descripcion": "Credencial admin/secret incrustada y aceptada."
+    },
+    {
+     "linea": 26,
+     "descripcion": "PBKDF2 con 120000 iteraciones, por debajo de lo recomendado actualmente."
+    },
+    {
+     "linea": 138,
+     "descripcion": "Sin límite de intentos ni bloqueo en el login."
+    },
+    {
+     "linea": 23,
+     "descripcion": "Escucha en 0.0.0.0 con credencial por defecto conocida."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F898",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L109-135 POST /login con Argon2, límite de intentos y JWT 15 min; L138-168 GET /me valida firma y usuario.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Clave efímera y contraseña demo por defecto (L46-56); basta instalar fastapi, uvicorn, PyJWT y pwdlib.",
+   "debilidades_adicionales": [
+    {
+     "linea": 56,
+     "descripcion": "Contraseña demo por defecto ClaveDemo123! incrustada."
+    },
+    {
+     "linea": 68,
+     "descripcion": "Contador de intentos sin purga; crece con claves arbitrarias."
+    },
+    {
+     "linea": 48,
+     "descripcion": "Clave efímera por proceso: tokens no válidos entre varios workers o reinicios."
+    }
+   ]
+  },
+  {
+   "codigo": "E07_F989",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L94-119 POST /login valida credenciales y devuelve token HMAC con exp y jti; no hay endpoint que verifique el token.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; valores por defecto admin/admin y clave aleatoria; escucha en 127.0.0.1.",
+   "debilidades_adicionales": [
+    {
+     "linea": 32,
+     "descripcion": "Contraseña por defecto admin/admin si no se define API_PASSWORD."
+    },
+    {
+     "linea": 94,
+     "descripcion": "Sin límite de intentos de login."
+    },
+    {
+     "linea": 72,
+     "descripcion": "compare_digest con texto no ASCII lanza TypeError sin capturar (error 500)."
+    },
+    {
+     "linea": 88,
+     "descripcion": "Token emitido sin ninguna función de verificación ni invalidación en el archivo."
+    },
+    {
+     "linea": 32,
+     "descripcion": "Contraseña única en texto claro comparada directamente, sin hash."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 67,
+   "codigo": "E07_F989",
+   "regla": "B105",
+   "linea": "118",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'Bearer' es el nombre del tipo de token en la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 68,
+   "codigo": "E07_F163",
+   "regla": "B105",
+   "linea": "112",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'Bearer' es el nombre del tipo de token en la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 69,
+   "codigo": "E07_F163",
+   "regla": "B104",
+   "linea": "137",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Enlace a 0.0.0.0 en ejemplo de demostración; riesgo dependiente del despliegue, agravado por credencial admin/admin123 conocida.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 70,
+   "codigo": "E07_F690",
+   "regla": "B105",
+   "linea": "175",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'Bearer' es el nombre del tipo de token en la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 71,
+   "codigo": "E07_F690",
+   "regla": "B104",
+   "linea": "32",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Enlace a 0.0.0.0 en ejemplo de demostración; riesgo dependiente del despliegue, agravado por credencial admin/secret conocida.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 72,
+   "codigo": "E07_F699",
+   "regla": "B105",
+   "linea": "156",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'Bearer' es el nombre del tipo de token en la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 73,
+   "codigo": "E07_F699",
+   "regla": "B104",
+   "linea": "23",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Enlace a 0.0.0.0 en ejemplo de demostración; riesgo dependiente del despliegue, agravado por credencial admin/secret conocida.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 74,
+   "codigo": "E07_F506",
+   "regla": "B105",
+   "linea": "23",
+   "clasificacion": "debilidad_real",
+   "justificacion": "Clave fija de firma en el código; quien la conozca puede falsificar tokens de cualquier usuario. El comentario no impide su uso.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 75,
+   "codigo": "E07_F506",
+   "regla": "B105",
+   "linea": "52",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'Bearer' es el nombre del tipo de token en la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 76,
+   "codigo": "E07_F506",
+   "regla": "B201",
+   "linea": "79",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "debug=True solo en bloque __main__ y enlazado a localhost por defecto; peligroso si se expone, pero acotado a desarrollo.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 77,
+   "codigo": "E07_F349",
+   "regla": "B105",
+   "linea": "69",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Contraseña de demostración marcada como académica y sustituible por entorno, pero queda como credencial conocida por defecto.",
+   "relacionada_con_categoria_del_escenario": "si"
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+{
+ "escenario": "E05",
+ "requisitos": {
+  "R1": "Una función que busque un usuario en la base de datos (consulta a BD).",
+  "R2": "La búsqueda se hace por el nombre que llega desde un formulario (entrada del formulario como criterio)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E05_F160",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L11-34: función con consulta parametrizada por nombre; L37-50 demo con SQLite en memoria y tabla creada.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Autocontenido: crea su propia BD en memoria y ejecuta la demo.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F192",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-33: función que consulta usuarios por nombre con parámetro ligado; recibe el nombre del formulario como argumento.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin main; requiere app.db existente con tabla usuarios, si no lanza OperationalError.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F421",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "restringido"
+   },
+   "evidencia": "L68-78: get_current_user siempre lanza 401, por lo que el endpoint L81-108 nunca llega a buscar; además L31 exige DATABASE_URL sin valor por defecto.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "KeyError sin DATABASE_URL al importar; aun con ella, la dependencia de autenticación deniega siempre.",
+   "debilidades_adicionales": [
+    {
+     "linea": 83,
+     "descripcion": "Form con strip_whitespace=True no es parámetro estándar de FastAPI; posible aviso o error según versión."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F470",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L67-90: endpoint POST con Form username que llama a la búsqueda parametrizada L37-64 y devuelve usuario o 404.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Necesita uvicorn (sin main) y app.db existente con tabla usuarios.",
+   "debilidades_adicionales": [
+    {
+     "linea": 67,
+     "descripcion": "Endpoint sin autenticación (solo nota en comentario): permite enumerar usuarios por nombre."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F534",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-33: función con consulta parametrizada por nombre, conexión cerrada en finally.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin main; requiere app.db con tabla usuarios preexistente.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F564",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "si",
+    "R2": "restringido"
+   },
+   "evidencia": "L34-58: endpoint con Form nombre; L36 pattern ^[\\w .'-]+$ rechaza nombres con otros caracteres (coma, @, etc.), más restrictivo que lo pedido.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Necesita uvicorn (sin main) y app.db con tabla usuarios.",
+   "debilidades_adicionales": [
+    {
+     "linea": 34,
+     "descripcion": "Endpoint sin autenticación; permite enumerar usuarios y obtener email."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F576",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L45-72: endpoint POST con Form username, consulta parametrizada y 404/500 controlados.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Necesita uvicorn (sin main) y app.db con tabla users.",
+   "debilidades_adicionales": [
+    {
+     "linea": 45,
+     "descripcion": "Endpoint sin autenticación (solo nota en docstring): enumeración de usuarios."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F664",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L14-31 función de búsqueda parametrizada; L34-43 manejador de formulario; L46-49 demo con input().",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Arranca, pero falla con OperationalError si app.db no existe o carece de tabla usuarios.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F946",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-32: función de búsqueda por nombre con consulta parametrizada.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin main; requiere app.db con tabla usuarios preexistente.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F966",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "si",
+    "R2": "restringido"
+   },
+   "evidencia": "L66-81 función de búsqueda funcional, pero L42-54 get_current_user siempre devuelve 401, así que el endpoint L84-113 no completa el flujo.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Endpoint siempre 401 hasta sustituir la dependencia; la función sí es invocable directamente.",
+   "debilidades_adicionales": []
+  }
+ ],
+ "alertas": []
+}

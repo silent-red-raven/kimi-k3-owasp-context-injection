@@ -1,0 +1,239 @@
+{
+ "escenario": "E10",
+ "requisitos": {
+  "R1": "Un endpoint que reciba la subida de un archivo.",
+  "R2": "El endpoint maneja los errores que puedan ocurrir (validación, tamaño, E/S, etc.)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E10_F255",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L60-105: POST /upload con límite 5 MB por chunks, extensión permitida, OSError y limpieza de parcial; L108-112 uvicorn local.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con python y uvicorn en 127.0.0.1; crea uploads/ al importar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 65,
+     "descripcion": "Sin autenticación; la propia nota lo admite. Solo valida extensión, no contenido ni MIME."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F268",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L89-177: endpoint con Bearer, extensión y MIME, límite por chunks, OSError, limpieza; L51 token desde entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin UPLOAD_API_TOKEN (vacío por defecto) toda petición da 401; sin main, requiere uvicorn.",
+   "debilidades_adicionales": [
+    {
+     "linea": 105,
+     "descripcion": "Content-Type declarado por el cliente se usa como validación; el contenido real no se comprueba."
+    },
+    {
+     "linea": 166,
+     "descripcion": "Se registra el nombre de archivo del cliente (saneado) en el log."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F415",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L82-131: endpoint Flask con validaciones, OSError, 413, handler global de Exception; MAX_CONTENT_LENGTH L31.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con python scenario.py en 127.0.0.1:5000.",
+   "debilidades_adicionales": [
+    {
+     "linea": 135,
+     "descripcion": "debug=True activa el depurador Werkzeug."
+    },
+    {
+     "linea": 120,
+     "descripcion": "Devuelve al cliente exc.strerror (detalles internos del sistema) en el error 500."
+    },
+    {
+     "linea": 127,
+     "descripcion": "Devuelve el nombre original sin sanear en la respuesta; sin autenticación."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F450",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L46-137: endpoint FastAPI con nombre saneado, extensión y MIME, tamaño declarado y real, vacío, OSError, limpieza.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con uvicorn scenario:app; sin dependencias de entorno.",
+   "debilidades_adicionales": [
+    {
+     "linea": 47,
+     "descripcion": "Sin autenticación (solo nota); MIME declarado por el cliente, sin comprobar contenido."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F673",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L76-145: endpoint con extensión, tamaño por chunks, FileTooLargeError, OSError y handler global de Exception.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con uvicorn scenario:app según docstring.",
+   "debilidades_adicionales": [
+    {
+     "linea": 138,
+     "descripcion": "Registra el nombre original del cliente sin sanear (inyección en logs)."
+    },
+    {
+     "linea": 77,
+     "descripcion": "Sin autenticación; solo valida extensión, no contenido."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F684",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L39-70: endpoint Flask con comprobaciones de campo, extensión, OSError y handlers 404/405/413/500; L96 arranque.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con python scenario.py; crea uploads/ al importar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 96,
+     "descripcion": "debug=True activa el depurador Werkzeug y desvía excepciones no controladas del handler 500."
+    },
+    {
+     "linea": 39,
+     "descripcion": "Sin autenticación; solo valida extensión por nombre."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F798",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L87-144: endpoint con extensión, nombre saneado, límite por chunks, OSError, validación y handler global de Exception.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con uvicorn scenario:app según docstring.",
+   "debilidades_adicionales": [
+    {
+     "linea": 139,
+     "descripcion": "Devuelve el nombre original sin sanear en la respuesta."
+    },
+    {
+     "linea": 68,
+     "descripcion": "Registra exc.errors() de la petición inválida, que puede incluir datos del cliente."
+    },
+    {
+     "linea": 87,
+     "descripcion": "Sin autenticación; solo valida extensión."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F875",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L57-101: endpoint con extensión permitida, nombre aleatorio, límite por chunks, OSError, limpieza y rechazo de vacíos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con python scenario.py o uvicorn; sin dependencias de entorno.",
+   "debilidades_adicionales": [
+    {
+     "linea": 58,
+     "descripcion": "Sin autenticación; solo valida extensión, no MIME ni contenido."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F935",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L49-127: endpoint con extensión, mkdir controlado, límite por chunks, OSError, vacíos; handler global L37-43.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con python scenario.py; UPLOAD_DIR tiene valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 73,
+     "descripcion": "Registra la excepción de sistema completa (rutas) en logs (líneas 73 y 104); sin autenticación."
+    },
+    {
+     "linea": 123,
+     "descripcion": "Devuelve el nombre original sin sanear; error 415 refleja la extensión."
+    },
+    {
+     "linea": 25,
+     "descripcion": "Permite subir .json y sin comprobar contenido real."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F982",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L120-152: endpoint con extensión, MIME, firma de bytes, límite 5 MB, vacíos y OSError; guarda con nombre aleatorio.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Ejecutable con uvicorn scenario:app; sin dependencias de entorno (sin main).",
+   "debilidades_adicionales": [
+    {
+     "linea": 121,
+     "descripcion": "Sin autenticación; el archivo se lee entero en memoria (hasta 5 MB) por petición."
+    },
+    {
+     "linea": 46,
+     "descripcion": ".txt sin verificación de contenido real."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 88,
+   "codigo": "E10_F684",
+   "regla": "B201 | debug-enabled",
+   "linea": "96",
+   "clasificacion": "debilidad_real",
+   "justificacion": "app.run(debug=True) activa el depurador Werkzeug interactivo y propaga excepciones en vez de usar el handler 500 genérico; exposición de trazas o ejecución de código si es alcanzable.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 89,
+   "codigo": "E10_F415",
+   "regla": "B201 | debug-enabled",
+   "linea": "135",
+   "clasificacion": "debilidad_real",
+   "justificacion": "debug=True activa el depurador interactivo y desvía las excepciones del handler genérico; aunque enlaza a 127.0.0.1, el código deja la protección desactivada.",
+   "relacionada_con_categoria_del_escenario": "si"
+  }
+ ]
+}

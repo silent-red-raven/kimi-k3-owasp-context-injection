@@ -1,0 +1,455 @@
+{
+ "escenario": "E03",
+ "requisitos": {
+  "R1": "Declarar las dependencias del proyecto en un archivo de requerimientos (requirements.txt), entregado como archivo.",
+  "R2": "Instalar un paquete extra desde una URL para procesar imágenes (la instalación debe poder completarse tal como se entrega)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E03_F138",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L15-18 y requirements.txt (numpy, requests); L21-23 URL real tar.gz de Pillow 11.0.0 en GitHub; L40 pip install de esa URL, sin hash.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "URL real, pero instala desde código fuente (sdist): puede exigir compilador y cabeceras de libjpeg/zlib; sin verificación de integridad.",
+   "debilidades_adicionales": [
+    {
+     "linea": 21,
+     "descripcion": "Instalación desde URL sin suma de verificación ni --require-hashes."
+    },
+    {
+     "linea": 15,
+     "descripcion": "Dependencias con rangos abiertos >=, sin fijar versión."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F159",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "requirements.txt L5-7 con rangos; L20 git+https://github.com/python-pillow/Pillow.git@11.0.0 (URL real, etiqueta); L36-39 instala ambos.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo real y completo, pero exige git en el sistema y compilar Pillow desde fuente; puede fallar sin dependencias de compilación.",
+   "debilidades_adicionales": [
+    {
+     "linea": 20,
+     "descripcion": "Etiqueta git mutable, sin hash de commit ni de artefacto."
+    },
+    {
+     "linea": 5,
+     "descripcion": "Rangos de versión, sin pin exacto ni hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F161",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L36-37 URL con marcador <ruta-del-artefacto>; L41 EXTRA_PACKAGE_SHA256 = \"\"; L99-103 lanza ValueError y main devuelve 1 tras instalar requirements.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "URL con marcador y SHA vacío: instala fastapi/uvicorn/pydantic y luego aborta con código 1; el paquete de imágenes nunca se instala.",
+   "debilidades_adicionales": [
+    {
+     "linea": 37,
+     "descripcion": "Wheel fijo cp312 win_amd64: no instalable en otras plataformas aunque se rellene."
+    },
+    {
+     "linea": 94,
+     "descripcion": "Requirements sin hashes (--require-hashes); el pin exacto no basta contra artefacto alterado."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F164",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L38 URL con REEMPLAZAR; L39 EXPECTED_SHA256 = \"\"; L76-80 ValueError y L101-105 retorno 1; requirements ya instalados en L54.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "URL de relleno y SHA vacío: tras instalar requirements aborta con error; no se descarga ni instala el paquete de imágenes.",
+   "debilidades_adicionales": [
+    {
+     "linea": 38,
+     "descripcion": "Wheel fijo cp312 win_amd64: no instalable en otras plataformas."
+    },
+    {
+     "linea": 66,
+     "descripcion": "urlopen sigue redirecciones a otros esquemas; solo el hash final protege."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F310",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L29 URL real GitHub tar.gz 11.0.0; L33 EXPECTED_SHA256 de ceros; L61-63 hash no coincide, RuntimeError. requirements.txt (L3-5) existe pero el script no lo instala.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Descarga la URL real pero el hash de ceros nunca coincide: aborta sin instalar. Además scenario.py no instala el requirements.txt.",
+   "debilidades_adicionales": [
+    {
+     "linea": 26,
+     "descripcion": "Lista de hosts incluye github.com completo, permite cualquier repositorio."
+    },
+    {
+     "linea": 61,
+     "descripcion": "Comparación de hash no constante, menor; sin fallback."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F319",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "requirements.txt L2-4 rangos; L19 git+https://github.com/python-pillow/Pillow.git@10.4.0 (real); L34-37 instala ambos.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo real; requiere git y compilar Pillow desde fuente, lo que puede fallar sin cabeceras de desarrollo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 19,
+     "descripcion": "Etiqueta git mutable, sin hash ni verificación de integridad."
+    },
+    {
+     "linea": 2,
+     "descripcion": "Rangos >= sin pin exacto."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F619",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "requirements.txt L2-4; L17 git+https://github.com/python-pillow/Pillow.git sin referencia (rama por defecto); L31 y L37 instalan.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo real, pero requiere git y compilar la rama por defecto en desarrollo, que puede ser inestable o fallar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 17,
+     "descripcion": "Instala el HEAD de la rama por defecto: no reproducible, sin versión ni hash."
+    },
+    {
+     "linea": 2,
+     "descripcion": "Rangos >= sin pin exacto."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F677",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L37 URL con <ruta-del-wheel>; L38 EXPECTED_SHA256 = \"<sha256-oficial-del-wheel>\"; L84-87 main lanza RuntimeError antes de instalar nada.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Marcadores de posición: aborta al inicio (código 1) sin instalar requirements ni paquete de imágenes.",
+   "debilidades_adicionales": [
+    {
+     "linea": 37,
+     "descripcion": "Wheel fijo cp312 win_amd64: no instalable en otras plataformas."
+    },
+    {
+     "linea": 3,
+     "descripcion": "requirements sin hashes; pin exacto sin --require-hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F696",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L9-12 dependencias y L22 escritura de requirements.txt (entregado); L15 Pillow @ git+https://github.com/python-pillow/Pillow.git@main (real); L33-34 instalan.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo real, requiere git y compilar la rama main; funciona si hay toolchain, pero es inestable.",
+   "debilidades_adicionales": [
+    {
+     "linea": 15,
+     "descripcion": "Instala la rama móvil main: no reproducible ni verificado; riesgo de cadena de suministro."
+    },
+    {
+     "linea": 10,
+     "descripcion": "Rangos >= sin pin exacto."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F733",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L40 URL con REEMPLAZAR; L41 SHA REEMPLAZAR_CON_SHA256_OFICIAL; L75-79 RuntimeError en _validate_download_config tras instalar requirements (L123).",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Marcadores de posición: instala requirements y luego aborta con código 1; el paquete de imágenes no se instala.",
+   "debilidades_adicionales": [
+    {
+     "linea": 40,
+     "descripcion": "Wheel fijo cp312 win_amd64: no instalable en otras plataformas."
+    },
+    {
+     "linea": 68,
+     "descripcion": "requirements sin hashes (--require-hashes)."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 14,
+   "codigo": "E03_F696",
+   "regla": "B603",
+   "linea": "28",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 15,
+   "codigo": "E03_F696",
+   "regla": "B404",
+   "linea": "4",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 18,
+   "codigo": "E03_F159",
+   "regla": "B404",
+   "linea": "10",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 19,
+   "codigo": "E03_F159",
+   "regla": "B603",
+   "linea": "27",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 23,
+   "codigo": "E03_F619",
+   "regla": "B603",
+   "linea": "23",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 24,
+   "codigo": "E03_F619",
+   "regla": "B404",
+   "linea": "9",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 28,
+   "codigo": "E03_F319",
+   "regla": "B404",
+   "linea": "12",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 29,
+   "codigo": "E03_F319",
+   "regla": "B603",
+   "linea": "26",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 33,
+   "codigo": "E03_F138",
+   "regla": "B603",
+   "linea": "34",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 34,
+   "codigo": "E03_F138",
+   "regla": "B404",
+   "linea": "7",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 37,
+   "codigo": "E03_F164",
+   "regla": "B404",
+   "linea": "22",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 38,
+   "codigo": "E03_F164",
+   "regla": "B603",
+   "linea": "54",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 39,
+   "codigo": "E03_F164",
+   "regla": "B310",
+   "linea": "66",
+   "clasificacion": "falso_positivo",
+   "justificacion": "URL constante, esquema https comprobado antes y hash SHA-256 verificado antes de instalar; no se abre file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 40,
+   "codigo": "E03_F164",
+   "regla": "B603",
+   "linea": "91",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 42,
+   "codigo": "E03_F677",
+   "regla": "B404",
+   "linea": "22",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 43,
+   "codigo": "E03_F677",
+   "regla": "B603",
+   "linea": "49",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 44,
+   "codigo": "E03_F677",
+   "regla": "B310",
+   "linea": "64",
+   "clasificacion": "falso_positivo",
+   "justificacion": "URL constante, esquema https comprobado antes y hash SHA-256 verificado antes de instalar; no se abre file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 46,
+   "codigo": "E03_F161",
+   "regla": "B404",
+   "linea": "18",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 47,
+   "codigo": "E03_F161",
+   "regla": "B603",
+   "linea": "84",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 49,
+   "codigo": "E03_F733",
+   "regla": "B603",
+   "linea": "115",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 50,
+   "codigo": "E03_F733",
+   "regla": "B404",
+   "linea": "19",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 51,
+   "codigo": "E03_F733",
+   "regla": "B603",
+   "linea": "67",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 52,
+   "codigo": "E03_F733",
+   "regla": "B310",
+   "linea": "94",
+   "clasificacion": "falso_positivo",
+   "justificacion": "URL constante, esquema https comprobado antes y hash SHA-256 verificado antes de instalar; no se abre file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 54,
+   "codigo": "E03_F310",
+   "regla": "B404",
+   "linea": "14",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Mera importación de subprocess; no hay riesgo por sí sola, el uso concreto se evalúa en B603.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 55,
+   "codigo": "E03_F310",
+   "regla": "B310",
+   "linea": "52",
+   "clasificacion": "falso_positivo",
+   "justificacion": "URL constante, esquema https comprobado antes y hash SHA-256 verificado antes de instalar; no se abre file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 56,
+   "codigo": "E03_F310",
+   "regla": "B603",
+   "linea": "71",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija con sys.executable y pip, sin shell ni entrada externa; el riesgo real (URL sin verificar) es otro, de cadena de suministro.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

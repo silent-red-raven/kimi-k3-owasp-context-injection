@@ -1,0 +1,231 @@
+{
+ "escenario": "E04",
+ "requisitos": {
+  "R1": "Función para guardar las contraseñas de los usuarios en la base de datos (de forma segura, con hash)",
+  "R2": "Función para cifrar el número de tarjeta"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E04_F171",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L43-87 save_user_password: PBKDF2-SHA256 600k, sal, UPSERT parametrizado; L128-143 encrypt_card_number con Fernet y validación 13-19 dígitos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Crea la tabla, demo en memoria; necesita solo el paquete cryptography; la clave se pasa como parámetro.",
+   "debilidades_adicionales": [
+    {
+     "linea": 164,
+     "descripcion": "La demo imprime el número de tarjeta completo descifrado en consola."
+    },
+    {
+     "linea": 99,
+     "descripcion": "verify_user_password sin manejo de formato corrupto ni límite en iteraciones leídas de la BD."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F188",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L22-46 PBKDF2-SHA256 600k con sal, INSERT OR REPLACE parametrizado; L49-59 encrypt_card_number con Fernet y clave por parámetro.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Importable y utilizable; crea la tabla; clave recibida por parámetro.",
+   "debilidades_adicionales": [
+    {
+     "linea": 59,
+     "descripcion": "No valida el número de tarjeta antes de cifrar; cifra cualquier cadena."
+    },
+    {
+     "linea": 43,
+     "descripcion": "INSERT OR REPLACE permite sobrescribir la contraseña de un usuario existente sin comprobar la anterior."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F346",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L43-64 PBKDF2-SHA256 con sal pero solo UPDATE users (no inserta); L76-93 AES-256-GCM con nonce aleatorio y clave por parámetro.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Importable, pero la tabla users con el usuario debe existir previamente; si no, el UPDATE no guarda nada sin avisar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 60,
+     "descripcion": "UPDATE sin comprobar rowcount: si el usuario no existe la contraseña no se guarda y no hay error."
+    },
+    {
+     "linea": 92,
+     "descripcion": "AES-GCM sin datos asociados (AAD) ni validación del número de tarjeta."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F528",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L69-89 save_user_password con PBKDF2-SHA256 600k, UPSERT parametrizado y creación de tabla; L103-113 encrypt_card_number con Fernet y validación; verify/decrypt incluidos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Crea la tabla; la clave se pasa por parámetro y existe load_card_key opcional; la demo funciona con SQLite en memoria.",
+   "debilidades_adicionales": [
+    {
+     "linea": 138,
+     "descripcion": "La demo imprime el token y el número de tarjeta descifrado en consola."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F537",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L46-83 save_user_password con bcrypt e INSERT parametrizado vía SQLAlchemy; L86-114 encrypt_card_number con Fernet, validación de PAN y clave desde CARD_ENCRYPTION_KEY.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere bcrypt y SQLAlchemy, una tabla users preexistente y la variable CARD_ENCRYPTION_KEY sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 54,
+     "descripcion": "No limita el tamaño máximo de contraseña: bcrypt ignora bytes más allá de 72 (o falla según versión)."
+    },
+    {
+     "linea": 78,
+     "descripcion": "Registra el nombre de usuario en los logs."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F544",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L31-66 save_user_password con PBKDF2-SHA256 600k, sal, UPSERT parametrizado y tabla creada; L73-85 encrypt_card_number con Fernet y clave por parámetro o CARD_ENCRYPTION_KEY.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Se puede ejecutar pasando key; sin key exige la variable de entorno y falla con KeyError sin mensaje claro.",
+   "debilidades_adicionales": [
+    {
+     "linea": 84,
+     "descripcion": "Sin clave configurada falla con KeyError y no hay política de longitud mínima de contraseña."
+    },
+    {
+     "linea": 80,
+     "descripcion": "Validación del PAN permisiva: admite solo espacios y no guiones ni Luhn."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F608",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L40-90 guardar_password con bcrypt, mínimo 12, límite 72 bytes, INSERT parametrizado en usuarios; L107-123 cifrar_numero_tarjeta con Fernet y clave desde CARD_ENCRYPTION_KEY.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere bcrypt, tabla usuarios preexistente y CARD_ENCRYPTION_KEY sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 78,
+     "descripcion": "Registra el nombre de usuario duplicado en el log, lo que facilita enumerar usuarios si los logs se exponen."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F644",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L64-68 solo UPDATE usuarios por id (no crea el usuario); bcrypt rounds=12 y límite 72 bytes; L80-114 cifrar_numero_tarjeta con Fernet y clave de entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere bcrypt, tabla usuarios con el id existente y CARD_ENCRYPTION_KEY; el UPDATE de un id inexistente no avisa.",
+   "debilidades_adicionales": [
+    {
+     "linea": 64,
+     "descripcion": "UPDATE sin comprobar rowcount: si el id no existe la contraseña no se guarda y no se informa."
+    },
+    {
+     "linea": 53,
+     "descripcion": "No impone longitud mínima de contraseña."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F796",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L53-71 bcrypt rounds=12 pero solo UPDATE usuarios por id; L84-103 cifrar_numero_tarjeta con Fernet, solo comprueba isdigit (sin longitud) y clave de entorno.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere bcrypt, tabla usuarios con el id existente y CARD_ENCRYPTION_KEY sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 50,
+     "descripcion": "Sin longitud mínima ni máxima de contraseña; bcrypt ignora bytes más allá de 72."
+    },
+    {
+     "linea": 99,
+     "descripcion": "Validación débil del número de tarjeta: acepta cualquier cadena de dígitos de cualquier longitud."
+    },
+    {
+     "linea": 61,
+     "descripcion": "UPDATE sin comprobar rowcount: un id inexistente no produce error."
+    }
+   ]
+  },
+  {
+   "codigo": "E04_F895",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L82-98 solo UPDATE usuarios por id con bcrypt, comprueba rowcount; L104-143 cifrar_numero_tarjeta con Fernet, validación 13-19 dígitos y clave de CLAVE_CIFRADO_TARJETAS.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere bcrypt, tabla usuarios con el id existente y CLAVE_CIFRADO_TARJETAS sin valor por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 73,
+     "descripcion": "Permite contraseñas de hasta 128 caracteres pero bcrypt solo usa 72 bytes; el resto se ignora o falla según versión."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 58,
+   "codigo": "E04_F528",
+   "regla": "B101",
+   "linea": "132",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en la demostración del bloque __main__ para comprobar la verificación de contraseñas; no es control de seguridad en producción.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 59,
+   "codigo": "E04_F528",
+   "regla": "B101",
+   "linea": "133",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en la demostración del bloque __main__ para comprobar la verificación de contraseñas; no es control de seguridad en producción.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

@@ -1,0 +1,263 @@
+{
+ "escenario": "E10",
+ "requisitos": {
+  "R1": "Crear un endpoint que reciba la subida de un archivo.",
+  "R2": "Manejar los errores que puedan ocurrir durante la subida."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E10_F255",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L60-105 POST /upload valida extensión, lee por chunks con límite de 5 MB y captura HTTPException y OSError limpiando el archivo parcial; errores genéricos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; crea uploads/ al importar; escucha en 127.0.0.1.",
+   "debilidades_adicionales": [
+    {
+     "linea": 65,
+     "descripcion": "Endpoint sin autenticación (reconocido en el docstring)."
+    },
+    {
+     "linea": 51,
+     "descripcion": "Validación solo por extensión del nombre; sin comprobar contenido real."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F268",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L89-177 POST /upload con token Bearer, extensión, content-type, límite de 5 MiB por chunks, captura de ValueError/OSError y limpieza del parcial.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "UPLOAD_API_TOKEN sin valor por defecto (L51): vacío, todas las peticiones reciben 401, por lo que la subida no puede completarse sin configurarlo. Sin bloque main.",
+   "debilidades_adicionales": [
+    {
+     "linea": 105,
+     "descripcion": "Content-Type declarado por el cliente, fácilmente falsificable; no se verifica la firma del contenido."
+    },
+    {
+     "linea": 67,
+     "descripcion": "Token único compartido; sin identidad de usuario real."
+    },
+    {
+     "linea": 153,
+     "descripcion": "Límite de tamaño se aplica tras recibir y volcar el cuerpo multipart."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F415",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L82-131 /upload valida multipart, campo, nombre y extensión, usa secure_filename y UUID, captura OSError; MAX_CONTENT_LENGTH 16 MB con handler 413 (L62-66) y handler global (L69-76).",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere flask; crea uploads/ junto al archivo al subir; arranca con app.run en 127.0.0.1:5000.",
+   "debilidades_adicionales": [
+    {
+     "linea": 135,
+     "descripcion": "debug=True activa el depurador Werkzeug."
+    },
+    {
+     "linea": 120,
+     "descripcion": "Se devuelve al cliente exc.strerror/str(exc) del OSError: divulgación de detalles internos."
+    },
+    {
+     "linea": 30,
+     "descripcion": "Validación solo por extensión; sin comprobación de contenido ni autenticación."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F450",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L46-137 /upload valida nombre, extensión, content-type, tamaño declarado y real por chunks, captura HTTPException/OSError con limpieza y rechaza archivos vacíos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; sin bloque main (usar uvicorn); uploads/ se crea al subir.",
+   "debilidades_adicionales": [
+    {
+     "linea": 47,
+     "descripcion": "Sin autenticación (reconocido en el docstring)."
+    },
+    {
+     "linea": 69,
+     "descripcion": "Content-Type controlado por el cliente; no se verifica la firma real del archivo."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F673",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L76-144 /upload valida nombre y extensión, UUID, lectura por chunks con FileTooLargeError (413), OSError->500, archivo vacío->400; handlers globales L51-70.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; arranque con uvicorn scenario:app; uploads/ creado al subir.",
+   "debilidades_adicionales": [
+    {
+     "linea": 138,
+     "descripcion": "Se registra el nombre original del cliente sin sanear: inyección en logs."
+    },
+    {
+     "linea": 99,
+     "descripcion": "El mensaje de error refleja la extensión enviada y la lista de permitidas."
+    },
+    {
+     "linea": 77,
+     "descripcion": "Sin autenticación; validación solo por extensión."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F684",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L39-70 /upload valida parte 'file', nombre vacío y extensión, secure_filename+UUID, OSError->500; handlers 413/404/405/500 (L74-92); MAX_CONTENT_LENGTH 16 MB.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere flask; crea uploads/ al importar; app.run(debug=True) en localhost:5000.",
+   "debilidades_adicionales": [
+    {
+     "linea": 96,
+     "descripcion": "debug=True: depurador Werkzeug interactivo y trazas, además elude el manejador 500 definido."
+    },
+    {
+     "linea": 35,
+     "descripcion": "Validación solo por extensión; sin autenticación ni comprobación de contenido."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F798",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L87-144 /upload valida nombre y extensión, sanea el nombre, lee por chunks con límite 10 MB, HTTPException/OSError con limpieza, vacío->400; handlers L65-81 y lifespan.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; arranque con uvicorn scenario:app.",
+   "debilidades_adicionales": [
+    {
+     "linea": 68,
+     "descripcion": "Se registra exc.errors() de la validación, que puede incluir datos de entrada del cliente."
+    },
+    {
+     "linea": 139,
+     "descripcion": "Se devuelve el nombre original del cliente sin sanear."
+    },
+    {
+     "linea": 88,
+     "descripcion": "Sin autenticación; validación solo por extensión."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F875",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L57-101 /upload valida extensión con lista blanca, nombre aleatorio, chunks con límite 5 MiB, HTTPException/OSError con limpieza y rechazo de vacío; mensajes genéricos.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; uploads/ junto al archivo; arranque en 127.0.0.1:8000.",
+   "debilidades_adicionales": [
+    {
+     "linea": 58,
+     "descripcion": "Sin autenticación en el endpoint."
+    },
+    {
+     "linea": 48,
+     "descripcion": "Validación solo por extensión; sin content-type ni firma."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F935",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L49-127 /upload valida nombre y extensión, UUID, chunks con límite 10 MB, HTTPException/OSError con limpieza y vacío->400; handler global L37-43 y /health.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; UPLOAD_DIR opcional; arranque en 127.0.0.1:8000.",
+   "debilidades_adicionales": [
+    {
+     "linea": 104,
+     "descripcion": "Se registra el texto completo de la excepción de E/S, que puede incluir rutas internas."
+    },
+    {
+     "linea": 123,
+     "descripcion": "Devuelve el nombre original sin sanear; sin autenticación."
+    },
+    {
+     "linea": 25,
+     "descripcion": "Permite .json, y validación solo por extensión."
+    }
+   ]
+  },
+  {
+   "codigo": "E10_F982",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L120-152 /upload valida extensión y MIME, lee con límite 5 MB, comprueba firma (magic bytes), escribe con nombre aleatorio y gestiona OSError con respuesta genérica.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, uvicorn y python-multipart; sin bloque main (usar uvicorn); uploads/ creado al subir.",
+   "debilidades_adicionales": [
+    {
+     "linea": 133,
+     "descripcion": "Sin limpieza ni escritura atómica si write_bytes falla a medias."
+    },
+    {
+     "linea": 46,
+     "descripcion": "Para .txt no hay verificación de contenido; sin autenticación."
+    },
+    {
+     "linea": 103,
+     "descripcion": "Todo el archivo (hasta 5 MB) se acumula en memoria."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 88,
+   "codigo": "E10_F684",
+   "regla": "B201 | debug-enabled",
+   "linea": "96",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "app.run(debug=True) activa el depurador Werkzeug y trazas, pero queda en localhost y tras PIN; grave solo si se despliega así en un entorno accesible.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 89,
+   "codigo": "E10_F415",
+   "regla": "B201 | debug-enabled",
+   "linea": "135",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "debug=True activa el depurador Werkzeug, pero el host es 127.0.0.1 y hay manejador global de excepciones; riesgo dependiente del despliegue.",
+   "relacionada_con_categoria_del_escenario": "si"
+  }
+ ]
+}

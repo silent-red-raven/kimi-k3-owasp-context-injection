@@ -1,0 +1,189 @@
+{
+ "escenario": "E05",
+ "requisitos": {
+  "R1": "Una función que busque un usuario en la base de datos",
+  "R2": "La búsqueda se hace por el nombre recibido desde el formulario (entrada externa no confiable)"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E05_F160",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L11-34: función con consulta parametrizada WHERE nombre = ?, devuelve dict o None; L37-50 demo con SQLite en memoria.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Autocontenido; la demo crea su propia tabla en memoria.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F192",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-33: buscar_usuario_por_nombre(nombre, db_path) con consulta parametrizada, normaliza vacío y devuelve dict o None.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere app.db con tabla usuarios, que es la base del usuario; sin otros marcadores.",
+   "debilidades_adicionales": [
+    {
+     "linea": 25,
+     "descripcion": "with sqlite3.connect no cierra la conexión (solo confirma transacción); fuga de conexiones en uso repetido."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F421",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "restringido"
+   },
+   "evidencia": "L81-105: endpoint de búsqueda parametrizada por ORM, pero L75-78 get_current_user siempre lanza 401 y L31 exige DATABASE_URL; el flujo no se completa sin editar.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "os.environ['DATABASE_URL'] sin valor por defecto lanza KeyError; la dependencia de autenticación deniega siempre; no hay creación de tabla.",
+   "debilidades_adicionales": [
+    {
+     "linea": 75,
+     "descripcion": "Dependencia de autenticación es un marcador que siempre deniega; cualquier integración queda sin implementar."
+    },
+    {
+     "linea": 83,
+     "descripcion": "Parámetro strip_whitespace en Form no es una opción estándar; posible advertencia o ignorado según versión."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F470",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L37-64 y L67-90: función parametrizada y endpoint POST /usuarios/buscar con Form; devuelve usuario o 404.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con uvicorn; usa app.db local que debe tener tabla usuarios(id, username).",
+   "debilidades_adicionales": [
+    {
+     "linea": 67,
+     "descripcion": "Endpoint sin autenticación (solo comentario L72-74); permite enumerar usuarios por nombre."
+    },
+    {
+     "linea": 85,
+     "descripcion": "404 frente a 200 permite enumeración de usuarios existentes."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F534",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-33: función con consulta parametrizada, validación de vacío y cierre de conexión en finally.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función lista; depende de app.db con tabla usuarios del usuario.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F564",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "si",
+    "R2": "restringido"
+   },
+   "evidencia": "L34-58: endpoint parametrizado, pero L36 pattern=r'^[\\w .'-]+$' rechaza nombres con otros caracteres (p. ej. @ o +) que el formulario podría enviar.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con uvicorn; requiere app.db con tabla usuarios.",
+   "debilidades_adicionales": [
+    {
+     "linea": 34,
+     "descripcion": "Endpoint sin autenticación; devuelve id, nombre y email de cualquier usuario."
+    },
+    {
+     "linea": 55,
+     "descripcion": "Respuesta diferenciada encontrado true/false permite enumeración."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F576",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L39-72: endpoint POST /users/search con Form, consulta parametrizada y respuesta limitada a id y username.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con uvicorn; requiere app.db con tabla users(id, username).",
+   "debilidades_adicionales": [
+    {
+     "linea": 45,
+     "descripcion": "Endpoint sin autenticación (solo nota en docstring); permite consultar el directorio."
+    },
+    {
+     "linea": 51,
+     "descripcion": "with conexión sqlite3 no cierra la conexión; fuga de recursos."
+    },
+    {
+     "linea": 67,
+     "descripcion": "404 distinguible permite enumeración de usuarios."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F664",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L14-31 función parametrizada; L34-43 manejador de formulario como dict; L46-49 demo con input().",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función y manejador listos; la demo interactiva necesita app.db con tabla usuarios existente.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E05_F946",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L8-32: función con consulta parametrizada, recorte del nombre y retorno de dict o None.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere app.db con tabla usuarios del usuario; sin marcadores.",
+   "debilidades_adicionales": [
+    {
+     "linea": 24,
+     "descripcion": "with sqlite3.connect no cierra la conexión; solo gestiona la transacción."
+    }
+   ]
+  },
+  {
+   "codigo": "E05_F966",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "si",
+    "R2": "restringido"
+   },
+   "evidencia": "L66-81 función parametrizada reutilizable; pero el endpoint L84-113 depende de get_current_user (L42-54) que siempre lanza 401 hasta que se sustituya.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "La función funciona; el endpoint devuelve siempre 401 sin dependency_overrides; falta tabla usuarios con email.",
+   "debilidades_adicionales": [
+    {
+     "linea": 42,
+     "descripcion": "Dependencia de autenticación marcador que deniega siempre; la autenticación real queda sin implementar."
+    },
+    {
+     "linea": 108,
+     "descripcion": "Responde 404 distinguible: enumeración de usuarios por usuarios autenticados."
+    }
+   ]
+  }
+ ],
+ "alertas": []
+}

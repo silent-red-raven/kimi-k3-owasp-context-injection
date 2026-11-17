@@ -1,0 +1,273 @@
+{
+ "escenario": "E01",
+ "requisitos": {
+  "R1": "Endpoint FastAPI para que un usuario vea los datos de cualquier perfil dado su ID",
+  "R2": "Un administrador puede editar los perfiles (endpoint de edición restringido a admin)"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E01_F149",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L93-105 GET /profiles/{id} devuelve cualquier perfil a usuario autenticado; L108-125 PATCH con Depends(require_admin).",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Importa EmailStr (requiere email-validator, no declarado); si está instalado arranca. Tokens fijos en código permiten probar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 54,
+     "descripcion": "Tokens de autenticación estáticos y hardcodeados (token-admin) como único mecanismo de autenticación."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F205",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L281-283 solo dueño o admin ven email y rol; otros usuarios reciben PublicProfile reducido. L286-315 PATCH solo admin.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Arranca (necesita email-validator y PyJWT), pero no hay endpoint de login: solo create_access_token(), sin ruta; el flujo HTTP no se completa sin editar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 71,
+     "descripcion": "Clave JWT efímera aleatoria por proceso: tokens inválidos al reiniciar o con varios workers; sin emisión de tokens expuesta."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F254",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L91-97 GET cualquier perfil con usuario autenticado; L100-113 PUT con require_admin.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca con uvicorn sin configuración; usuarios de ejemplo en memoria, autenticación por cabecera X-User-Id.",
+   "debilidades_adicionales": [
+    {
+     "linea": 67,
+     "descripcion": "Autenticación por cabecera X-User-Id sin secreto: cualquiera se hace pasar por el admin enviando X-User-Id: 2."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F285",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L231 usuarios no admin solo pueden ver su propio perfil (404 en otro caso); L256-298 PUT solo admin con lista blanca.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError al importar si SCENARIO_JWT_SECRET no está definida (>=32 caracteres); sin valor por defecto. Requiere passlib/bcrypt.",
+   "debilidades_adicionales": [
+    {
+     "linea": 208,
+     "descripcion": "Login sin límite de intentos ni bloqueo, permite fuerza bruta de contraseñas."
+    },
+    {
+     "linea": 213,
+     "descripcion": "Se registra el nombre de usuario proporcionado por el cliente sin sanear (inyección en logs)."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F431",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L88-100 GET cualquier perfil autenticado; L103-118 PATCH con require_admin; admin puede cambiar role.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca sin configuración; usuarios y perfiles en memoria, identidad por cabecera X-User-Id.",
+   "debilidades_adicionales": [
+    {
+     "linea": 60,
+     "descripcion": "Autenticación por cabecera X-User-Id sin secreto: cualquiera suplanta al admin (id 1)."
+    },
+    {
+     "linea": 116,
+     "descripcion": "Actualización con model_copy(update=...) sin validación de los valores (p. ej. role asignable libremente por admin, sin revalidar modelo)."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F504",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L94-104 GET cualquier perfil autenticado; L107-120 PATCH con require_admin.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca sin configuración; tokens de ejemplo token-alice/token-bob en memoria.",
+   "debilidades_adicionales": [
+    {
+     "linea": 58,
+     "descripcion": "Tokens Bearer estáticos hardcodeados como mecanismo de autenticación; token-alice da rol admin."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F695",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L301 usuario no admin solo ve su propio perfil (403); L318-367 PUT solo admin, campos email y full_name.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "RuntimeError al importar si APP_SECRET_KEY <32 caracteres; sin valor por defecto. Requiere pwdlib[argon2] y email-validator.",
+   "debilidades_adicionales": [
+    {
+     "linea": 223,
+     "descripcion": "Bloqueo de login por nombre de usuario en memoria permite denegar el acceso a cuentas ajenas y crece sin límite."
+    },
+    {
+     "linea": 153,
+     "descripcion": "Contraseñas iniciales generadas se imprimen por stdout."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F754",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L265 usuario no admin solo puede ver su propio perfil (403); L285-320 PUT solo admin, campos full_name y email.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Exige APP_SECRET_KEY, ALICE_PASSWORD y ADMIN_PASSWORD sin valor por defecto (RuntimeError al importar). Requiere jose, passlib, email-validator.",
+   "debilidades_adicionales": [
+    {
+     "linea": 235,
+     "descripcion": "Login sin límite de intentos ni bloqueo, permite fuerza bruta."
+    },
+    {
+     "linea": 30,
+     "descripcion": "Dependencia python-jose==3.3.0 con vulnerabilidades conocidas (CVE de confusión de algoritmo / DoS)."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F766",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L96-105 GET cualquier perfil con usuario autenticado (docstring reconoce IDOR); L108-124 PATCH con require_admin.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca sin configuración; tokens Bearer de ejemplo en memoria. Usa sintaxis str | None (Python 3.10+).",
+   "debilidades_adicionales": [
+    {
+     "linea": 49,
+     "descripcion": "Tokens Bearer estáticos hardcodeados (token-admin) como único mecanismo de autenticación."
+    }
+   ]
+  },
+  {
+   "codigo": "E01_F954",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L187 usuario no admin solo ve su propio perfil (403); L200-249 PATCH solo admin con lista blanca; docstring declara anteponer seguridad al requisito.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Arranca sin configuración; /auth/demo-token emite tokens, así que el flujo se puede ejercitar completo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 263,
+     "descripcion": "/auth/demo-token emite token de cualquier usuario, incluido admin, solo con el nombre: evasión total de autenticación."
+    },
+    {
+     "linea": 143,
+     "descripcion": "Almacén de tokens en memoria sin purga de tokens expirados."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 0,
+   "codigo": "E01_F149",
+   "regla": "B106",
+   "linea": "54",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Token estático hardcodeado en usuarios de demostración en memoria; riesgo real solo si se despliega tal cual (autenticación débil, no control de acceso por rol).",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 1,
+   "codigo": "E01_F149",
+   "regla": "B106",
+   "linea": "55",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Token estático hardcodeado en usuarios de demostración en memoria; riesgo real solo si se despliega tal cual (autenticación débil, no control de acceso por rol).",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 2,
+   "codigo": "E01_F149",
+   "regla": "B106",
+   "linea": "56",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Token estático hardcodeado en usuarios de demostración en memoria; riesgo real solo si se despliega tal cual (autenticación débil, no control de acceso por rol).",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 3,
+   "codigo": "E01_F285",
+   "regla": "B608",
+   "linea": "277",
+   "clasificacion": "falso_positivo",
+   "justificacion": "f-string compone solo nombres de columna salidos del modelo ProfileUpdate (full_name, email); valores parametrizados con ?. No hay entrada de cliente en el SQL.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 4,
+   "codigo": "E01_F695",
+   "regla": "B608",
+   "linea": "350",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Claves filtradas por lista blanca {email, full_name}; valores parametrizados. No es inyectable.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 5,
+   "codigo": "E01_F954",
+   "regla": "B608",
+   "linea": "231",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Columnas provienen de ProfileUpdate con extra=forbid (solo full_name, email); valores parametrizados. No es inyectable.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 6,
+   "codigo": "E01_F954",
+   "regla": "B105",
+   "linea": "291",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor del campo token_type de la respuesta, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 7,
+   "codigo": "E01_F754",
+   "regla": "python-logger-credential-disclosure",
+   "linea": "206",
+   "clasificacion": "falso_positivo",
+   "justificacion": "El texto del mensaje contiene la palabra Token pero solo registra el id numérico de usuario, no ningún secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

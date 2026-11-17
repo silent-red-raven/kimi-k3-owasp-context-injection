@@ -1,0 +1,206 @@
+{
+ "escenario": "E08",
+ "requisitos": {
+  "R1": "Una función que cargue (lea y analice) un archivo de configuración.",
+  "R2": "El archivo es subido por administradores: se trata como entrada subida por admins (archivo subido y/o control de rol admin)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E08_F147",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L100-141 load_config(filename, upload_dir) con confinamiento y L144-175 load_config_from_bytes para subidas; JSON/YAML safe_load, límite 1 MiB.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Importable y utilizable; usa directorio uploads por defecto; YAML requiere PyYAML solo para .yaml.",
+   "debilidades_adicionales": [
+    {
+     "linea": 124,
+     "descripcion": "Sin comprobación de rol o identidad de administrador ni verificación de integridad del archivo."
+    },
+    {
+     "linea": 128,
+     "descripcion": "El mensaje de error expone la ruta absoluta del servidor."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F150",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L31-116 cargar_configuracion(ruta) valida extensión, resuelve ruta, tamaño y safe_load; confinamiento opcional por directorio_permitido.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función autónoma; solo la rama YAML necesita PyYAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 34,
+     "descripcion": "El directorio permitido es opcional; por defecto cualquier ruta del sistema con extensión permitida puede leerse."
+    },
+    {
+     "linea": 56,
+     "descripcion": "La extensión se valida antes de resolver enlaces simbólicos; un enlace .json a otro destino la elude."
+    },
+    {
+     "linea": 66,
+     "descripcion": "El error incluye la ruta entregada por el llamador."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F236",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L44-72 load_config(path, base_dir) valida ruta, extensión, tamaño y estructura; JSON y yaml.safe_load.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función autónoma; PyYAML opcional solo para YAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 47,
+     "descripcion": "base_dir es opcional; sin él se puede leer cualquier .json/.yaml del sistema."
+    },
+    {
+     "linea": 89,
+     "descripcion": "Mensajes de error con rutas absolutas del servidor."
+    },
+    {
+     "linea": 128,
+     "descripcion": "except Exception demasiado amplio al parsear YAML."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F326",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L18-64 load_config(file_path) comprueba existencia, extensión, tamaño y parsea con json/yaml.safe_load; CLI en L88-101.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Autónomo con CLI; PyYAML solo para YAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 31,
+     "descripcion": "Sin confinamiento a un directorio; cualquier ruta .json/.yaml legible puede cargarse."
+    },
+    {
+     "linea": 33,
+     "descripcion": "Extensión comprobada sobre la ruta sin resolver; los enlaces simbólicos la eluden."
+    },
+    {
+     "linea": 34,
+     "descripcion": "El error muestra la ruta recibida."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F451",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L39-116 load_admin_config(upload, current_user) exige rol admin, extensión, 1 MB, UTF-8 y safe_load; devuelve dict.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función async importable; requiere fastapi y PyYAML; el rol se recibe del llamador.",
+   "debilidades_adicionales": [
+    {
+     "linea": 54,
+     "descripcion": "El rol se toma de un objeto Any entregado por el llamador, sin verificar autenticación."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F559",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "si",
+    "R2": "restringido"
+   },
+   "evidencia": "L141-195 cargar_archivo_configuracion valida, parsea y guarda; pero L55-64 get_current_principal siempre lanza 401, así que el endpoint L202 deniega siempre.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "El endpoint no puede usarse hasta implementar get_current_principal (L55-64); la función interna sí es invocable.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E08_F606",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "restringido"
+   },
+   "evidencia": "L96-123 endpoint solo acepta .yaml/.yml y valida contra esquema fijo AppConfig (L30-37); require_admin lee request.state.user (L42) que nadie define.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Solo hay un router sin app; require_admin devuelve 403 siempre salvo que un middleware externo fije request.state.user.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E08_F637",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "no"
+   },
+   "evidencia": "L40-49 require_admin lanza NotImplementedError; el endpoint L81-111 depende de ella y siempre falla con error 500; no hay función de carga independiente.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "El marcador de posición require_admin detiene toda petición; requiere implementarlo y montar el router.",
+   "debilidades_adicionales": [
+    {
+     "linea": 111,
+     "descripcion": "Devuelve la configuración completa en la respuesta, que puede incluir secretos."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F670",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L20-89 cargar_configuracion(ruta) soporta JSON, YAML safe_load, TOML e INI con límite de 5 MB y validación de raíz dict.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Autónomo; tomllib exige Python 3.11 o superior; PyYAML solo para YAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 41,
+     "descripcion": "Sin confinamiento ni control de rol; cualquier ruta con extensión permitida puede leerse."
+    },
+    {
+     "linea": 44,
+     "descripcion": "Extensión comprobada sobre la ruta sin resolver; enlaces simbólicos la eluden."
+    },
+    {
+     "linea": 58,
+     "descripcion": "UnicodeDecodeError no controlado al leer el archivo."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F846",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L71-109 cargar_configuracion(archivo, usuario) async exige rol admin, basename y extensión, 256 KB, safe_load; devuelve dict.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Función async importable; requiere PyYAML; usuario y archivo los aporta el llamador.",
+   "debilidades_adicionales": [
+    {
+     "linea": 89,
+     "descripcion": "El rol se toma de un objeto Any entregado por el llamador, sin verificar autenticación."
+    }
+   ]
+  }
+ ],
+ "alertas": []
+}

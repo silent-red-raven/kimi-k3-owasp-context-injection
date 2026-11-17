@@ -1,0 +1,8 @@
+﻿indicador,valor,ic95_inf,ic95_sup,metodo_ic
+Diferencia media de hallazgos de código por par (control - experimental),0.22,0.0,0.5,bootstrap percentil remuestreando escenarios
+Diferencia media de hallazgos de código por par (control - experimental),0.22,0.12,0.34,bootstrap percentil remuestreando pares (ignora el agrupamiento)
+Diferencia en la proporción de fragmentos con hallazgo de código,0.22,0.0,0.5,bootstrap percentil remuestreando escenarios
+Correlación intraclase ICC(1) de las diferencias de código por escenario,0.8941176470588236,,,
+Número efectivo de pares,10.925449871465297,,,
+Escenarios con diferencia distinta de cero,3.0,,,
+Valor p bilateral mínimo alcanzable con esos escenarios,0.25,,,

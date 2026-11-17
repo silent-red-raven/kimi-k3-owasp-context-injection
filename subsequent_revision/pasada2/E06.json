@@ -1,0 +1,323 @@
+{
+ "escenario": "E06",
+ "requisitos": {
+  "R1": "El usuario pide un código de recuperación",
+  "R2": "El usuario recibe el código (entrega, real o simulada)",
+  "R3": "El usuario cambia su contraseña presentando el código"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E06_F226",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L175-185 solicitar_codigo, L132-134 BuzonSimulado entrega, L189-213 cambiar_contrasena; main() recorre el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo completa.",
+   "debilidades_adicionales": [
+    {
+     "linea": 81,
+     "descripcion": "Código de 6 dígitos hasheado con SHA-256 sin sal: trivialmente reversible si se filtra el almacén."
+    },
+    {
+     "linea": 175,
+     "descripcion": "Sin límite de solicitudes de código: tras 3 intentos se puede pedir otro y seguir adivinando."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F284",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L189-241 POST /solicitar, L236 buzón simulado, L244-299 POST /confirmar actualiza contraseña; _demo() ejecuta el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, bcrypt, httpx instalados; python scenario.py corre la demo con TestClient sin configuración.",
+   "debilidades_adicionales": [
+    {
+     "linea": 267,
+     "descripcion": "Cinco intentos fallidos invalidan el código vigente: un atacante puede bloquear la recuperación de una víctima."
+    },
+    {
+     "linea": 209,
+     "descripcion": "Solo hay espera de 60 s por correo, sin limitación por IP."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F328",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L161-176 request_code, L118-125 FakeEmailSender, L180-200 reset_password; main() demuestra el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 184,
+     "descripcion": "Mensajes distintos (sin código, usado, expirado) en reset_password permiten saber si hay recuperación pendiente."
+    },
+    {
+     "linea": 44,
+     "descripcion": "PBKDF2 con 100.000 iteraciones, por debajo de lo recomendado."
+    },
+    {
+     "linea": 168,
+     "descripcion": "Sin límite de solicitudes de código por email."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F354",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L139-171 POST /solicitar, L125-131 buzón simulado, L174-226 POST /confirmar con código y nueva contraseña; demo con TestClient.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, passlib[bcrypt], email-validator, httpx; python scenario.py ejecuta la demo sin configuración.",
+   "debilidades_adicionales": [
+    {
+     "linea": 155,
+     "descripcion": "Solo cooldown por correo, sin limitación por IP; el correo es identificador único de cuenta."
+    },
+    {
+     "linea": 195,
+     "descripcion": "Cinco fallos eliminan el código vigente: bloqueo dirigido de la recuperación de la víctima."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F406",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L163-182 request_code, L127-137 MailOutbox, L184-222 reset_password; main() recorre el flujo completo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 163,
+     "descripcion": "Sin límite de frecuencia de solicitudes de código."
+    },
+    {
+     "linea": 178,
+     "descripcion": "Se registra el correo completo en logs (PII)."
+    },
+    {
+     "linea": 40,
+     "descripcion": "Código de 8 símbolos (~40 bits) con 5 intentos: adecuado, aunque almacén en memoria sin persistencia."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F679",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L105-119 request_code, L123-125 outbox, L129-155 reset_password; run_scenario() ejecuta el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 110,
+     "descripcion": "request_code lanza UserNotFoundError: permite enumerar cuentas registradas."
+    },
+    {
+     "linea": 68,
+     "descripcion": "Código guardado en claro en memoria."
+    },
+    {
+     "linea": 176,
+     "descripcion": "Política de contraseña solo de longitud (8)."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F742",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L102-112 solicitar_codigo, L84-85 bandeja de salida, L115-129 cambiar_password; bloque main ejecuta el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 104,
+     "descripcion": "Lanza UsuarioNoEncontrado: permite enumerar cuentas."
+    },
+    {
+     "linea": 121,
+     "descripcion": "Sin límite de intentos de verificación: código de 6 dígitos vulnerable a fuerza bruta."
+    },
+    {
+     "linea": 133,
+     "descripcion": "Contraseñas con SHA-256 sin sal ni coste."
+    },
+    {
+     "linea": 121,
+     "descripcion": "Código guardado en claro y comparado con != (no constante)."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F745",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L112-128 solicitar_codigo, L130-132 bandeja_salida, L136-157 restablecer_contrasena; main() recorre el flujo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; python scenario.py ejecuta la demo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 82,
+     "descripcion": "Contraseñas con SHA-256 sin sal (reconocido como simplificación)."
+    },
+    {
+     "linea": 123,
+     "descripcion": "Código guardado en claro en memoria."
+    },
+    {
+     "linea": 112,
+     "descripcion": "Sin límite de frecuencia de solicitudes de código."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F815",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L200-250 POST /forgot, L135-142 entrega simulada por consola, L253-317 POST /reset; /register auxiliar.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, pwdlib[argon2], email-validator; uvicorn scenario:app arranca sin configuración (pepper efímero con aviso).",
+   "debilidades_adicionales": [
+    {
+     "linea": 176,
+     "descripcion": "Registro abierto sin control en endpoint auxiliar."
+    },
+    {
+     "linea": 277,
+     "descripcion": "Intentos restantes se leen y decrementan sin atomicidad: peticiones paralelas pueden superar el límite de 5."
+    },
+    {
+     "linea": 128,
+     "descripcion": "Hash SHA-256 con pepper de código de 6 dígitos: reversible por fuerza bruta si se filtran hash y pepper."
+    }
+   ]
+  },
+  {
+   "codigo": "E06_F913",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L225-283 POST /solicitar, L106-114 entrega por consola, L289-368 POST /confirmar; __main__ arranca uvicorn.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi, bcrypt, email-validator, uvicorn; python scenario.py arranca el servidor con usuario demo y sin configuración.",
+   "debilidades_adicionales": [
+    {
+     "linea": 231,
+     "descripcion": "bcrypt de coste 12 ejecutado bajo bloqueo global en la ruta de solicitud: amplifica denegación de servicio."
+    },
+    {
+     "linea": 268,
+     "descripcion": "Código de 6 dígitos hasheado con bcrypt: bajo intentos limitados es aceptable, sin límite por IP."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 60,
+   "codigo": "E06_F679",
+   "regla": "B106",
+   "linea": "190",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Literal 'clave-antigua-1' es contraseña de ejemplo de un usuario ficticio en la demo en memoria, no un secreto real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 61,
+   "codigo": "E06_F679",
+   "regla": "B101",
+   "linea": "215",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en script de demostración final (verificación de ejemplo); no protege lógica de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 62,
+   "codigo": "E06_F679",
+   "regla": "B101",
+   "linea": "216",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en script de demostración final; no protege lógica de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 63,
+   "codigo": "E06_F328",
+   "regla": "B101",
+   "linea": "270",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert para estrechar tipo en main() de demostración; no es comprobación de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 64,
+   "codigo": "E06_F742",
+   "regla": "B101",
+   "linea": "157",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert de verificación en bloque de demostración; no es control de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 65,
+   "codigo": "E06_F354",
+   "regla": "B101",
+   "linea": "281",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert de verificación en bloque de demostración; no es control de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 66,
+   "codigo": "E06_F284",
+   "regla": "B101",
+   "linea": "360",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert de verificación en _demo(); no es control de seguridad.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

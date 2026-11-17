@@ -1,0 +1,220 @@
+{
+ "escenario": "E08",
+ "requisitos": {
+  "R1": "Una función que cargue un archivo de configuración (lectura y parseo a estructura utilizable).",
+  "R2": "El archivo de configuración es subido por administradores (la carga debe contemplar archivos provenientes de subida/administradores)."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E08_F147",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L100-141 load_config confinada a uploads con extensión y tamaño; L144-175 load_config_from_bytes para subidas; yaml.safe_load L74.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo biblioteca estándar; PyYAML opcional solo para YAML. Importable y utilizable directamente.",
+   "debilidades_adicionales": [
+    {
+     "linea": 141,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    },
+    {
+     "linea": 130,
+     "descripcion": "Comprobación de tamaño separada de lectura (TOCTOU); sin control de rol de administrador."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F150",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L31-116 cargar_configuracion con extensión, tamaño, safe_load L106; confinamiento solo si directorio_permitido se indica (L71).",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Funciona sin configuración; PyYAML solo para YAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 71,
+     "descripcion": "Confinamiento de ruta opcional: por defecto lee cualquier ruta con extensión permitida."
+    },
+    {
+     "linea": 116,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F236",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L44-72 load_config con base_dir opcional (L91), extensiones L98, tamaño L108, safe_load L127, estructura L132-141.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Funciona sin configuración; PyYAML opcional.",
+   "debilidades_adicionales": [
+    {
+     "linea": 91,
+     "descripcion": "Confinamiento a base_dir opcional: sin él acepta cualquier ruta."
+    },
+    {
+     "linea": 141,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F326",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L18-64 load_config(file_path) con extensión, tamaño, safe_load L83 y raíz dict; ejemplo CLI L88-101.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Script autónomo con CLI; PyYAML solo para YAML.",
+   "debilidades_adicionales": [
+    {
+     "linea": 31,
+     "descripcion": "Sin confinamiento de ruta a un directorio de subidas ni control de acceso."
+    },
+    {
+     "linea": 64,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F451",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L39-116 load_admin_config(upload, current_user) comprueba rol admin L54, extensión L62, límite L71, safe_load L99.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi y pyyaml instalados; el usuario se pasa como parámetro. Importable y llamable.",
+   "debilidades_adicionales": [
+    {
+     "linea": 54,
+     "descripcion": "Autorización basada en atributo role del objeto recibido, sin verificar autenticación."
+    },
+    {
+     "linea": 116,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F559",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "restringido"
+   },
+   "evidencia": "L55-64 get_current_principal siempre lanza 401; L205 endpoint depende de require_admin, así que nunca se carga nada. L141-195 devuelve solo id, hash y claves, no la configuración.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "El endpoint siempre devuelve 401 hasta sustituir la dependencia de autenticación de relleno; además la función no devuelve la configuración cargada.",
+   "debilidades_adicionales": [
+    {
+     "linea": 64,
+     "descripcion": "Dependencia de autenticación de relleno: obliga a reescribir el control de acceso."
+    },
+    {
+     "linea": 195,
+     "descripcion": "Almacena y devuelve solo metadatos: no ofrece la configuración al llamador; sha256 sin verificación posterior."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F606",
+   "cumple": "parcial",
+   "requisitos": {
+    "R1": "restringido",
+    "R2": "si"
+   },
+   "evidencia": "L30-37 AppConfig con extra=forbid y solo 3 campos; L25 solo YAML; L40-49 require_admin depende de request.state.user, sin definirlo.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Importable, pero solo acepta YAML con 3 claves fijas y depende de middleware externo que fije request.state.user; si no, siempre 403.",
+   "debilidades_adicionales": [
+    {
+     "linea": 42,
+     "descripcion": "Confía en request.state.user fijado por middleware no incluido; sin él deniega todo."
+    },
+    {
+     "linea": 35,
+     "descripcion": "Esquema rígido de ejemplo: rechaza cualquier otra configuración legítima."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F637",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L40-49 require_admin lanza NotImplementedError siempre; L81-111 endpoint la usa como dependencia, así que el flujo nunca se completa tal como se entrega.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "El endpoint falla siempre con error 500 hasta implementar la dependencia de autenticación de relleno.",
+   "debilidades_adicionales": [
+    {
+     "linea": 47,
+     "descripcion": "Control de acceso de relleno: sin sustituirlo el endpoint no funciona."
+    },
+    {
+     "linea": 111,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F670",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L20-89 cargar_configuracion: JSON, YAML safe_load L71, TOML L64, INI L75; extensión L45 y tamaño 5 MB L52. Sin confinamiento de ruta.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere Python 3.11 por tomllib; PyYAML opcional. Función autónoma.",
+   "debilidades_adicionales": [
+    {
+     "linea": 41,
+     "descripcion": "Abre cualquier ruta recibida: sin confinamiento a directorio de subidas ni control de acceso."
+    },
+    {
+     "linea": 89,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  },
+  {
+   "codigo": "E08_F846",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L71-109 cargar_configuracion(archivo, usuario) async: rol admin L89, basename y extensión L37-47, límite L96, safe_load L62.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere pyyaml instalado (importación obligatoria); usuario y archivo se pasan como parámetros.",
+   "debilidades_adicionales": [
+    {
+     "linea": 104,
+     "descripcion": "Registra nombre de archivo del cliente sin sanear: posible inyección de saltos de línea en logs."
+    },
+    {
+     "linea": 109,
+     "descripcion": "Devuelve dict arbitrario sin esquema ni verificación de integridad/firma de la configuración."
+    }
+   ]
+  }
+ ],
+ "alertas": []
+}

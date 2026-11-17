@@ -1,0 +1,307 @@
+{
+ "escenario": "E09",
+ "requisitos": {
+  "R1": "Registrar los intentos de login fallidos.",
+  "R2": "Registrar las acciones que hace un administrador."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E09_F220",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L89-112 failed_login registra JSONL con contador y alerta; L122-135 admin_action y L142-179 decorador; L139 instancia global.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; escribe audit.log junto al módulo; demo en L182-192.",
+   "debilidades_adicionales": [
+    {
+     "linea": 122,
+     "descripcion": "El registro de acciones admin no verifica que el actor sea administrador."
+    },
+    {
+     "linea": 71,
+     "descripcion": "Contadores de fallos en memoria sin caducidad ni límite de tamaño."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F247",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L60-70 log_failed_login con saneado; L73-88 authenticate; L95-142 log_admin_action y decorador; demo L149-174.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; escribe security.log en el directorio actual.",
+   "debilidades_adicionales": [
+    {
+     "linea": 80,
+     "descripcion": "Contraseñas comparadas en claro con != y almacenadas en texto plano (demo)."
+    },
+    {
+     "linea": 53,
+     "descripcion": "Saneado solo de CR/LF; otros caracteres de control pasan."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F394",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L261-288 /login registra login_failed y account_locked; L299-346 cambio de rol y borrado de usuario con evento admin_action; L242 require_admin.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Necesita fastapi/uvicorn; sin ADMIN_PASSWORD las cuentas quedan inutilizables con clave aleatoria, así que no se puede probar el flujo admin sin editar entorno.",
+   "debilidades_adicionales": [
+    {
+     "linea": 264,
+     "descripcion": "Bloqueo por par (usuario,IP) con estructuras en memoria sin purga."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F396",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L68-87 log_failed_login con umbral y alerta; L95-112 log_admin_action; L173-224 AdminService con denied/error; main() L231-262 demo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; escribe security_audit.log junto al módulo y lo imprime.",
+   "debilidades_adicionales": [
+    {
+     "linea": 29,
+     "descripcion": "PBKDF2 con 100.000 iteraciones, por debajo de lo recomendado."
+    },
+    {
+     "linea": 70,
+     "descripcion": "Contador de fallos sin caducidad ni bloqueo real ni lock de hilos."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F529",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L53-70 log_failed_login; L77-100 log_admin_action; L103-126 decorador; L139-173 login y acciones de demo.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; imprime en stdout; la última llamada lanza ValueError a propósito.",
+   "debilidades_adicionales": [
+    {
+     "linea": 65,
+     "descripcion": "Usuario, IP y motivo sin sanear en el log: inyección de líneas posible."
+    },
+    {
+     "linea": 145,
+     "descripcion": "Contraseñas en texto plano comparadas con !=; demo."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F624",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L201-261 /login registra LOGIN_FALLIDO y LOGIN_BLOQUEADO; L269-339 endpoints admin que registran ACCION_ADMIN; L165 require_admin.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere fastapi y arrancar con uvicorn (no hay bloque main); credenciales demo fijas en código permiten probar el flujo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 121,
+     "descripcion": "Contraseña de administrador fija en el código fuente."
+    },
+    {
+     "linea": 196,
+     "descripcion": "Bloqueo solo por usuario: un atacante puede bloquear cuentas ajenas; dict sin purga."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F653",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L50-72 registrar_login_fallido con umbral y alerta; L84-105 registrar_accion_admin; L112-155 decoradores; demo L162-190.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; imprime por consola; demo autocontenida.",
+   "debilidades_adicionales": [
+    {
+     "linea": 61,
+     "descripcion": "Usuario, IP y motivo sin sanear: forja de líneas de log posible."
+    },
+    {
+     "linea": 134,
+     "descripcion": "El decorador no comprueba que el actor sea administrador."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F723",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L366-414 /login con LOGIN_FAILURE, bloqueo y saneado; L417-490 desactivar/activar usuario con log_admin_action; L342 require_admin.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Necesita fastapi/uvicorn pero sin variables obligatorias; genera y muestra contraseñas temporales.",
+   "debilidades_adicionales": [
+    {
+     "linea": 194,
+     "descripcion": "Contraseña temporal del administrador impresa en consola."
+    },
+    {
+     "linea": 371,
+     "descripcion": "Bloqueo por IP y usuario permite denegar acceso a cuentas ajenas; diccionarios sin purga."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F955",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L160-199 /login con _register_login_failure y login_failed/account_locked; endpoints disable_user y unlock_user con _log_admin_action; require_admin con rol.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Falla al importar con RuntimeError si no están APP_ADMIN_USERNAME/APP_ADMIN_PASSWORD, sin valores por defecto.",
+   "debilidades_adicionales": [
+    {
+     "linea": 163,
+     "descripcion": "Bloqueo por nombre de usuario sin IP: permite bloquear la cuenta de otro; _failed crece sin límite."
+    },
+    {
+     "linea": 67,
+     "descripcion": "Saneado solo de CR/LF."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F994",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L242-283 /login registra login_failed y login_locked_out; L286-308 /admin/actions registra admin_action con require_admin; la acción real es solo un marcador (L303).",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError al cargar si faltan DEMO_USER_PASSWORD y DEMO_ADMIN_PASSWORD, sin valores por defecto; se arranca con uvicorn.",
+   "debilidades_adicionales": [
+    {
+     "linea": 254,
+     "descripcion": "Usuario del cliente registrado sin sanear: inyección de líneas en el log."
+    },
+    {
+     "linea": 303,
+     "descripcion": "Acción y objetivo de /admin/actions registrados sin sanear."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 78,
+   "codigo": "E09_F396",
+   "regla": "B101",
+   "linea": "248",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en la función de demostración main() tras autenticar; no es control de seguridad de producción.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 79,
+   "codigo": "E09_F396",
+   "regla": "B101",
+   "linea": "255",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en la demo main(); con -O se omitiría, sin impacto real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 80,
+   "codigo": "E09_F529",
+   "regla": "B105",
+   "linea": "134",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Contraseña de demostración en texto plano dentro del diccionario USUARIOS de ejemplo; no es un secreto real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 81,
+   "codigo": "E09_F529",
+   "regla": "B105",
+   "linea": "135",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Segunda contraseña de demostración en claro en USUARIOS de ejemplo; no es un secreto real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 82,
+   "codigo": "E09_F653",
+   "regla": "B106",
+   "linea": "181",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'incorrecta' es una contraseña de prueba deliberadamente errónea en la demo, no una credencial.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 83,
+   "codigo": "E09_F653",
+   "regla": "B106",
+   "linea": "182",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Contraseña de demostración 'secreto123' en claro, igual que el diccionario USUARIOS de la demo; no es secreto real.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 84,
+   "codigo": "E09_F394",
+   "regla": "B105",
+   "linea": "294",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor del campo token_type de la respuesta OAuth, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 85,
+   "codigo": "E09_F994",
+   "regla": "B105",
+   "linea": "283",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el tipo de token devuelto en la respuesta de login, no un secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 86,
+   "codigo": "E09_F955",
+   "regla": "B105",
+   "linea": "199",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor de token_type en la respuesta, no una credencial.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 87,
+   "codigo": "E09_F624",
+   "regla": "B105",
+   "linea": "259",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor de token_type en la respuesta de login, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

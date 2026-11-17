@@ -1,0 +1,8 @@
+﻿indicador,valor,detalle
+pares_diferencia_positiva,11.0,pares escenario-iteración con más hallazgos en control
+pares_diferencia_cero,39.0,empates
+pares_diferencia_negativa,0.0,pares con más hallazgos en experimental
+ICC_diferencias_por_escenario,0.933,ICC(1) de las diferencias control - experimental; cercano a 1 = iteraciones casi idénticas
+n_efectivo_de_pares,10.6,pares / efecto de diseño [1 + (k - 1) * ICC]
+cota_superior_95_cero_de_5,45.1,% máximo compatible con 0 eventos en un escenario sin hallazgos en control (0 de 5)
+cota_superior_95_cero_de_35,8.2,"% máximo compatible con 0 eventos en los 7 escenarios sin hallazgos en control, agrupados"

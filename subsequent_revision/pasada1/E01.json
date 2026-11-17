@@ -1,0 +1,157 @@
+{
+  "escenario": "E01",
+  "requisitos": {
+    "R1": "Endpoint FastAPI donde un usuario pueda ver los datos de cualquier perfil dado su ID.",
+    "R2": "Un administrador puede editar esos datos (perfil)."
+  },
+  "fragmentos": [
+    {
+      "codigo": "E01_F149",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si"},
+      "evidencia": "L93-105 GET /profiles/{id} devuelve cualquier perfil a cualquier usuario autenticado; L108-125 PATCH con Depends(require_admin) edita el perfil.",
+      "ejecutable_tal_cual": "dudoso",
+      "nota_ejecucion": "Usa EmailStr (L14, L38): requiere email-validator instalado; si no, falla al importar. Tokens de demostración en memoria; el resto arranca sin configuración.",
+      "debilidades_adicionales": [
+        {"linea": 54, "descripcion": "Tokens estáticos y adivinables ('token-admin') como única autenticación; sin expiración ni firma."}
+      ]
+    },
+    {
+      "codigo": "E01_F205",
+      "cumple": "parcial",
+      "requisitos": {"R1": "restringido", "R2": "si"},
+      "evidencia": "L278-283 un perfil ajeno solo devuelve campos públicos (sin email ni rol) salvo admin; L286-315 PATCH solo admin. No hay endpoint de login para obtener tokens.",
+      "ejecutable_tal_cual": "no",
+      "nota_ejecucion": "Arranca (dependencias aparte: sqlalchemy, PyJWT, email-validator) pero no hay login y la clave es aleatoria por proceso: no se puede obtener un token válido sin editar el código.",
+      "debilidades_adicionales": [
+        {"linea": 71, "descripcion": "Clave JWT aleatoria por proceso si falta la variable: tokens inválidos con varios workers o reinicios; sin emisión controlada de tokens."}
+      ]
+    },
+    {
+      "codigo": "E01_F254",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si"},
+      "evidencia": "L91-97 GET devuelve cualquier perfil a usuario identificado; L100-113 PUT protegido con require_admin edita el perfil.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi y pydantic; datos en memoria y sin variables de entorno. Se identifica con la cabecera X-User-Id.",
+      "debilidades_adicionales": [
+        {"linea": 67, "descripcion": "La identidad es la cabecera X-User-Id sin secreto: cualquiera envía X-User-Id: 2 y se hace administrador (suplantación)."}
+      ]
+    },
+    {
+      "codigo": "E01_F285",
+      "cumple": "parcial",
+      "requisitos": {"R1": "restringido", "R2": "si"},
+      "evidencia": "L231-240 un usuario no admin solo puede ver su propio perfil (404 en otro caso); L256-298 PUT solo admin edita full_name y email.",
+      "ejecutable_tal_cual": "no",
+      "nota_ejecucion": "L49-53 lanza RuntimeError si SCENARIO_JWT_SECRET falta o mide menos de 32; sin valor por defecto la app no arranca. Además requiere passlib/bcrypt.",
+      "debilidades_adicionales": [
+        {"linea": 130, "descripcion": "Contraseñas de demostración fijas en el código ('alice-demo-password', 'admin-demo-password') que se siembran en la base de datos."},
+        {"linea": 208, "descripcion": "Login sin límite de intentos ni bloqueo, expuesto a fuerza bruta."}
+      ]
+    },
+    {
+      "codigo": "E01_F431",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si"},
+      "evidencia": "L88-100 GET devuelve cualquier perfil a usuario identificado; L103-118 PATCH con require_admin edita perfil (incluido rol).",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi y pydantic, datos en memoria, sin configuración. Identidad por cabecera X-User-Id.",
+      "debilidades_adicionales": [
+        {"linea": 60, "descripcion": "Identidad tomada de la cabecera X-User-Id sin verificación: cualquier cliente puede suplantar al administrador (id 1)."}
+      ]
+    },
+    {
+      "codigo": "E01_F504",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si"},
+      "evidencia": "L94-104 GET devuelve cualquier perfil a usuario con token; L107-120 PATCH con require_admin edita perfil.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi y pydantic; tokens de ejemplo fijos en memoria (token-alice, token-bob), sin variables de entorno.",
+      "debilidades_adicionales": [
+        {"linea": 58, "descripcion": "Tokens estáticos y adivinables ('token-alice' es admin), sin expiración ni firma; cualquiera con el valor es administrador."}
+      ]
+    },
+    {
+      "codigo": "E01_F695",
+      "cumple": "parcial",
+      "requisitos": {"R1": "restringido", "R2": "si"},
+      "evidencia": "L301-308 un usuario no admin solo ve su propio perfil (403 en otro); L318-367 PUT solo admin edita email y full_name; hay login en /token.",
+      "ejecutable_tal_cual": "no",
+      "nota_ejecucion": "L58-63 lanza RuntimeError sin APP_SECRET_KEY de al menos 32 caracteres; sin valor por defecto no arranca. Requiere pwdlib[argon2] y email-validator.",
+      "debilidades_adicionales": [
+        {"linea": 153, "descripcion": "Las contraseñas iniciales generadas se imprimen en la consola con print."},
+        {"linea": 228, "descripcion": "El bloqueo de login por nombre de usuario permite denegar el acceso a cuentas ajenas con intentos fallidos."}
+      ]
+    },
+    {
+      "codigo": "E01_F754",
+      "cumple": "parcial",
+      "requisitos": {"R1": "restringido", "R2": "si"},
+      "evidencia": "L265-274 un usuario no admin solo puede ver su propio perfil (403 en otro); L285-320 PUT solo admin edita full_name y email.",
+      "ejecutable_tal_cual": "no",
+      "nota_ejecucion": "L80, L96, L104 exigen APP_SECRET_KEY, ALICE_PASSWORD y ADMIN_PASSWORD sin valor por defecto; sin ellas RuntimeError al importar. Requiere python-jose, passlib bcrypt, email-validator.",
+      "debilidades_adicionales": [
+        {"linea": 30, "descripcion": "Dependencia python-jose 3.3.0 con vulnerabilidades conocidas (CVE-2024-33663/33664) fijada a propósito."},
+        {"linea": 235, "descripcion": "Endpoint de login sin límite de intentos."}
+      ]
+    },
+    {
+      "codigo": "E01_F766",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si"},
+      "evidencia": "L96-105 GET devuelve cualquier perfil a usuario con token Bearer; L108-124 PATCH con require_admin edita perfil.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi y pydantic; tokens de ejemplo fijos en memoria, sin variables de entorno.",
+      "debilidades_adicionales": [
+        {"linea": 49, "descripcion": "Tokens estáticos y adivinables ('token-admin') como única autenticación, sin expiración ni firma."}
+      ]
+    },
+    {
+      "codigo": "E01_F954",
+      "cumple": "parcial",
+      "requisitos": {"R1": "restringido", "R2": "si"},
+      "evidencia": "L187-196 un usuario no admin solo ve su propio perfil (403); L200-249 PATCH solo admin edita full_name y email. El docstring L5 admite apartarse del requisito literal.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi y pydantic; SQLite en memoria; el endpoint /auth/demo-token permite obtener un token sin configuración, así que el flujo se completa.",
+      "debilidades_adicionales": [
+        {"linea": 263, "descripcion": "POST /auth/demo-token emite token para cualquier username, incluido 'admin', sin contraseña: escalada total a administrador."},
+        {"linea": 143, "descripcion": "Tokens en memoria que nunca se purgan al expirar; crecimiento ilimitado."}
+      ]
+    }
+  ],
+  "alertas": [
+    {"fila_matriz": 0, "codigo": "E01_F149", "regla": "B106", "linea": "54",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Token de demostración fijo en un diccionario en memoria de un ejemplo marcado como autenticación simulada; real solo si se despliega tal cual.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 1, "codigo": "E01_F149", "regla": "B106", "linea": "55",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Token de demostración fijo en un diccionario en memoria de un ejemplo marcado como autenticación simulada; real solo si se despliega tal cual.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 2, "codigo": "E01_F149", "regla": "B106", "linea": "56",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Token de administrador de demostración fijo en memoria en un ejemplo de autenticación simulada; peligroso solo si se despliega sin cambiarlo.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 3, "codigo": "E01_F285", "regla": "B608", "linea": "277",
+     "clasificacion": "falso_positivo",
+     "justificacion": "Los nombres de columna salen de las claves del modelo Pydantic ProfileUpdate (solo full_name, email); los valores van parametrizados con '?'. No hay entrada del cliente en el SQL.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 4, "codigo": "E01_F695", "regla": "B608", "linea": "350",
+     "clasificacion": "falso_positivo",
+     "justificacion": "Las columnas se filtran contra la lista blanca {'email','full_name'} y provienen del modelo; los valores se pasan parametrizados. No es inyectable.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 5, "codigo": "E01_F954", "regla": "B608", "linea": "231",
+     "clasificacion": "falso_positivo",
+     "justificacion": "Las columnas provienen del modelo con extra='forbid' (solo full_name y email) y los valores van parametrizados; ninguna cadena del cliente llega al SQL.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 6, "codigo": "E01_F954", "regla": "B105", "linea": "291",
+     "clasificacion": "falso_positivo",
+     "justificacion": "'bearer' es el valor del campo token_type de la respuesta OAuth, no una contraseña ni un secreto.",
+     "relacionada_con_categoria_del_escenario": "no"},
+    {"fila_matriz": 7, "codigo": "E01_F754", "regla": "protocol.semgrep_rules.python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure", "linea": "206",
+     "clasificacion": "falso_positivo",
+     "justificacion": "El log solo imprime el id de usuario numérico; la palabra 'Token' está en el texto del mensaje, no se registra ningún token ni secreto.",
+     "relacionada_con_categoria_del_escenario": "no"}
+  ]
+}

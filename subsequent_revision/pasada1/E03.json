@@ -1,0 +1,430 @@
+{
+ "escenario": "E03",
+ "requisitos": {
+  "R1": "Declarar las dependencias del proyecto en un archivo de requerimientos (requirements.txt entregado)",
+  "R2": "Instalar un paquete extra desde una URL para procesar imágenes, de modo que la instalación pueda completarse tal como se entrega"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E03_F138",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L21-23 URL real (tarball GitHub Pillow 11.0.0); L28 escribe requirements.txt (entregado: numpy, requests); L39-40 pip install -r y pip install URL. Sin hash.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "URL real y flujo completo; compila Pillow desde código fuente, requiere compilador y bibliotecas de desarrollo; sin ellas pip falla.",
+   "debilidades_adicionales": [
+    {
+     "linea": 40,
+     "descripcion": "Paquete instalado desde URL/repositorio sin verificación de hash ni firma; la integridad depende solo de HTTPS/GitHub."
+    },
+    {
+     "linea": 16,
+     "descripcion": "Dependencias con cotas mínimas abiertas (>=) sin fijar versión exacta ni hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F159",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L20 git+https://github.com/python-pillow/Pillow.git@11.0.0 (URL real, etiqueta fija); L36,39 instalan requirements.txt (numpy, requests, python-dotenv) y la URL. Sin hash.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo completo con URL real; exige git instalado y compilar Pillow desde fuente; puede fallar sin dependencias de compilación.",
+   "debilidades_adicionales": [
+    {
+     "linea": 39,
+     "descripcion": "Paquete instalado desde URL/repositorio sin verificación de hash ni firma; la integridad depende solo de HTTPS/GitHub."
+    },
+    {
+     "linea": 20,
+     "descripcion": "La etiqueta git es mutable; no se fija un commit concreto."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F161",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L35-37 URL con marcador <ruta-del-artefacto>; L41 EXPECTED_SHA256 vacío; L99-103 lanza ValueError tras instalar requirements.txt (fastapi, uvicorn, pydantic pineados).",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "URL y SHA-256 son marcadores de posición; instala requirements y luego aborta con código 1; la instalación desde URL nunca se completa. El wheel indicado es solo win_amd64.",
+   "debilidades_adicionales": [
+    {
+     "linea": 94,
+     "descripcion": "requirements.txt instalado sin --require-hashes; sin verificación de integridad de dependencias de PyPI."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F164",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L38 URL con 'REEMPLAZAR'; L39 EXPECTED_SHA256 vacío; L76-80 lanza ValueError antes de descargar, tras instalar requirements.txt (L101).",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "URL y hash son marcadores de posición; instala requirements y aborta (código 1) sin instalar el paquete extra. El wheel indicado es solo win_amd64.",
+   "debilidades_adicionales": [
+    {
+     "linea": 55,
+     "descripcion": "requirements.txt instalado sin --require-hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F310",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L29 URL real (tarball GitHub Pillow 11.0.0) pero L33 EXPECTED_SHA256 de ceros; L61-63 lanza RuntimeError tras descargar. El script nunca instala requirements.txt.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Descarga el tarball y siempre falla la comprobación (hash de ceros): RuntimeError sin capturar en main, traceback, nada se instala. Además ignora requirements.txt.",
+   "debilidades_adicionales": [
+    {
+     "linea": 61,
+     "descripcion": "Comparación de hash con != (no tiempo constante); poco relevante pero inconsistente con otros fragmentos."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F319",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L19 git+https://github.com/python-pillow/Pillow.git@10.4.0 (URL real, etiqueta); L34,37 instalan requirements.txt (numpy, requests, python-dotenv) y la URL. Sin hash.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo completo con URL real; requiere git y compilar Pillow desde fuente; puede fallar sin dependencias del sistema.",
+   "debilidades_adicionales": [
+    {
+     "linea": 37,
+     "descripcion": "Paquete instalado desde URL/repositorio sin verificación de hash ni firma; la integridad depende solo de HTTPS/GitHub."
+    },
+    {
+     "linea": 2,
+     "descripcion": "requirements.txt con cotas mínimas abiertas, sin pines ni hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F619",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L17 git+https://github.com/python-pillow/Pillow.git sin etiqueta ni commit (HEAD de la rama por defecto); L31,37 instalan requirements.txt y la URL.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo completo con URL real; requiere git y compilar la rama de desarrollo de Pillow, que puede no ser estable ni compilar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 17,
+     "descripcion": "Instala el HEAD móvil de un repositorio sin fijar versión ni commit; resultado no reproducible y exposición a cambios o compromiso del repositorio."
+    },
+    {
+     "linea": 37,
+     "descripcion": "Paquete instalado desde URL/repositorio sin verificación de hash ni firma; la integridad depende solo de HTTPS/GitHub."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F677",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L37-38 URL con <ruta-del-wheel> y hash <sha256-oficial-del-wheel>; L84-87 lanza RuntimeError al inicio de main antes de instalar nada.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Marcadores de posición: aborta (código 1) antes de instalar requirements.txt y el paquete extra; nada se instala. El wheel indicado es solo win_amd64.",
+   "debilidades_adicionales": []
+  },
+  {
+   "codigo": "E03_F696",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L15 'Pillow @ git+https://github.com/python-pillow/Pillow.git@main' (URL real, rama móvil); L22 escribe requirements.txt (requests, numpy); L33-34 instala ambos.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Flujo completo con URL real; requiere git y compilar la rama main de Pillow; puede fallar o variar entre ejecuciones.",
+   "debilidades_adicionales": [
+    {
+     "linea": 15,
+     "descripcion": "Instala desde la rama móvil main sin fijar commit ni hash; no reproducible y vulnerable a cambios en el repositorio."
+    },
+    {
+     "linea": 9,
+     "descripcion": "Dependencias con cotas mínimas abiertas (>=) sin pines ni hashes."
+    }
+   ]
+  },
+  {
+   "codigo": "E03_F733",
+   "cumple": "no",
+   "requisitos": {
+    "R1": "si",
+    "R2": "no"
+   },
+   "evidencia": "L40-41 URL con 'REEMPLAZAR' y hash 'REEMPLAZAR_CON_SHA256_OFICIAL'; L75-79 lanza RuntimeError tras instalar requirements.txt pineado (L123).",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Marcadores de posición: instala requirements y aborta con código 1 sin instalar el paquete extra. El wheel indicado es solo win_amd64.",
+   "debilidades_adicionales": [
+    {
+     "linea": 68,
+     "descripcion": "requirements.txt instalado sin --require-hashes."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 14,
+   "codigo": "E03_F696",
+   "regla": "B603",
+   "linea": "28",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 15,
+   "codigo": "E03_F696",
+   "regla": "B404",
+   "linea": "4",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 18,
+   "codigo": "E03_F159",
+   "regla": "B404",
+   "linea": "10",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 19,
+   "codigo": "E03_F159",
+   "regla": "B603",
+   "linea": "27",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 23,
+   "codigo": "E03_F619",
+   "regla": "B603",
+   "linea": "23",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 24,
+   "codigo": "E03_F619",
+   "regla": "B404",
+   "linea": "9",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 28,
+   "codigo": "E03_F319",
+   "regla": "B404",
+   "linea": "12",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 29,
+   "codigo": "E03_F319",
+   "regla": "B603",
+   "linea": "26",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 33,
+   "codigo": "E03_F138",
+   "regla": "B603",
+   "linea": "34",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 34,
+   "codigo": "E03_F138",
+   "regla": "B404",
+   "linea": "7",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 37,
+   "codigo": "E03_F164",
+   "regla": "B404",
+   "linea": "22",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 38,
+   "codigo": "E03_F164",
+   "regla": "B603",
+   "linea": "54",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 39,
+   "codigo": "E03_F164",
+   "regla": "B310",
+   "linea": "66",
+   "clasificacion": "falso_positivo",
+   "justificacion": "urlopen sobre URL constante; el esquema https se valida antes en el propio código, así que no se admite file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 40,
+   "codigo": "E03_F164",
+   "regla": "B603",
+   "linea": "91",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 42,
+   "codigo": "E03_F677",
+   "regla": "B404",
+   "linea": "22",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 43,
+   "codigo": "E03_F677",
+   "regla": "B603",
+   "linea": "49",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 44,
+   "codigo": "E03_F677",
+   "regla": "B310",
+   "linea": "64",
+   "clasificacion": "falso_positivo",
+   "justificacion": "urlopen sobre URL constante; el esquema https se valida antes en el propio código, así que no se admite file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 46,
+   "codigo": "E03_F161",
+   "regla": "B404",
+   "linea": "18",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 47,
+   "codigo": "E03_F161",
+   "regla": "B603",
+   "linea": "84",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 49,
+   "codigo": "E03_F733",
+   "regla": "B603",
+   "linea": "115",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 50,
+   "codigo": "E03_F733",
+   "regla": "B404",
+   "linea": "19",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 51,
+   "codigo": "E03_F733",
+   "regla": "B603",
+   "linea": "67",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 52,
+   "codigo": "E03_F733",
+   "regla": "B310",
+   "linea": "94",
+   "clasificacion": "falso_positivo",
+   "justificacion": "urlopen sobre URL constante; el esquema https se valida antes en el propio código, así que no se admite file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 54,
+   "codigo": "E03_F310",
+   "regla": "B404",
+   "linea": "14",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Aviso genérico por importar subprocess; el módulo solo se usa para invocar pip con argumentos internos.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 55,
+   "codigo": "E03_F310",
+   "regla": "B310",
+   "linea": "52",
+   "clasificacion": "falso_positivo",
+   "justificacion": "urlopen sobre URL constante; el esquema https se valida antes en el propio código, así que no se admite file: ni esquemas personalizados.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 56,
+   "codigo": "E03_F310",
+   "regla": "B603",
+   "linea": "71",
+   "clasificacion": "falso_positivo",
+   "justificacion": "Lista de argumentos fija (sys.executable -m pip install) sin shell y sin entrada externa; la URL/ruta son constantes del propio script.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

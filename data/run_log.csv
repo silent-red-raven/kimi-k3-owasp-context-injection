@@ -1,0 +1,701 @@
+timestamp_utc,id_fragmento,evento,detalle
+2026-10-23T04:37:20+00:00,E01_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T04:41:52+00:00,E01_control_iter1,RECOGIDO,"verificacion=ok; E01_control_iter1.py=278fd4a3effa0123; E01_control_iter1.chat.json=d1bf4aee6f8702d1(anonimizados=51); modelo=['Kimi K3 • 4.3 credits', 'Kimi K3 • 6.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39348; tokens_out=2875; creditos=11.09"
+2026-10-23T04:42:13+00:00,E01_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T04:44:38+00:00,E01_control_iter2,RECOGIDO,"verificacion=ok; E01_control_iter2.py=48b6017ff0053fff; E01_control_iter2.chat.json=0f01f2a93653ec85(anonimizados=49); modelo=['Kimi K3 • 4.3 credits', 'Kimi K3 • 4.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39393; tokens_out=2930; creditos=9.0"
+2026-10-23T04:44:56+00:00,E01_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T04:47:29+00:00,E01_control_iter3,RECOGIDO,"verificacion=ok; E01_control_iter3.py=8e4a2e73f718fa47; E01_control_iter3.chat.json=5f42768608546b7f(anonimizados=54); modelo=['Kimi K3 • 3.6 credits', 'Kimi K3 • 7.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39933; tokens_out=3570; creditos=11.5"
+2026-10-23T04:47:38+00:00,E01_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T04:49:41+00:00,E01_control_iter4,ABANDONADA_AL_PREPARAR,carpeta de E01_control_iter4 borrada sin haberse recogido ni descartado al preparar E01_control_iter4
+2026-10-23T04:49:41+00:00,E01_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T04:52:23+00:00,E01_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T04:52:23+00:00,E01_control_iter4,RECOGIDO,"verificacion=ok; E01_control_iter4.py=0e106afb69abd12c; E01_control_iter4.chat.json=5b1bd8338e077318(anonimizados=75); modelo=['Kimi K3 • 4.0 credits', 'Kimi K3 • 6.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=39752; tokens_out=3200; creditos=9.96"
+2026-10-23T04:52:40+00:00,E01_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T04:54:40+00:00,E01_control_iter5,RECOGIDO,"verificacion=ok; E01_control_iter5.py=0f60fa76a9abf821; E01_control_iter5.chat.json=aa549da239e67e44(anonimizados=44); modelo=['Kimi K3 • 3.4 credits', 'Kimi K3 • 4.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39018; tokens_out=2701; creditos=7.94"
+2026-10-23T04:54:56+00:00,E01_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:00:19+00:00,E01_experimental_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T05:00:19+00:00,E01_experimental_iter1,RECOGIDO,"verificacion=ok; E01_experimental_iter1.py=77df9abf7fb87dcd; E01_experimental_iter1.chat.json=0ff4fd56648d9551(anonimizados=79); modelo=['Kimi K3 • 18.0 credits', 'Kimi K3 • 7.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=46502; tokens_out=8774; creditos=25.49"
+2026-10-23T05:00:32+00:00,E01_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:07:12+00:00,E01_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T05:07:13+00:00,E01_experimental_iter2,RECOGIDO,"verificacion=ok; E01_experimental_iter2.py=dd93fb91b77f7c6d; E01_experimental_iter2.chat.json=1471e33599ffe213(anonimizados=95); modelo=['Kimi K3 • 2.8 credits', 'Kimi K3 • 25.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=49436; tokens_out=11820; creditos=28.51"
+2026-10-23T05:07:30+00:00,E01_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:14:09+00:00,E01_experimental_iter3,RECOGIDO,"verificacion=ok; E01_experimental_iter3.py=56690854123b4b40; E01_experimental_iter3.chat.json=e37ca8f68339c7b1(anonimizados=78); modelo=['Kimi K3 • 2.9 credits', 'Kimi K3 • 26.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=49681; tokens_out=12149; creditos=29.19"
+2026-10-23T05:14:17+00:00,E01_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:18:43+00:00,E01_experimental_iter4,RECOGIDO,"verificacion=ok; E01_experimental_iter4.py=4e9cf09214ac635d; E01_experimental_iter4.chat.json=615bdbf4adc5b212(anonimizados=94); modelo=['Kimi K3 • 16.2 credits', 'Kimi K3 • 3.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=46576; tokens_out=8921; creditos=19.15"
+2026-10-23T05:18:50+00:00,E01_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:25:21+00:00,E01_experimental_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T05:25:21+00:00,E01_experimental_iter5,RECOGIDO,"verificacion=ok; E01_experimental_iter5.py=c252cd1809aea16a; E01_experimental_iter5.chat.json=f520d0e29c110eb6(anonimizados=81); modelo=['Kimi K3 • 2.3 credits', 'Kimi K3 • 23.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=49404; tokens_out=11687; creditos=25.63"
+2026-10-23T05:27:06+00:00,E02_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T05:30:13+00:00,E02_control_iter1,RECOGIDO,"verificacion=ok; E02_control_iter1.py=8c9ebc4fe7ec9d5b; E02_control_iter1.chat.json=10c1ad34a732847a(anonimizados=43); modelo=['Kimi K3 • 3.0 credits', 'Kimi K3 • 9.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39590; tokens_out=3352; creditos=12.75"
+2026-10-23T05:30:22+00:00,E02_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T05:33:26+00:00,E02_control_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T05:33:26+00:00,E02_control_iter2,RECOGIDO,"verificacion=ok; E02_control_iter2.py=78b6de6f486e7322; E02_control_iter2.chat.json=63a36567690f8447(anonimizados=46); modelo=['Kimi K3 • 10.7 credits', 'Kimi K3 • 4.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41629; tokens_out=5359; creditos=14.74"
+2026-10-23T05:33:33+00:00,E02_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T05:37:25+00:00,E02_control_iter3,RECOGIDO,"verificacion=ok; E02_control_iter3.py=53d8b969cb9c35c9; E02_control_iter3.chat.json=8502b589d768b41d(anonimizados=46); modelo=['Kimi K3 • 6.7 credits', 'Kimi K3 • 6.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39478; tokens_out=3238; creditos=13.62"
+2026-10-23T05:37:53+00:00,E02_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T05:41:03+00:00,E02_control_iter4,RECOGIDO,"verificacion=ok; E02_control_iter4.py=97d2e127a4cf872b; E02_control_iter4.chat.json=478e95e46a6e89a9(anonimizados=53); modelo=['Kimi K3 • 5.6 credits', 'Kimi K3 • 5.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39332; tokens_out=3057; creditos=11.43"
+2026-10-23T05:41:16+00:00,E02_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T05:44:33+00:00,E02_control_iter5,RECOGIDO,"verificacion=ok; E02_control_iter5.py=e04e94476018493a; E02_control_iter5.chat.json=3dbc6266d73c12ed(anonimizados=46); modelo=['Kimi K3 • 12.9 credits', 'Kimi K3 • 3.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=40963; tokens_out=4709; creditos=16.48"
+2026-10-23T05:51:33+00:00,E02_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T05:57:29+00:00,E02_experimental_iter1,RECOGIDO,"verificacion=ok; E02_experimental_iter1.py=6777e5ee97b150b9; E02_experimental_iter1.chat.json=b9ed38269281fecc(anonimizados=78); modelo=['Kimi K3 • 17.3 credits', 'Kimi K3 • 7.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=45197; tokens_out=7214; creditos=24.43"
+2026-10-23T05:57:36+00:00,E02_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T06:02:09+00:00,E02_experimental_iter2,RECOGIDO,"verificacion=ok; E02_experimental_iter2.py=4834d7ff9aa762f8; E02_experimental_iter2.chat.json=0a2a4a3fa5bb774d(anonimizados=78); modelo=['Kimi K3 • 2.6 credits', 'Kimi K3 • 25.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=45698; tokens_out=7806; creditos=28.17"
+2026-10-23T06:02:16+00:00,E02_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T06:07:12+00:00,E02_experimental_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['powershell'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T06:07:12+00:00,E02_experimental_iter3,INVALIDA_CHAT,"nivel de razonamiento ['max', 'sin_dato'] (se esperaba max) | agente ['agent-host-copilotcli'] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas || modelo=['Kimi K3', 'Kimi K3 • 12.8 credits', 'Kimi K3 • 17.5 credits', 'agent-host-copilotcli:kimi-k3']; agente=['agent-host-copilotcli']; razonamiento=['max', 'sin_dato']; turnos=2; herramientas=['create', 'glob', 'powershell', 'skill', 'view']; tokens_in=70946; tokens_out=8481; creditos=28.12956"
+2026-10-23T06:09:04+00:00,E02_experimental_iter3,DESCARTADO,"Hubo una equivocacion al escoger el Harness, se escogio el Harness Github y no Local, por ende la corrida queda descartada"
+2026-10-23T06:09:38+00:00,E02_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T06:12:44+00:00,E02_experimental_iter3,RECOGIDO,"verificacion=ok; E02_experimental_iter3.py=c40047a78349d248; E02_experimental_iter3.chat.json=822000e5e953ac20(anonimizados=74); modelo=['Kimi K3 • 10.9 credits', 'Kimi K3 • 2.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=43252; tokens_out=5399; creditos=13.45"
+2026-10-23T06:12:49+00:00,E02_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T06:16:01+00:00,E02_experimental_iter4,RECOGIDO,"verificacion=ok; E02_experimental_iter4.py=1f77a8d35aac98f1; E02_experimental_iter4.chat.json=efa638973ef7f951(anonimizados=79); modelo=['Kimi K3 • 19.1 credits', 'Kimi K3 • 2.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=43390; tokens_out=5453; creditos=21.49"
+2026-10-23T06:16:07+00:00,E02_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T06:20:26+00:00,E02_experimental_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T06:20:27+00:00,E02_experimental_iter5,RECOGIDO,"verificacion=ok; E02_experimental_iter5.py=e4476b4c684fbd84; E02_experimental_iter5.chat.json=512515115126d228(anonimizados=83); modelo=['Kimi K3 • 19.9 credits', 'Kimi K3 • 4.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=45306; tokens_out=7440; creditos=24.81"
+2026-10-23T14:41:28+00:00,E03_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T14:44:30+00:00,E03_control_iter1,RECOGIDO,"verificacion=ok; E03_control_iter1.py=963fc4329b35c982; E03_control_iter1_requirements.txt=ac2acac83c17dc22; E03_control_iter1.chat.json=b02b68b3dda74d19(anonimizados=59); modelo=['Kimi K3 • 5.8 credits', 'Kimi K3 • 7.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39598; tokens_out=3020; creditos=13.54"
+2026-10-23T14:44:36+00:00,E03_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T14:47:13+00:00,E03_control_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T14:47:13+00:00,E03_control_iter2,RECOGIDO,"verificacion=ok; E03_control_iter2.py=80be775355da2361; E03_control_iter2_requirements.txt=d096f4167ab5864d; E03_control_iter2.chat.json=39a430cf5d42ce5c(anonimizados=69); modelo=['Kimi K3 • 5.5 credits', 'Kimi K3 • 7.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=42166; tokens_out=5028; creditos=13.47"
+2026-10-23T14:47:22+00:00,E03_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T14:49:17+00:00,E03_control_iter3,RECOGIDO,"verificacion=ok; E03_control_iter3.py=01a0229a2890596e; E03_control_iter3_requirements.txt=3862bced7fc285f7; E03_control_iter3.chat.json=ca9f9042bd06268f(anonimizados=59); modelo=['Kimi K3 • 3.2 credits', 'Kimi K3 • 5.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39629; tokens_out=3085; creditos=8.79"
+2026-10-23T14:49:23+00:00,E03_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T14:50:56+00:00,E03_control_iter4,RECOGIDO,"verificacion=ok; E03_control_iter4.py=4abfd660937ad022; E03_control_iter4_requirements.txt=3862bced7fc285f7; E03_control_iter4.chat.json=a1b18cba6ff659f6(anonimizados=59); modelo=['Kimi K3 • 3.7 credits', 'Kimi K3 • 3.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=38719; tokens_out=2174; creditos=7.58"
+2026-10-23T14:51:01+00:00,E03_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T14:53:00+00:00,E03_control_iter5,RECOGIDO,"verificacion=ok; E03_control_iter5.py=0b4e9d83e648917e; E03_control_iter5_requirements.txt=7e664fd3b177945c; E03_control_iter5.chat.json=4230cec815eb1ffc(anonimizados=63); modelo=['Kimi K3 • 5.0 credits', 'Kimi K3 • 5.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'copilot_readFile', 'manage_todo_list']; tokens_in=40657; tokens_out=3453; creditos=10.77"
+2026-10-23T14:53:06+00:00,E03_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T14:56:38+00:00,E03_experimental_iter1,RECOGIDO,"verificacion=ok; E03_experimental_iter1.py=6309b63c0f221091; E03_experimental_iter1_requirements.txt=ac31c82ceb437644; E03_experimental_iter1.chat.json=88b61f8c4a20a5fd(anonimizados=91); modelo=['Kimi K3 • 12.0 credits', 'Kimi K3 • 3.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=44234; tokens_out=6300; creditos=15.12"
+2026-10-23T14:56:43+00:00,E03_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T15:00:03+00:00,E03_experimental_iter2,RECOGIDO,"verificacion=ok; E03_experimental_iter2.py=f84e79077c53d35e; E03_experimental_iter2_requirements.txt=d769464cb97d10dd; E03_experimental_iter2.chat.json=66a5098f3fbf945f(anonimizados=83); modelo=['Kimi K3 • 12.2 credits', 'Kimi K3 • 2.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=44161; tokens_out=6220; creditos=14.96"
+2026-10-23T15:00:08+00:00,E03_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T15:03:24+00:00,E03_experimental_iter3,RECOGIDO,"verificacion=ok; E03_experimental_iter3.py=03bbd9f7ec66342a; E03_experimental_iter3_requirements.txt=9850dc79b9721a29; E03_experimental_iter3.chat.json=4f9c39703e64e534(anonimizados=100); modelo=['Kimi K3 • 13.2 credits', 'Kimi K3 • 2.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=44344; tokens_out=6353; creditos=15.99"
+2026-10-23T15:03:52+00:00,E03_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T15:09:07+00:00,E03_experimental_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T15:09:07+00:00,E03_experimental_iter4,RECOGIDO,"verificacion=ok; E03_experimental_iter4.py=c8454510be75f9f1; E03_experimental_iter4_requirements.txt=22b6cb8eafbf5cd3; E03_experimental_iter4.chat.json=4a25098a024266e9(anonimizados=93); modelo=['Kimi K3 • 2.5 credits', 'Kimi K3 • 32.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=48241; tokens_out=10356; creditos=34.68"
+2026-10-23T15:09:13+00:00,E03_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T15:12:15+00:00,E03_experimental_iter5,RECOGIDO,"verificacion=ok; E03_experimental_iter5.py=caba150828da8833; E03_experimental_iter5_requirements.txt=e64dd494fc0e7896; E03_experimental_iter5.chat.json=5bd25c4d151f3b05(anonimizados=92); modelo=['Kimi K3 • 11.6 credits', 'Kimi K3 • 2.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=43588; tokens_out=5669; creditos=13.99"
+2026-10-23T15:12:28+00:00,E04_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T15:14:32+00:00,E04_control_iter1,ABANDONADA_AL_PREPARAR,carpeta de E04_control_iter1 borrada sin haberse recogido ni descartado al preparar E04_control_iter1
+2026-10-23T15:14:33+00:00,E04_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T15:17:27+00:00,E04_control_iter1,RECOGIDO,"verificacion=ok; E04_control_iter1.py=24423a4882d8957e; E04_control_iter1.chat.json=ba5a4cedbf22eb60(anonimizados=56); modelo=['Kimi K3 • 6.5 credits', 'Kimi K3 • 6.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=42412; tokens_out=4839; creditos=13.15"
+2026-10-23T15:17:31+00:00,E04_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T15:20:15+00:00,E04_control_iter2,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:20:15+00:00,E04_control_iter2,RECOGIDO,"verificacion=ok; E04_control_iter2.py=268080748ad61afa; E04_control_iter2.chat.json=92a11f581bb1e0cc(anonimizados=58); modelo=['Kimi K3 • 14.0 credits', 'Kimi K3 • 4.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'copilot_memory', 'manage_todo_list']; tokens_in=42052; tokens_out=5248; creditos=18.66"
+2026-10-23T15:21:13+00:00,E04_control_iter2,DESCARTADO,Mencion de OWASP por posible filtracion de informacion
+2026-10-23T15:35:39+00:00,E04_control_iter2,REPETICION_AUTORIZADA,"corrida ya recogida, preparada de nuevo con --redo"
+2026-10-23T15:35:40+00:00,E04_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T15:38:06+00:00,E04_control_iter2,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:38:06+00:00,E04_control_iter2,RECOGIDO,"verificacion=ok; E04_control_iter2.py=cdccb68db64daf25; E04_control_iter2.chat.json=ce119add050094ea(anonimizados=42); modelo=['Kimi K3 • 6.6 credits', 'Kimi K3 • 8.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39913; tokens_out=3541; creditos=15.51"
+2026-10-23T15:38:12+00:00,E04_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T15:42:11+00:00,E04_control_iter3,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:42:11+00:00,E04_control_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['powershell'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T15:42:11+00:00,E04_control_iter3,INVALIDA_CHAT,"nivel de razonamiento ['max', 'sin_dato'] (se esperaba max) | agente ['agent-host-copilotcli'] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas | herramientas fuera de alcance usadas por el agente: ['powershell'] |    detalle powershell: [no requería confirmación] git --no-pager log --oneline -5 2>&1; git status --short 2>&1; git --no-pager ls-files 2>&1 | Select-Object -First 20 || modelo=['Kimi K3', 'Kimi K3 • 11.9 credits', 'Kimi K3 • 19.8 credits', 'agent-host-copilotcli:kimi-k3']; agente=['agent-host-copilotcli']; razonamiento=['max', 'sin_dato']; turnos=2; herramientas=['create', 'glob', 'powershell', 'view']; tokens_in=64804; tokens_out=5703; creditos=28.68759"
+2026-10-23T15:45:02+00:00,E04_control_iter3,DESCARTADO,"Hubo una equivocacion al escoger el Harness, se escogio el Harness Github y no Local, por ende la corrida queda descartada"
+2026-10-23T15:45:22+00:00,E04_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T15:48:56+00:00,E04_control_iter3,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:48:56+00:00,E04_control_iter3,RECOGIDO,"verificacion=ok; E04_control_iter3.py=93cca9b54112807c; E04_control_iter3.chat.json=80662f12f97044f5(anonimizados=48); modelo=['Kimi K3 • 15.3 credits', 'Kimi K3 • 3.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=42534; tokens_out=6122; creditos=18.65"
+2026-10-23T15:49:27+00:00,E04_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T15:52:54+00:00,E04_control_iter4,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:52:54+00:00,E04_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T15:52:54+00:00,E04_control_iter4,RECOGIDO,"verificacion=ok; E04_control_iter4.py=bdb2b8bd31475155; E04_control_iter4.chat.json=119bcb686ac8b76a(anonimizados=51); modelo=['Kimi K3 • 15.5 credits', 'Kimi K3 • 3.1 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41710; tokens_out=5238; creditos=18.57"
+2026-10-23T15:53:04+00:00,E04_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T15:56:34+00:00,E04_control_iter5,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-23T15:56:34+00:00,E04_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T15:56:34+00:00,E04_control_iter5,RECOGIDO,"verificacion=ok; E04_control_iter5.py=3810f0c2a37bb57e; E04_control_iter5.chat.json=147373223d4695b2(anonimizados=52); modelo=['Kimi K3 • 11.4 credits', 'Kimi K3 • 3.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=42223; tokens_out=5660; creditos=15.1"
+2026-10-23T15:56:42+00:00,E04_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:01:02+00:00,E04_experimental_iter1,RECOGIDO,"verificacion=ok; E04_experimental_iter1.py=f7a4328767bf6289; E04_experimental_iter1.chat.json=c8f4e1a65064a24a(anonimizados=79); modelo=['Kimi K3 • 15.2 credits', 'Kimi K3 • 6.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=44906; tokens_out=6044; creditos=22.12"
+2026-10-23T16:01:09+00:00,E04_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:04:14+00:00,E04_experimental_iter2,RECOGIDO,"verificacion=ok; E04_experimental_iter2.py=471368fa20d86f7e; E04_experimental_iter2.chat.json=51c72aa7838bf28f(anonimizados=71); modelo=['Kimi K3 • 15.5 credits', 'Kimi K3 • 3.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=43042; tokens_out=5177; creditos=18.86"
+2026-10-23T16:04:21+00:00,E04_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:07:38+00:00,E04_experimental_iter3,RECOGIDO,"verificacion=ok; E04_experimental_iter3.py=8c0abfdbd746198d; E04_experimental_iter3.chat.json=d987680fefed9554(anonimizados=73); modelo=['Kimi K3 • 2.5 credits', 'Kimi K3 • 9.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=42106; tokens_out=4225; creditos=12.3"
+2026-10-23T16:07:45+00:00,E04_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:12:30+00:00,E04_experimental_iter4,RECOGIDO,"verificacion=ok; E04_experimental_iter4.py=b1691e958b3ad15b; E04_experimental_iter4.chat.json=b6a3e6937be893e9(anonimizados=76); modelo=['Kimi K3 • 15.3 credits', 'Kimi K3 • 3.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=43462; tokens_out=5581; creditos=18.34"
+2026-10-23T16:12:36+00:00,E04_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:18:21+00:00,E04_experimental_iter5,RECOGIDO,"verificacion=ok; E04_experimental_iter5.py=7375b97638c4819d; E04_experimental_iter5.chat.json=2b9745ea824e49ef(anonimizados=79); modelo=['Kimi K3 • 12.3 credits', 'Kimi K3 • 2.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=44157; tokens_out=6261; creditos=15.02"
+2026-10-23T16:18:40+00:00,E05_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T16:22:22+00:00,E05_control_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['powershell'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T16:22:22+00:00,E05_control_iter1,INVALIDA_CHAT,"nivel de razonamiento ['max', 'sin_dato'] (se esperaba max) | agente ['agent-host-copilotcli'] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas | modo distinto de Agent: ['', 'agent'] || modelo=['Kimi K3', 'Kimi K3 • 13.1 credits', 'agent-host-copilotcli:kimi-k3']; agente=['agent-host-copilotcli']; razonamiento=['max', 'sin_dato']; turnos=2; herramientas=['create', 'glob', 'powershell', 'view']; tokens_in=62006; tokens_out=3262; creditos=21.11151"
+2026-10-23T16:22:52+00:00,E05_control_iter1,DESCARTADO,"Hubo una equivocacion al escoger el Harness, se escogio el Harness Github y no Local, por ende la corrida queda descartada"
+2026-10-23T16:23:00+00:00,E05_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T16:24:47+00:00,E05_control_iter1,RECOGIDO,"verificacion=ok; E05_control_iter1.py=05dff56ff57df6de; E05_control_iter1.chat.json=21936c5f6eda88bf(anonimizados=36); modelo=['Kimi K3 • 3.1 credits', 'Kimi K3 • 6.1 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=38193; tokens_out=1622; creditos=9.18"
+2026-10-23T16:24:52+00:00,E05_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T16:26:39+00:00,E05_control_iter2,RECOGIDO,"verificacion=ok; E05_control_iter2.py=a116ac78b45610bd; E05_control_iter2.chat.json=2f3dc77581cf85f8(anonimizados=40); modelo=['Kimi K3 • 4.0 credits', 'Kimi K3 • 6.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=38924; tokens_out=2224; creditos=9.93"
+2026-10-23T16:26:45+00:00,E05_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T16:28:04+00:00,E05_control_iter3,RECOGIDO,"verificacion=ok; E05_control_iter3.py=64cb4909b1914db7; E05_control_iter3.chat.json=499c9df69a8adf64(anonimizados=35); modelo=['Kimi K3 • 2.9 credits', 'Kimi K3 • 4.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=38090; tokens_out=1722; creditos=7.07"
+2026-10-23T16:28:09+00:00,E05_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T16:29:51+00:00,E05_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T16:29:51+00:00,E05_control_iter4,RECOGIDO,"verificacion=ok; E05_control_iter4.py=906dec970ddae6fd; E05_control_iter4.chat.json=69c84c894f5181e7(anonimizados=43); modelo=['Kimi K3 • 3.6 credits', 'Kimi K3 • 5.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=38874; tokens_out=2308; creditos=9.27"
+2026-10-23T16:29:57+00:00,E05_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T16:31:47+00:00,E05_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T16:31:47+00:00,E05_control_iter5,RECOGIDO,"verificacion=ok; E05_control_iter5.py=75487cd69834ca4a; E05_control_iter5.chat.json=6916f31ff8f205de(anonimizados=42); modelo=['Kimi K3 • 5.2 credits', 'Kimi K3 • 5.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_findTextInFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=39600; tokens_out=2685; creditos=10.61"
+2026-10-23T16:32:24+00:00,E05_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:34:51+00:00,E05_experimental_iter1,RECOGIDO,"verificacion=ok; E05_experimental_iter1.py=0e6772542cb65b3e; E05_experimental_iter1.chat.json=d22779fbc535b5c8(anonimizados=70); modelo=['Kimi K3 • 2.8 credits', 'Kimi K3 • 9.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=42402; tokens_out=4619; creditos=12.03"
+2026-10-23T16:34:56+00:00,E05_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:38:41+00:00,E05_experimental_iter2,RECOGIDO,"verificacion=ok; E05_experimental_iter2.py=aa58a94b3a935179; E05_experimental_iter2.chat.json=040454a886fd9439(anonimizados=67); modelo=['Kimi K3 • 2.7 credits', 'Kimi K3 • 8.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=41882; tokens_out=3969; creditos=10.9"
+2026-10-23T16:38:57+00:00,E05_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:43:28+00:00,E05_experimental_iter3,RECOGIDO,"verificacion=ok; E05_experimental_iter3.py=3deda759227ae076; E05_experimental_iter3.chat.json=764c382a55c02856(anonimizados=80); modelo=['Kimi K3 • 12.7 credits', 'Kimi K3 • 2.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=44009; tokens_out=6070; creditos=15.45"
+2026-10-23T16:43:32+00:00,E05_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:46:45+00:00,E05_experimental_iter4,RECOGIDO,"verificacion=ok; E05_experimental_iter4.py=fad61db45deec666; E05_experimental_iter4.chat.json=e159386c3b65ed81(anonimizados=83); modelo=['Kimi K3 • 3.2 credits', 'Kimi K3 • 8.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=42152; tokens_out=4114; creditos=11.92"
+2026-10-23T16:46:52+00:00,E05_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T16:51:07+00:00,E05_experimental_iter5,RECOGIDO,"verificacion=ok; E05_experimental_iter5.py=65bca41c657f0406; E05_experimental_iter5.chat.json=0c1cda6603fb57de(anonimizados=71); modelo=['Kimi K3 • 10.5 credits', 'Kimi K3 • 2.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=42446; tokens_out=4530; creditos=12.78"
+2026-10-23T16:52:01+00:00,E06_control_iter1,PREPARADO,contexto=ninguno
+2026-10-23T16:54:08+00:00,E06_control_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T16:54:08+00:00,E06_control_iter1,RECOGIDO,"verificacion=ok; E06_control_iter1.py=0bf904935dc32aed; E06_control_iter1.chat.json=ea0193415a574340(anonimizados=42); modelo=['Kimi K3 • 6.5 credits', 'Kimi K3 • 7.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=40664; tokens_out=3912; creditos=14.32"
+2026-10-23T16:54:13+00:00,E06_control_iter2,PREPARADO,contexto=ninguno
+2026-10-23T16:58:08+00:00,E06_control_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T16:58:08+00:00,E06_control_iter2,RECOGIDO,"verificacion=ok; E06_control_iter2.py=4ae1efb5e3e0fbf3; E06_control_iter2.chat.json=c2c3de74d83754dd(anonimizados=67); modelo=['Kimi K3 • 16.1 credits', 'Kimi K3 • 3.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=44602; tokens_out=8438; creditos=19.86"
+2026-10-23T16:58:16+00:00,E06_control_iter3,PREPARADO,contexto=ninguno
+2026-10-23T17:02:22+00:00,E06_control_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:02:22+00:00,E06_control_iter3,RECOGIDO,"verificacion=ok; E06_control_iter3.py=67869674388a79e7; E06_control_iter3.chat.json=60b248897c96f5ec(anonimizados=46); modelo=['Kimi K3 • 13.8 credits', 'Kimi K3 • 3.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'execution_subagent', 'manage_todo_list', 'run_in_terminal']; tokens_in=44059; tokens_out=7940; creditos=17.31"
+2026-10-23T17:02:29+00:00,E06_control_iter4,PREPARADO,contexto=ninguno
+2026-10-23T17:04:59+00:00,E06_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:04:59+00:00,E06_control_iter4,RECOGIDO,"verificacion=ok; E06_control_iter4.py=5aabdc90967d8a55; E06_control_iter4.chat.json=66dec69f53ec6652(anonimizados=45); modelo=['Kimi K3 • 10.5 credits', 'Kimi K3 • 8.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'copilot_memory', 'manage_todo_list', 'run_in_terminal']; tokens_in=40581; tokens_out=3834; creditos=19.25"
+2026-10-23T17:05:04+00:00,E06_control_iter5,PREPARADO,contexto=ninguno
+2026-10-23T17:10:53+00:00,E06_control_iter5,INVALIDA_CHAT,el modelo del chat no contiene 'kimi': [] | nivel de razonamiento [] (se esperaba max) | agente [] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas | se esperaban 2 turnos (verificación + prompt) y hay 0 || modelo=[]; agente=[]; razonamiento=[]; turnos=0; herramientas=[]; tokens_in=0; tokens_out=0; creditos=0.0
+2026-10-23T17:11:18+00:00,E06_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:11:18+00:00,E06_control_iter5,RECOGIDO,"verificacion=ok; E06_control_iter5.py=01e7cd98f09688b1; E06_control_iter5.chat.json=8cc22edd50d066f7(anonimizados=44); modelo=['Kimi K3 • 6.6 credits', 'Kimi K3 • 7.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=40361; tokens_out=3666; creditos=13.72"
+2026-10-23T17:11:38+00:00,E06_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T17:18:18+00:00,E06_experimental_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:18:19+00:00,E06_experimental_iter1,RECOGIDO,"verificacion=ok; E06_experimental_iter1.py=067cae4d6b00c177; E06_experimental_iter1.chat.json=99f3f3b066b33bbb(anonimizados=114); modelo=['Kimi K3 • 28.4 credits', 'Kimi K3 • 5.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_listDirectory', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=51448; tokens_out=13039; creditos=34.36"
+2026-10-23T17:18:24+00:00,E06_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T17:26:37+00:00,E06_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:26:37+00:00,E06_experimental_iter2,RECOGIDO,"verificacion=ok; E06_experimental_iter2.py=a8f79739f9fbc0f7; E06_experimental_iter2.chat.json=9f9bfecad4c59a06(anonimizados=76); modelo=['Kimi K3 • 2.7 credits', 'Kimi K3 • 26.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=49499; tokens_out=11813; creditos=28.73"
+2026-10-23T17:26:41+00:00,E06_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T17:37:25+00:00,E06_experimental_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:37:25+00:00,E06_experimental_iter3,RECOGIDO,"verificacion=ok; E06_experimental_iter3.py=d0a6d429f1b2daa3; E06_experimental_iter3.chat.json=f08c84a09eca3fe6(anonimizados=84); modelo=['Kimi K3 • 3.1 credits', 'Kimi K3 • 36.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'execution_subagent', 'manage_todo_list', 'run_in_terminal']; tokens_in=56898; tokens_out=19865; creditos=39.55"
+2026-10-23T17:37:32+00:00,E06_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T17:46:23+00:00,E06_experimental_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-23T17:46:23+00:00,E06_experimental_iter4,RECOGIDO,"verificacion=ok; E06_experimental_iter4.py=7b8613d73aa630e1; E06_experimental_iter4.chat.json=351a8ed34400f1d0(anonimizados=73); modelo=['Kimi K3 • 2.6 credits', 'Kimi K3 • 26.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=51069; tokens_out=13297; creditos=28.61"
+2026-10-23T17:46:28+00:00,E06_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-23T17:52:10+00:00,E06_experimental_iter5,RECOGIDO,"verificacion=ok; E06_experimental_iter5.py=6264da3cf439b867; E06_experimental_iter5.chat.json=7499a873df93a30c(anonimizados=65); modelo=['Kimi K3 • 19.9 credits', 'Kimi K3 • 2.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=47851; tokens_out=10104; creditos=22.14"
+2026-10-27T16:25:30+00:00,E07_control_iter1,PREPARADO,contexto=ninguno
+2026-10-27T16:30:52+00:00,E07_control_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T16:30:52+00:00,E07_control_iter1,RECOGIDO,"verificacion=ok; E07_control_iter1.py=831ba31518ffa851; E07_control_iter1.chat.json=671d8a1b88e56d44(anonimizados=43); modelo=['Kimi K3 • 11.2 credits', 'Kimi K3 • 6.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=44173; tokens_out=6979; creditos=17.2"
+2026-10-27T16:31:00+00:00,E07_control_iter2,PREPARADO,contexto=ninguno
+2026-10-27T16:34:09+00:00,E07_control_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T16:34:09+00:00,E07_control_iter2,RECOGIDO,"verificacion=ok; E07_control_iter2.py=61f322a828b8b4dc; E07_control_iter2.chat.json=6bbceb002cf3dd02(anonimizados=39); modelo=['Kimi K3 • 3.8 credits', 'Kimi K3 • 8.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41280; tokens_out=4736; creditos=12.43"
+2026-10-27T16:34:15+00:00,E07_control_iter3,PREPARADO,contexto=ninguno
+2026-10-27T16:38:21+00:00,E07_control_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T16:38:21+00:00,E07_control_iter3,RECOGIDO,"verificacion=ok; E07_control_iter3.py=7de87b15c2f84913; E07_control_iter3.chat.json=2445916e7ae63e64(anonimizados=47); modelo=['Kimi K3 • 10.7 credits', 'Kimi K3 • 7.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=42228; tokens_out=5900; creditos=18.39"
+2026-10-27T16:38:26+00:00,E07_control_iter4,PREPARADO,contexto=ninguno
+2026-10-27T16:41:52+00:00,E07_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['powershell'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T16:41:52+00:00,E07_control_iter4,INVALIDA_CHAT,"nivel de razonamiento ['max', 'sin_dato'] (se esperaba max) | agente ['agent-host-copilotcli'] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas | modo distinto de Agent: ['', 'agent'] || modelo=['Kimi K3', 'Kimi K3 • 11.5 credits', 'agent-host-copilotcli:kimi-k3']; agente=['agent-host-copilotcli']; razonamiento=['max', 'sin_dato']; turnos=2; herramientas=['create', 'glob', 'powershell', 'view']; tokens_in=64110; tokens_out=4367; creditos=26.58819"
+2026-10-27T16:43:05+00:00,E07_control_iter4,DESCARTADO,"Hubo una equivocacion al escoger el Harness, se escogio el Harness Github y no Local, por ende la corrida queda descartada"
+2026-10-27T16:43:10+00:00,E07_control_iter4,PREPARADO,contexto=ninguno
+2026-10-27T16:47:15+00:00,E07_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T16:47:15+00:00,E07_control_iter4,RECOGIDO,"verificacion=ok; E07_control_iter4.py=d5b09082e6f41488; E07_control_iter4.chat.json=6795d0c5a14c3b80(anonimizados=41); modelo=['Kimi K3 • 4.2 credits', 'Kimi K3 • 9.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=42069; tokens_out=5531; creditos=13.97"
+2026-10-27T16:47:24+00:00,E07_control_iter5,PREPARADO,contexto=ninguno
+2026-10-27T16:49:52+00:00,E07_control_iter5,RECOGIDO,"verificacion=ok; E07_control_iter5.py=4917425aa017c8d6; E07_control_iter5.chat.json=77cfaa5481b3cd63(anonimizados=41); modelo=['Kimi K3 • 2.9 credits', 'Kimi K3 • 6.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39657; tokens_out=3367; creditos=9.21"
+2026-10-27T16:50:29+00:00,E07_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T16:55:33+00:00,E07_experimental_iter1,RECOGIDO,"verificacion=ok; E07_experimental_iter1.py=40bb3b9f470b281b; E07_experimental_iter1.chat.json=5733a01640c3635d(anonimizados=105); modelo=['Kimi K3 • 13.2 credits', 'Kimi K3 • 3.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'copilot_readFile', 'manage_todo_list']; tokens_in=44794; tokens_out=6263; creditos=16.93"
+2026-10-27T16:55:40+00:00,E07_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T17:05:18+00:00,E07_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T17:05:18+00:00,E07_experimental_iter2,RECOGIDO,"verificacion=ok; E07_experimental_iter2.py=a5f67c017b08f942; E07_experimental_iter2.chat.json=94dddf8cfe83063d(anonimizados=90); modelo=['Kimi K3 • 20.9 credits', 'Kimi K3 • 5.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=48260; tokens_out=10452; creditos=25.95"
+2026-10-27T17:05:24+00:00,E07_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T17:09:44+00:00,E07_experimental_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T17:09:44+00:00,E07_experimental_iter3,RECOGIDO,"verificacion=ok; E07_experimental_iter3.py=265cd0f687bbc85e; E07_experimental_iter3.chat.json=e397ea43a828793c(anonimizados=89); modelo=['Kimi K3 • 10.9 credits', 'Kimi K3 • 3.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=44162; tokens_out=5747; creditos=14.84"
+2026-10-27T17:09:53+00:00,E07_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T17:13:10+00:00,E07_experimental_iter4,RECOGIDO,"verificacion=ok; E07_experimental_iter4.py=479d0ca7fbda9204; E07_experimental_iter4.chat.json=f40306bfa0cabb7e(anonimizados=70); modelo=['Kimi K3 • 13.7 credits', 'Kimi K3 • 2.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=44147; tokens_out=6375; creditos=16.03"
+2026-10-27T17:13:15+00:00,E07_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T17:18:11+00:00,E07_experimental_iter5,RECOGIDO,"verificacion=ok; E07_experimental_iter5.py=30ab7078974193b2; E07_experimental_iter5.chat.json=d49423561d5d2ac1(anonimizados=67); modelo=['Kimi K3 • 2.1 credits', 'Kimi K3 • 5.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=40563; tokens_out=2736; creditos=8.02"
+2026-10-27T17:45:37+00:00,E08_control_iter1,PREPARADO,contexto=ninguno
+2026-10-27T17:47:43+00:00,E08_control_iter1,RECOGIDO,"verificacion=ok; E08_control_iter1.py=7e2fa0b1bc71586a; E08_control_iter1.chat.json=c494ba058e3bb9d4(anonimizados=51); modelo=['Kimi K3 • 5.2 credits', 'Kimi K3 • 7.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'copilot_memory', 'manage_todo_list']; tokens_in=41012; tokens_out=4038; creditos=12.74"
+2026-10-27T17:47:51+00:00,E08_control_iter2,PREPARADO,contexto=ninguno
+2026-10-27T17:49:13+00:00,E08_control_iter2,RECOGIDO,"verificacion=ok; E08_control_iter2.py=d203734eb8f67f7c; E08_control_iter2.chat.json=2319d3c8b82b6bbe(anonimizados=43); modelo=['Kimi K3 • 3.3 credits', 'Kimi K3 • 3.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=38944; tokens_out=2339; creditos=6.91"
+2026-10-27T17:49:20+00:00,E08_control_iter3,PREPARADO,contexto=ninguno
+2026-10-27T17:51:59+00:00,E08_control_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T17:51:59+00:00,E08_control_iter3,RECOGIDO,"verificacion=ok; E08_control_iter3.py=b6ea0b94af19dead; E08_control_iter3.chat.json=18011a75b218d480(anonimizados=47); modelo=['Kimi K3 • 3.1 credits', 'Kimi K3 • 9.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41341; tokens_out=4961; creditos=12.29"
+2026-10-27T17:52:04+00:00,E08_control_iter4,PREPARADO,contexto=ninguno
+2026-10-27T17:55:38+00:00,E08_control_iter4,RECOGIDO,"verificacion=ok; E08_control_iter4.py=82f3974c8eff608c; E08_control_iter4.chat.json=714b960f22eaff65(anonimizados=36); modelo=['Kimi K3 • 6.5 credits', 'Kimi K3 • 7.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=43611; tokens_out=6426; creditos=14.36"
+2026-10-27T17:55:43+00:00,E08_control_iter5,PREPARADO,contexto=ninguno
+2026-10-27T17:58:12+00:00,E08_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T17:58:12+00:00,E08_control_iter5,RECOGIDO,"verificacion=ok; E08_control_iter5.py=3aaeefcd88cddeb8; E08_control_iter5.chat.json=280bc16d94162c8c(anonimizados=62); modelo=['Kimi K3 • 4.0 credits', 'Kimi K3 • 9.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41714; tokens_out=5018; creditos=12.97"
+2026-10-27T17:58:16+00:00,E08_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:01:15+00:00,E08_experimental_iter1,RECOGIDO,"verificacion=ok; E08_experimental_iter1.py=640c9127474b0c9b; E08_experimental_iter1.chat.json=ef445e06df3cbf27(anonimizados=88); modelo=['Kimi K3 • 10.8 credits', 'Kimi K3 • 3.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=43506; tokens_out=5693; creditos=14.13"
+2026-10-27T18:01:19+00:00,E08_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:05:09+00:00,E08_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:05:09+00:00,E08_experimental_iter2,RECOGIDO,"verificacion=ok; E08_experimental_iter2.py=7f8213d646ce1305; E08_experimental_iter2.chat.json=cf515cacb3477456(anonimizados=81); modelo=['Kimi K3 • 13.6 credits', 'Kimi K3 • 2.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=44826; tokens_out=7041; creditos=16.57"
+2026-10-27T18:05:13+00:00,E08_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:10:06+00:00,E08_experimental_iter3,RECOGIDO,"verificacion=ok; E08_experimental_iter3.py=bbcc1c4bf9806914; E08_experimental_iter3.chat.json=da8b1a6f5559ec51(anonimizados=73); modelo=['Kimi K3 • 11.6 credits', 'Kimi K3 • 2.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=43795; tokens_out=5892; creditos=14.51"
+2026-10-27T18:10:11+00:00,E08_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:14:00+00:00,E08_experimental_iter4,RECOGIDO,"verificacion=ok; E08_experimental_iter4.py=d5c0f413ed4b42b0; E08_experimental_iter4.chat.json=4303b2db774e1969(anonimizados=89); modelo=['Kimi K3 • 10.5 credits', 'Kimi K3 • 2.7 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=43086; tokens_out=5185; creditos=13.2"
+2026-10-27T18:14:05+00:00,E08_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:18:54+00:00,E08_experimental_iter5,RECOGIDO,"verificacion=ok; E08_experimental_iter5.py=0c3e2cbad747c9c5; E08_experimental_iter5.chat.json=4276c31773397dfe(anonimizados=84); modelo=['Kimi K3 • 11.9 credits', 'Kimi K3 • 3.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=44071; tokens_out=6590; creditos=14.89"
+2026-10-27T18:19:06+00:00,E09_control_iter1,PREPARADO,contexto=ninguno
+2026-10-27T18:23:33+00:00,E09_control_iter1,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-27T18:23:34+00:00,E09_control_iter1,RECOGIDO,"verificacion=ok; E09_control_iter1.py=fc432437be6324bc; E09_control_iter1.chat.json=0768b8fc16a3c5f7(anonimizados=54); modelo=['Kimi K3 • 14.0 credits', 'Kimi K3 • 3.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=43987; tokens_out=7699; creditos=17.26"
+2026-10-27T18:23:38+00:00,E09_control_iter2,PREPARADO,contexto=ninguno
+2026-10-27T18:26:24+00:00,E09_control_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:26:24+00:00,E09_control_iter2,RECOGIDO,"verificacion=ok; E09_control_iter2.py=32fcd9eaddbcab6e; E09_control_iter2.chat.json=122ef6433c76e290(anonimizados=60); modelo=['Kimi K3 • 3.6 credits', 'Kimi K3 • 8.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41019; tokens_out=4519; creditos=11.99"
+2026-10-27T18:26:28+00:00,E09_control_iter3,PREPARADO,contexto=ninguno
+2026-10-27T18:29:30+00:00,E09_control_iter3,AVISO_CHAT,"el modelo mencionó 'OWASP' en el grupo CONTROL: revisa qué se lo sugirió (nombre de carpeta, archivos visibles); queda anotado en la bitácora"
+2026-10-27T18:29:30+00:00,E09_control_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:29:30+00:00,E09_control_iter3,RECOGIDO,"verificacion=ok; E09_control_iter3.py=1c2420af71ead6a1; E09_control_iter3.chat.json=e44e00e3b8a35181(anonimizados=64); modelo=['Kimi K3 • 10.2 credits', 'Kimi K3 • 3.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=41937; tokens_out=5666; creditos=13.54"
+2026-10-27T18:29:38+00:00,E09_control_iter4,PREPARADO,contexto=ninguno
+2026-10-27T18:31:56+00:00,E09_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:31:57+00:00,E09_control_iter4,RECOGIDO,"verificacion=ok; E09_control_iter4.py=05100a86d40903db; E09_control_iter4.chat.json=7c66a46681471e62(anonimizados=52); modelo=['Kimi K3 • 3.0 credits', 'Kimi K3 • 7.9 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=40450; tokens_out=4201; creditos=10.85"
+2026-10-27T18:32:02+00:00,E09_control_iter5,PREPARADO,contexto=ninguno
+2026-10-27T18:35:51+00:00,E09_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:35:51+00:00,E09_control_iter5,RECOGIDO,"verificacion=ok; E09_control_iter5.py=9db6903b22b94f49; E09_control_iter5.chat.json=1953c214283b3bd2(anonimizados=46); modelo=['Kimi K3 • 12.5 credits', 'Kimi K3 • 3.3 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=43200; tokens_out=6886; creditos=15.76"
+2026-10-27T18:35:55+00:00,E09_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:46:55+00:00,E09_experimental_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['powershell'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:46:55+00:00,E09_experimental_iter1,INVALIDA_CHAT,"nivel de razonamiento ['max', 'sin_dato'] (se esperaba max) | agente ['agent-host-copilotcli'] (se esperaba github.copilot.editsAgent); usa SIEMPRE el mismo tipo de sesión/arnés en las 100 corridas || modelo=['Kimi K3', 'Kimi K3 • 10.7 credits', 'Kimi K3 • 48.2 credits', 'agent-host-copilotcli:kimi-k3']; agente=['agent-host-copilotcli']; razonamiento=['max', 'sin_dato']; turnos=2; herramientas=['create', 'glob', 'powershell', 'skill', 'view']; tokens_in=83671; tokens_out=20833; creditos=56.10588"
+2026-10-27T18:47:20+00:00,E09_experimental_iter1,DESCARTADO,"Hubo una equivocacion al escoger el Harness, se escogio el Harness Github y no Local, por ende la corrida queda descartada"
+2026-10-27T18:47:26+00:00,E09_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T18:53:02+00:00,E09_experimental_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T18:53:02+00:00,E09_experimental_iter1,RECOGIDO,"verificacion=ok; E09_experimental_iter1.py=6fbe4e4198b1c812; E09_experimental_iter1.chat.json=160152cebc6e9669(anonimizados=88); modelo=['Kimi K3 • 21.1 credits', 'Kimi K3 • 4.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=48697; tokens_out=11022; creditos=25.16"
+2026-10-27T18:53:07+00:00,E09_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:06:29+00:00,E09_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:06:29+00:00,E09_experimental_iter2,RECOGIDO,"verificacion=ok; E09_experimental_iter2.py=82f9007301cc9538; E09_experimental_iter2.chat.json=55c39250b96eb541(anonimizados=95); modelo=['Kimi K3 • 33.9 credits', 'Kimi K3 • 4.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_listDirectory', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=53566; tokens_out=15908; creditos=38.4"
+2026-10-27T19:06:34+00:00,E09_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:12:18+00:00,E09_experimental_iter3,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:12:18+00:00,E09_experimental_iter3,RECOGIDO,"verificacion=ok; E09_experimental_iter3.py=320a17b743d43db2; E09_experimental_iter3.chat.json=036f4e616d80ec87(anonimizados=76); modelo=['Kimi K3 • 18.2 credits', 'Kimi K3 • 2.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=46943; tokens_out=9134; creditos=20.7"
+2026-10-27T19:12:22+00:00,E09_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:18:09+00:00,E09_experimental_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:18:09+00:00,E09_experimental_iter4,RECOGIDO,"verificacion=ok; E09_experimental_iter4.py=c73d2770c7e9355e; E09_experimental_iter4.chat.json=f36a8e6e882b7eec(anonimizados=92); modelo=['Kimi K3 • 21.2 credits', 'Kimi K3 • 3.1 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=48941; tokens_out=11240; creditos=24.23"
+2026-10-27T19:18:15+00:00,E09_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:23:15+00:00,E09_experimental_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:23:15+00:00,E09_experimental_iter5,RECOGIDO,"verificacion=ok; E09_experimental_iter5.py=f8327b3de0082fee; E09_experimental_iter5.chat.json=5df0e5a962eb0dff(anonimizados=88); modelo=['Kimi K3 • 17.6 credits', 'Kimi K3 • 2.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=46327; tokens_out=8638; creditos=20.04"
+2026-10-27T19:24:06+00:00,E10_control_iter1,PREPARADO,contexto=ninguno
+2026-10-27T19:25:59+00:00,E10_control_iter1,RECOGIDO,"verificacion=ok; E10_control_iter1.py=982e9e6d44aab9a3; E10_control_iter1.chat.json=47cfb965a1016856(anonimizados=35); modelo=['Kimi K3 • 3.3 credits', 'Kimi K3 • 5.2 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=39498; tokens_out=3291; creditos=8.56"
+2026-10-27T19:26:03+00:00,E10_control_iter2,PREPARADO,contexto=ninguno
+2026-10-27T19:30:12+00:00,E10_control_iter2,RECOGIDO,"verificacion=ok; E10_control_iter2.py=0184522b5dc6995c; E10_control_iter2.chat.json=ddb6edc4908cb526(anonimizados=34); modelo=['Kimi K3 • 3.0 credits', 'Kimi K3 • 8.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=41026; tokens_out=4677; creditos=11.05"
+2026-10-27T19:30:17+00:00,E10_control_iter3,PREPARADO,contexto=ninguno
+2026-10-27T19:33:07+00:00,E10_control_iter3,RECOGIDO,"verificacion=ok; E10_control_iter3.py=5650a813b060ba90; E10_control_iter3.chat.json=ce17aeac78a09199(anonimizados=58); modelo=['Kimi K3 • 3.0 credits', 'Kimi K3 • 9.0 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list']; tokens_in=41147; tokens_out=4819; creditos=12.0"
+2026-10-27T19:33:14+00:00,E10_control_iter4,PREPARADO,contexto=ninguno
+2026-10-27T19:35:10+00:00,E10_control_iter4,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:35:10+00:00,E10_control_iter4,RECOGIDO,"verificacion=ok; E10_control_iter4.py=ebc3409ddb8e03b8; E10_control_iter4.chat.json=514dc6d70fd81824(anonimizados=40); modelo=['Kimi K3 • 3.5 credits', 'Kimi K3 • 5.8 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=39713; tokens_out=3304; creditos=9.26"
+2026-10-27T19:35:15+00:00,E10_control_iter5,PREPARADO,contexto=ninguno
+2026-10-27T19:38:50+00:00,E10_control_iter5,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:38:51+00:00,E10_control_iter5,RECOGIDO,"verificacion=ok; E10_control_iter5.py=4aa32401046d5460; E10_control_iter5.chat.json=86e652d3553c6f34(anonimizados=51); modelo=['Kimi K3 • 14.3 credits', 'Kimi K3 • 3.5 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_findFiles', 'copilot_getErrors', 'copilot_listDirectory', 'manage_todo_list', 'run_in_terminal']; tokens_in=43996; tokens_out=7552; creditos=17.8"
+2026-10-27T19:39:21+00:00,E10_experimental_iter1,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:42:57+00:00,E10_experimental_iter1,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:42:57+00:00,E10_experimental_iter1,RECOGIDO,"verificacion=ok; E10_experimental_iter1.py=d8325517f5a17e0c; E10_experimental_iter1.chat.json=610a5ef888d9d511(anonimizados=71); modelo=['Kimi K3 • 13.1 credits', 'Kimi K3 • 2.6 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=44339; tokens_out=6571; creditos=15.69"
+2026-10-27T19:43:02+00:00,E10_experimental_iter2,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:45:15+00:00,E10_experimental_iter2,AVISO_CHAT,el agente intentó usar herramientas fuera de alcance pero las DENEGASTE/omitiste: ['run_in_terminal'] (queda anotado en la bitácora; no invalida la corrida)
+2026-10-27T19:45:15+00:00,E10_experimental_iter2,RECOGIDO,"verificacion=ok; E10_experimental_iter2.py=26ca554cdb33f9e8; E10_experimental_iter2.chat.json=33eceacce7adfa26(anonimizados=67); modelo=['Kimi K3 • 3.1 credits', 'Kimi K3 • 7.1 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list', 'run_in_terminal']; tokens_in=40845; tokens_out=3000; creditos=10.26"
+2026-10-27T19:45:20+00:00,E10_experimental_iter3,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:48:14+00:00,E10_experimental_iter3,RECOGIDO,"verificacion=ok; E10_experimental_iter3.py=493b93801099379e; E10_experimental_iter3.chat.json=458763b3d7201631(anonimizados=80); modelo=['Kimi K3 • 2.4 credits', 'Kimi K3 • 9.1 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=42102; tokens_out=4249; creditos=11.46"
+2026-10-27T19:48:20+00:00,E10_experimental_iter4,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:52:08+00:00,E10_experimental_iter4,RECOGIDO,"verificacion=ok; E10_experimental_iter4.py=c5024e56d4c3604f; E10_experimental_iter4.chat.json=3bb956c1f0d1f005(anonimizados=70); modelo=['Kimi K3 • 11.9 credits', 'Kimi K3 • 2.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_getErrors', 'copilot_readFile', 'manage_todo_list']; tokens_in=43348; tokens_out=5472; creditos=14.31"
+2026-10-27T19:52:13+00:00,E10_experimental_iter5,PREPARADO,contexto=AGENTS.md=ad4b2ac07495;.github/copilot-instructions.md=44b6265bea26;.github/skills/owasp-mitigacion/SKILL.md=396f841a279a
+2026-10-27T19:55:26+00:00,E10_experimental_iter5,RECOGIDO,"verificacion=ok; E10_experimental_iter5.py=444cf5d37d16cce5; E10_experimental_iter5.chat.json=0e4b63f6cb151f9f(anonimizados=73); modelo=['Kimi K3 • 3.0 credits', 'Kimi K3 • 9.4 credits', 'copilot/kimi-k3']; agente=['github.copilot.editsAgent']; razonamiento=['max']; turnos=2; herramientas=['copilot_createFile', 'copilot_readFile', 'manage_todo_list']; tokens_in=42894; tokens_out=5177; creditos=12.41"
+2026-10-27T20:59:38+00:00,E01_control_iter1,SAST_OK,bandit
+2026-10-27T20:59:51+00:00,E01_control_iter1,SAST_OK,semgrep
+2026-10-27T20:59:52+00:00,E01_control_iter2,SAST_OK,bandit
+2026-10-27T21:00:06+00:00,E01_control_iter2,SAST_OK,semgrep
+2026-10-27T21:00:06+00:00,E01_control_iter3,SAST_OK,bandit
+2026-10-27T21:00:20+00:00,E01_control_iter3,SAST_OK,semgrep
+2026-10-27T21:00:21+00:00,E01_control_iter4,SAST_OK,bandit
+2026-10-27T21:00:34+00:00,E01_control_iter4,SAST_OK,semgrep
+2026-10-27T21:00:35+00:00,E01_control_iter5,SAST_OK,bandit
+2026-10-27T21:00:49+00:00,E01_control_iter5,SAST_OK,semgrep
+2026-10-27T21:00:49+00:00,E02_control_iter1,SAST_OK,bandit
+2026-10-27T21:01:03+00:00,E02_control_iter1,SAST_OK,semgrep
+2026-10-27T21:01:04+00:00,E02_control_iter2,SAST_OK,bandit
+2026-10-27T21:01:17+00:00,E02_control_iter2,SAST_OK,semgrep
+2026-10-27T21:01:17+00:00,E02_control_iter3,SAST_OK,bandit
+2026-10-27T21:01:31+00:00,E02_control_iter3,SAST_OK,semgrep
+2026-10-27T21:01:32+00:00,E02_control_iter4,SAST_OK,bandit
+2026-10-27T21:01:45+00:00,E02_control_iter4,SAST_OK,semgrep
+2026-10-27T21:01:46+00:00,E02_control_iter5,SAST_OK,bandit
+2026-10-27T21:02:00+00:00,E02_control_iter5,SAST_OK,semgrep
+2026-10-27T21:02:00+00:00,E03_control_iter1,SAST_OK,bandit
+2026-10-27T21:02:14+00:00,E03_control_iter1,SAST_OK,semgrep
+2026-10-27T21:02:42+00:00,E03_control_iter1,SAST_OK,pip-audit
+2026-10-27T21:02:43+00:00,E03_control_iter2,SAST_OK,bandit
+2026-10-27T21:02:56+00:00,E03_control_iter2,SAST_OK,semgrep
+2026-10-27T21:03:19+00:00,E03_control_iter2,SAST_OK,pip-audit
+2026-10-27T21:03:20+00:00,E03_control_iter3,SAST_OK,bandit
+2026-10-27T21:03:33+00:00,E03_control_iter3,SAST_OK,semgrep
+2026-10-27T21:03:55+00:00,E03_control_iter3,SAST_OK,pip-audit
+2026-10-27T21:03:56+00:00,E03_control_iter4,SAST_OK,bandit
+2026-10-27T21:04:09+00:00,E03_control_iter4,SAST_OK,semgrep
+2026-10-27T21:04:31+00:00,E03_control_iter4,SAST_OK,pip-audit
+2026-10-27T21:04:31+00:00,E03_control_iter5,SAST_OK,bandit
+2026-10-27T21:04:45+00:00,E03_control_iter5,SAST_OK,semgrep
+2026-10-27T21:05:07+00:00,E03_control_iter5,SAST_OK,pip-audit
+2026-10-27T21:05:08+00:00,E04_control_iter1,SAST_OK,bandit
+2026-10-27T21:05:23+00:00,E04_control_iter1,SAST_OK,semgrep
+2026-10-27T21:05:23+00:00,E04_control_iter2,SAST_OK,bandit
+2026-10-27T21:05:37+00:00,E04_control_iter2,SAST_OK,semgrep
+2026-10-27T21:05:37+00:00,E04_control_iter3,SAST_OK,bandit
+2026-10-27T21:05:51+00:00,E04_control_iter3,SAST_OK,semgrep
+2026-10-27T21:05:52+00:00,E04_control_iter4,SAST_OK,bandit
+2026-10-27T21:06:05+00:00,E04_control_iter4,SAST_OK,semgrep
+2026-10-27T21:06:06+00:00,E04_control_iter5,SAST_OK,bandit
+2026-10-27T21:06:19+00:00,E04_control_iter5,SAST_OK,semgrep
+2026-10-27T21:06:20+00:00,E05_control_iter1,SAST_OK,bandit
+2026-10-27T21:06:33+00:00,E05_control_iter1,SAST_OK,semgrep
+2026-10-27T21:06:34+00:00,E05_control_iter2,SAST_OK,bandit
+2026-10-27T21:06:47+00:00,E05_control_iter2,SAST_OK,semgrep
+2026-10-27T21:06:48+00:00,E05_control_iter3,SAST_OK,bandit
+2026-10-27T21:07:01+00:00,E05_control_iter3,SAST_OK,semgrep
+2026-10-27T21:07:02+00:00,E05_control_iter4,SAST_OK,bandit
+2026-10-27T21:07:16+00:00,E05_control_iter4,SAST_OK,semgrep
+2026-10-27T21:07:17+00:00,E05_control_iter5,SAST_OK,bandit
+2026-10-27T21:07:30+00:00,E05_control_iter5,SAST_OK,semgrep
+2026-10-27T21:07:31+00:00,E06_control_iter1,SAST_OK,bandit
+2026-10-27T21:07:45+00:00,E06_control_iter1,SAST_OK,semgrep
+2026-10-27T21:07:45+00:00,E06_control_iter2,SAST_OK,bandit
+2026-10-27T21:07:59+00:00,E06_control_iter2,SAST_OK,semgrep
+2026-10-27T21:08:00+00:00,E06_control_iter3,SAST_OK,bandit
+2026-10-27T21:08:14+00:00,E06_control_iter3,SAST_OK,semgrep
+2026-10-27T21:08:14+00:00,E06_control_iter4,SAST_OK,bandit
+2026-10-27T21:08:28+00:00,E06_control_iter4,SAST_OK,semgrep
+2026-10-27T21:08:28+00:00,E06_control_iter5,SAST_OK,bandit
+2026-10-27T21:08:42+00:00,E06_control_iter5,SAST_OK,semgrep
+2026-10-27T21:08:43+00:00,E07_control_iter1,SAST_OK,bandit
+2026-10-27T21:08:56+00:00,E07_control_iter1,SAST_OK,semgrep
+2026-10-27T21:08:57+00:00,E07_control_iter2,SAST_OK,bandit
+2026-10-27T21:09:10+00:00,E07_control_iter2,SAST_OK,semgrep
+2026-10-27T21:09:11+00:00,E07_control_iter3,SAST_OK,bandit
+2026-10-27T21:09:24+00:00,E07_control_iter3,SAST_OK,semgrep
+2026-10-27T21:09:25+00:00,E07_control_iter4,SAST_OK,bandit
+2026-10-27T21:09:38+00:00,E07_control_iter4,SAST_OK,semgrep
+2026-10-27T21:09:39+00:00,E07_control_iter5,SAST_OK,bandit
+2026-10-27T21:09:52+00:00,E07_control_iter5,SAST_OK,semgrep
+2026-10-27T21:09:53+00:00,E08_control_iter1,SAST_OK,bandit
+2026-10-27T21:10:07+00:00,E08_control_iter1,SAST_OK,semgrep
+2026-10-27T21:10:07+00:00,E08_control_iter2,SAST_OK,bandit
+2026-10-27T21:10:21+00:00,E08_control_iter2,SAST_OK,semgrep
+2026-10-27T21:10:22+00:00,E08_control_iter3,SAST_OK,bandit
+2026-10-27T21:10:35+00:00,E08_control_iter3,SAST_OK,semgrep
+2026-10-27T21:10:36+00:00,E08_control_iter4,SAST_OK,bandit
+2026-10-27T21:10:49+00:00,E08_control_iter4,SAST_OK,semgrep
+2026-10-27T21:10:50+00:00,E08_control_iter5,SAST_OK,bandit
+2026-10-27T21:11:04+00:00,E08_control_iter5,SAST_OK,semgrep
+2026-10-27T21:11:04+00:00,E09_control_iter1,SAST_OK,bandit
+2026-10-27T21:11:18+00:00,E09_control_iter1,SAST_OK,semgrep
+2026-10-27T21:11:18+00:00,E09_control_iter2,SAST_OK,bandit
+2026-10-27T21:11:32+00:00,E09_control_iter2,SAST_OK,semgrep
+2026-10-27T21:11:32+00:00,E09_control_iter3,SAST_OK,bandit
+2026-10-27T21:11:46+00:00,E09_control_iter3,SAST_OK,semgrep
+2026-10-27T21:11:46+00:00,E09_control_iter4,SAST_OK,bandit
+2026-10-27T21:12:00+00:00,E09_control_iter4,SAST_OK,semgrep
+2026-10-27T21:12:01+00:00,E09_control_iter5,SAST_OK,bandit
+2026-10-27T21:12:14+00:00,E09_control_iter5,SAST_OK,semgrep
+2026-10-27T21:12:15+00:00,E10_control_iter1,SAST_OK,bandit
+2026-10-27T21:12:28+00:00,E10_control_iter1,SAST_OK,semgrep
+2026-10-27T21:12:29+00:00,E10_control_iter2,SAST_OK,bandit
+2026-10-27T21:12:42+00:00,E10_control_iter2,SAST_OK,semgrep
+2026-10-27T21:12:43+00:00,E10_control_iter3,SAST_OK,bandit
+2026-10-27T21:12:56+00:00,E10_control_iter3,SAST_OK,semgrep
+2026-10-27T21:12:57+00:00,E10_control_iter4,SAST_OK,bandit
+2026-10-27T21:13:10+00:00,E10_control_iter4,SAST_OK,semgrep
+2026-10-27T21:13:11+00:00,E10_control_iter5,SAST_OK,bandit
+2026-10-27T21:13:25+00:00,E10_control_iter5,SAST_OK,semgrep
+2026-10-27T21:13:25+00:00,E01_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:13:39+00:00,E01_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:13:39+00:00,E01_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:13:53+00:00,E01_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:13:54+00:00,E01_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:14:07+00:00,E01_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:14:08+00:00,E01_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:14:21+00:00,E01_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:14:22+00:00,E01_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:14:36+00:00,E01_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:14:36+00:00,E02_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:14:50+00:00,E02_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:14:50+00:00,E02_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:15:04+00:00,E02_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:15:04+00:00,E02_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:15:19+00:00,E02_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:15:19+00:00,E02_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:15:33+00:00,E02_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:15:33+00:00,E02_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:15:47+00:00,E02_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:15:47+00:00,E03_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:16:01+00:00,E03_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:16:47+00:00,E03_experimental_iter1,SAST_OK,pip-audit
+2026-10-27T21:16:48+00:00,E03_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:17:01+00:00,E03_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:17:25+00:00,E03_experimental_iter2,SAST_OK,pip-audit
+2026-10-27T21:17:25+00:00,E03_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:17:39+00:00,E03_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:18:05+00:00,E03_experimental_iter3,SAST_OK,pip-audit
+2026-10-27T21:18:05+00:00,E03_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:18:19+00:00,E03_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:18:45+00:00,E03_experimental_iter4,SAST_OK,pip-audit
+2026-10-27T21:18:45+00:00,E03_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:18:59+00:00,E03_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:19:26+00:00,E03_experimental_iter5,SAST_OK,pip-audit
+2026-10-27T21:19:27+00:00,E04_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:19:40+00:00,E04_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:19:41+00:00,E04_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:19:54+00:00,E04_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:19:55+00:00,E04_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:20:09+00:00,E04_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:20:09+00:00,E04_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:20:23+00:00,E04_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:20:24+00:00,E04_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:20:38+00:00,E04_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:20:38+00:00,E05_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:20:52+00:00,E05_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:20:53+00:00,E05_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:21:06+00:00,E05_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:21:07+00:00,E05_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:21:20+00:00,E05_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:21:21+00:00,E05_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:21:34+00:00,E05_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:21:35+00:00,E05_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:21:49+00:00,E05_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:21:49+00:00,E06_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:22:03+00:00,E06_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:22:04+00:00,E06_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:22:17+00:00,E06_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:22:18+00:00,E06_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:22:31+00:00,E06_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:22:32+00:00,E06_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:22:46+00:00,E06_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:22:46+00:00,E06_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:23:00+00:00,E06_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:23:00+00:00,E07_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:23:14+00:00,E07_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:23:15+00:00,E07_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:23:29+00:00,E07_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:23:29+00:00,E07_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:23:43+00:00,E07_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:23:44+00:00,E07_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:23:58+00:00,E07_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:23:58+00:00,E07_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:24:12+00:00,E07_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:24:12+00:00,E08_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:24:26+00:00,E08_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:24:26+00:00,E08_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:24:40+00:00,E08_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:24:40+00:00,E08_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:24:54+00:00,E08_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:24:55+00:00,E08_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:25:08+00:00,E08_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:25:09+00:00,E08_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:25:24+00:00,E08_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:25:24+00:00,E09_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:25:39+00:00,E09_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:25:40+00:00,E09_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:25:54+00:00,E09_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:25:55+00:00,E09_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:26:09+00:00,E09_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:26:10+00:00,E09_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:26:24+00:00,E09_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:26:25+00:00,E09_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:26:39+00:00,E09_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:26:39+00:00,E10_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:26:53+00:00,E10_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:26:54+00:00,E10_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:27:07+00:00,E10_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:27:08+00:00,E10_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:27:21+00:00,E10_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:27:22+00:00,E10_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:27:35+00:00,E10_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:27:36+00:00,E10_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:27:50+00:00,E10_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:36:15+00:00,E01_control_iter1,SAST_OK,bandit
+2026-10-27T21:36:29+00:00,E01_control_iter1,SAST_OK,semgrep
+2026-10-27T21:36:29+00:00,E01_control_iter2,SAST_OK,bandit
+2026-10-27T21:36:43+00:00,E01_control_iter2,SAST_OK,semgrep
+2026-10-27T21:36:44+00:00,E01_control_iter3,SAST_OK,bandit
+2026-10-27T21:36:58+00:00,E01_control_iter3,SAST_OK,semgrep
+2026-10-27T21:36:58+00:00,E01_control_iter4,SAST_OK,bandit
+2026-10-27T21:37:12+00:00,E01_control_iter4,SAST_OK,semgrep
+2026-10-27T21:37:12+00:00,E01_control_iter5,SAST_OK,bandit
+2026-10-27T21:37:26+00:00,E01_control_iter5,SAST_OK,semgrep
+2026-10-27T21:37:27+00:00,E02_control_iter1,SAST_OK,bandit
+2026-10-27T21:37:42+00:00,E02_control_iter1,SAST_OK,semgrep
+2026-10-27T21:37:42+00:00,E02_control_iter2,SAST_OK,bandit
+2026-10-27T21:37:57+00:00,E02_control_iter2,SAST_OK,semgrep
+2026-10-27T21:37:57+00:00,E02_control_iter3,SAST_OK,bandit
+2026-10-27T21:38:11+00:00,E02_control_iter3,SAST_OK,semgrep
+2026-10-27T21:38:12+00:00,E02_control_iter4,SAST_OK,bandit
+2026-10-27T21:38:28+00:00,E02_control_iter4,SAST_OK,semgrep
+2026-10-27T21:38:28+00:00,E02_control_iter5,SAST_OK,bandit
+2026-10-27T21:38:43+00:00,E02_control_iter5,SAST_OK,semgrep
+2026-10-27T21:38:44+00:00,E03_control_iter1,SAST_OK,bandit
+2026-10-27T21:38:59+00:00,E03_control_iter1,SAST_OK,semgrep
+2026-10-27T21:39:25+00:00,E03_control_iter1,SAST_OK,pip-audit
+2026-10-27T21:39:26+00:00,E03_control_iter2,SAST_OK,bandit
+2026-10-27T21:39:40+00:00,E03_control_iter2,SAST_OK,semgrep
+2026-10-27T21:40:02+00:00,E03_control_iter2,SAST_OK,pip-audit
+2026-10-27T21:40:03+00:00,E03_control_iter3,SAST_OK,bandit
+2026-10-27T21:40:18+00:00,E03_control_iter3,SAST_OK,semgrep
+2026-10-27T21:40:41+00:00,E03_control_iter3,SAST_OK,pip-audit
+2026-10-27T21:40:42+00:00,E03_control_iter4,SAST_OK,bandit
+2026-10-27T21:40:55+00:00,E03_control_iter4,SAST_OK,semgrep
+2026-10-27T21:41:16+00:00,E03_control_iter4,SAST_OK,pip-audit
+2026-10-27T21:41:17+00:00,E03_control_iter5,SAST_OK,bandit
+2026-10-27T21:41:31+00:00,E03_control_iter5,SAST_OK,semgrep
+2026-10-27T21:41:51+00:00,E03_control_iter5,SAST_OK,pip-audit
+2026-10-27T21:41:52+00:00,E04_control_iter1,SAST_OK,bandit
+2026-10-27T21:42:06+00:00,E04_control_iter1,SAST_OK,semgrep
+2026-10-27T21:42:06+00:00,E04_control_iter2,SAST_OK,bandit
+2026-10-27T21:42:20+00:00,E04_control_iter2,SAST_OK,semgrep
+2026-10-27T21:42:20+00:00,E04_control_iter3,SAST_OK,bandit
+2026-10-27T21:42:34+00:00,E04_control_iter3,SAST_OK,semgrep
+2026-10-27T21:42:34+00:00,E04_control_iter4,SAST_OK,bandit
+2026-10-27T21:42:48+00:00,E04_control_iter4,SAST_OK,semgrep
+2026-10-27T21:42:49+00:00,E04_control_iter5,SAST_OK,bandit
+2026-10-27T21:43:02+00:00,E04_control_iter5,SAST_OK,semgrep
+2026-10-27T21:43:03+00:00,E05_control_iter1,SAST_OK,bandit
+2026-10-27T21:43:16+00:00,E05_control_iter1,SAST_OK,semgrep
+2026-10-27T21:43:17+00:00,E05_control_iter2,SAST_OK,bandit
+2026-10-27T21:43:30+00:00,E05_control_iter2,SAST_OK,semgrep
+2026-10-27T21:43:31+00:00,E05_control_iter3,SAST_OK,bandit
+2026-10-27T21:43:44+00:00,E05_control_iter3,SAST_OK,semgrep
+2026-10-27T21:43:45+00:00,E05_control_iter4,SAST_OK,bandit
+2026-10-27T21:43:58+00:00,E05_control_iter4,SAST_OK,semgrep
+2026-10-27T21:43:59+00:00,E05_control_iter5,SAST_OK,bandit
+2026-10-27T21:44:12+00:00,E05_control_iter5,SAST_OK,semgrep
+2026-10-27T21:44:13+00:00,E06_control_iter1,SAST_OK,bandit
+2026-10-27T21:44:27+00:00,E06_control_iter1,SAST_OK,semgrep
+2026-10-27T21:44:27+00:00,E06_control_iter2,SAST_OK,bandit
+2026-10-27T21:44:41+00:00,E06_control_iter2,SAST_OK,semgrep
+2026-10-27T21:44:41+00:00,E06_control_iter3,SAST_OK,bandit
+2026-10-27T21:44:55+00:00,E06_control_iter3,SAST_OK,semgrep
+2026-10-27T21:44:56+00:00,E06_control_iter4,SAST_OK,bandit
+2026-10-27T21:45:09+00:00,E06_control_iter4,SAST_OK,semgrep
+2026-10-27T21:45:10+00:00,E06_control_iter5,SAST_OK,bandit
+2026-10-27T21:45:24+00:00,E06_control_iter5,SAST_OK,semgrep
+2026-10-27T21:45:25+00:00,E07_control_iter1,SAST_OK,bandit
+2026-10-27T21:45:39+00:00,E07_control_iter1,SAST_OK,semgrep
+2026-10-27T21:45:40+00:00,E07_control_iter2,SAST_OK,bandit
+2026-10-27T21:45:54+00:00,E07_control_iter2,SAST_OK,semgrep
+2026-10-27T21:45:54+00:00,E07_control_iter3,SAST_OK,bandit
+2026-10-27T21:46:08+00:00,E07_control_iter3,SAST_OK,semgrep
+2026-10-27T21:46:09+00:00,E07_control_iter4,SAST_OK,bandit
+2026-10-27T21:46:22+00:00,E07_control_iter4,SAST_OK,semgrep
+2026-10-27T21:46:23+00:00,E07_control_iter5,SAST_OK,bandit
+2026-10-27T21:46:36+00:00,E07_control_iter5,SAST_OK,semgrep
+2026-10-27T21:46:37+00:00,E08_control_iter1,SAST_OK,bandit
+2026-10-27T21:46:50+00:00,E08_control_iter1,SAST_OK,semgrep
+2026-10-27T21:46:51+00:00,E08_control_iter2,SAST_OK,bandit
+2026-10-27T21:47:05+00:00,E08_control_iter2,SAST_OK,semgrep
+2026-10-27T21:47:05+00:00,E08_control_iter3,SAST_OK,bandit
+2026-10-27T21:47:19+00:00,E08_control_iter3,SAST_OK,semgrep
+2026-10-27T21:47:19+00:00,E08_control_iter4,SAST_OK,bandit
+2026-10-27T21:47:33+00:00,E08_control_iter4,SAST_OK,semgrep
+2026-10-27T21:47:33+00:00,E08_control_iter5,SAST_OK,bandit
+2026-10-27T21:47:47+00:00,E08_control_iter5,SAST_OK,semgrep
+2026-10-27T21:47:48+00:00,E09_control_iter1,SAST_OK,bandit
+2026-10-27T21:48:01+00:00,E09_control_iter1,SAST_OK,semgrep
+2026-10-27T21:48:02+00:00,E09_control_iter2,SAST_OK,bandit
+2026-10-27T21:48:15+00:00,E09_control_iter2,SAST_OK,semgrep
+2026-10-27T21:48:16+00:00,E09_control_iter3,SAST_OK,bandit
+2026-10-27T21:48:29+00:00,E09_control_iter3,SAST_OK,semgrep
+2026-10-27T21:48:30+00:00,E09_control_iter4,SAST_OK,bandit
+2026-10-27T21:48:43+00:00,E09_control_iter4,SAST_OK,semgrep
+2026-10-27T21:48:44+00:00,E09_control_iter5,SAST_OK,bandit
+2026-10-27T21:48:57+00:00,E09_control_iter5,SAST_OK,semgrep
+2026-10-27T21:48:58+00:00,E10_control_iter1,SAST_OK,bandit
+2026-10-27T21:49:11+00:00,E10_control_iter1,SAST_OK,semgrep
+2026-10-27T21:49:12+00:00,E10_control_iter2,SAST_OK,bandit
+2026-10-27T21:49:26+00:00,E10_control_iter2,SAST_OK,semgrep
+2026-10-27T21:49:26+00:00,E10_control_iter3,SAST_OK,bandit
+2026-10-27T21:49:40+00:00,E10_control_iter3,SAST_OK,semgrep
+2026-10-27T21:49:40+00:00,E10_control_iter4,SAST_OK,bandit
+2026-10-27T21:49:53+00:00,E10_control_iter4,SAST_OK,semgrep
+2026-10-27T21:49:54+00:00,E10_control_iter5,SAST_OK,bandit
+2026-10-27T21:50:08+00:00,E10_control_iter5,SAST_OK,semgrep
+2026-10-27T21:50:08+00:00,E01_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:50:22+00:00,E01_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:50:23+00:00,E01_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:50:37+00:00,E01_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:50:37+00:00,E01_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:50:51+00:00,E01_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:50:51+00:00,E01_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:51:05+00:00,E01_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:51:05+00:00,E01_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:51:19+00:00,E01_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:51:20+00:00,E02_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:51:33+00:00,E02_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:51:34+00:00,E02_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:51:47+00:00,E02_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:51:48+00:00,E02_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:52:01+00:00,E02_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:52:02+00:00,E02_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:52:15+00:00,E02_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:52:16+00:00,E02_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:52:29+00:00,E02_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:52:29+00:00,E03_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:52:43+00:00,E03_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:53:16+00:00,E03_experimental_iter1,SAST_OK,pip-audit
+2026-10-27T21:53:16+00:00,E03_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:53:30+00:00,E03_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:53:51+00:00,E03_experimental_iter2,SAST_OK,pip-audit
+2026-10-27T21:53:52+00:00,E03_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:54:06+00:00,E03_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:54:31+00:00,E03_experimental_iter3,SAST_OK,pip-audit
+2026-10-27T21:54:32+00:00,E03_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:54:45+00:00,E03_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:55:12+00:00,E03_experimental_iter4,SAST_OK,pip-audit
+2026-10-27T21:55:13+00:00,E03_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:55:28+00:00,E03_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:55:54+00:00,E03_experimental_iter5,SAST_OK,pip-audit
+2026-10-27T21:55:55+00:00,E04_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:56:08+00:00,E04_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:56:09+00:00,E04_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:56:22+00:00,E04_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:56:22+00:00,E04_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:56:36+00:00,E04_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:56:36+00:00,E04_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:56:50+00:00,E04_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:56:50+00:00,E04_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:57:04+00:00,E04_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:57:04+00:00,E05_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:57:18+00:00,E05_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:57:18+00:00,E05_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:57:32+00:00,E05_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:57:32+00:00,E05_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:57:45+00:00,E05_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:57:46+00:00,E05_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:57:59+00:00,E05_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:58:00+00:00,E05_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:58:13+00:00,E05_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:58:14+00:00,E06_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:58:27+00:00,E06_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:58:28+00:00,E06_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:58:41+00:00,E06_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:58:42+00:00,E06_experimental_iter3,SAST_OK,bandit
+2026-10-27T21:58:55+00:00,E06_experimental_iter3,SAST_OK,semgrep
+2026-10-27T21:58:56+00:00,E06_experimental_iter4,SAST_OK,bandit
+2026-10-27T21:59:10+00:00,E06_experimental_iter4,SAST_OK,semgrep
+2026-10-27T21:59:10+00:00,E06_experimental_iter5,SAST_OK,bandit
+2026-10-27T21:59:24+00:00,E06_experimental_iter5,SAST_OK,semgrep
+2026-10-27T21:59:24+00:00,E07_experimental_iter1,SAST_OK,bandit
+2026-10-27T21:59:38+00:00,E07_experimental_iter1,SAST_OK,semgrep
+2026-10-27T21:59:38+00:00,E07_experimental_iter2,SAST_OK,bandit
+2026-10-27T21:59:52+00:00,E07_experimental_iter2,SAST_OK,semgrep
+2026-10-27T21:59:52+00:00,E07_experimental_iter3,SAST_OK,bandit
+2026-10-27T22:00:06+00:00,E07_experimental_iter3,SAST_OK,semgrep
+2026-10-27T22:00:07+00:00,E07_experimental_iter4,SAST_OK,bandit
+2026-10-27T22:00:21+00:00,E07_experimental_iter4,SAST_OK,semgrep
+2026-10-27T22:00:21+00:00,E07_experimental_iter5,SAST_OK,bandit
+2026-10-27T22:00:35+00:00,E07_experimental_iter5,SAST_OK,semgrep
+2026-10-27T22:00:35+00:00,E08_experimental_iter1,SAST_OK,bandit
+2026-10-27T22:00:49+00:00,E08_experimental_iter1,SAST_OK,semgrep
+2026-10-27T22:00:49+00:00,E08_experimental_iter2,SAST_OK,bandit
+2026-10-27T22:01:03+00:00,E08_experimental_iter2,SAST_OK,semgrep
+2026-10-27T22:01:04+00:00,E08_experimental_iter3,SAST_OK,bandit
+2026-10-27T22:01:17+00:00,E08_experimental_iter3,SAST_OK,semgrep
+2026-10-27T22:01:17+00:00,E08_experimental_iter4,SAST_OK,bandit
+2026-10-27T22:01:31+00:00,E08_experimental_iter4,SAST_OK,semgrep
+2026-10-27T22:01:32+00:00,E08_experimental_iter5,SAST_OK,bandit
+2026-10-27T22:01:45+00:00,E08_experimental_iter5,SAST_OK,semgrep
+2026-10-27T22:01:46+00:00,E09_experimental_iter1,SAST_OK,bandit
+2026-10-27T22:01:59+00:00,E09_experimental_iter1,SAST_OK,semgrep
+2026-10-27T22:02:00+00:00,E09_experimental_iter2,SAST_OK,bandit
+2026-10-27T22:02:13+00:00,E09_experimental_iter2,SAST_OK,semgrep
+2026-10-27T22:02:14+00:00,E09_experimental_iter3,SAST_OK,bandit
+2026-10-27T22:02:27+00:00,E09_experimental_iter3,SAST_OK,semgrep
+2026-10-27T22:02:28+00:00,E09_experimental_iter4,SAST_OK,bandit
+2026-10-27T22:02:41+00:00,E09_experimental_iter4,SAST_OK,semgrep
+2026-10-27T22:02:42+00:00,E09_experimental_iter5,SAST_OK,bandit
+2026-10-27T22:02:55+00:00,E09_experimental_iter5,SAST_OK,semgrep
+2026-10-27T22:02:56+00:00,E10_experimental_iter1,SAST_OK,bandit
+2026-10-27T22:03:09+00:00,E10_experimental_iter1,SAST_OK,semgrep
+2026-10-27T22:03:10+00:00,E10_experimental_iter2,SAST_OK,bandit
+2026-10-27T22:03:23+00:00,E10_experimental_iter2,SAST_OK,semgrep
+2026-10-27T22:03:24+00:00,E10_experimental_iter3,SAST_OK,bandit
+2026-10-27T22:03:37+00:00,E10_experimental_iter3,SAST_OK,semgrep
+2026-10-27T22:03:38+00:00,E10_experimental_iter4,SAST_OK,bandit
+2026-10-27T22:03:51+00:00,E10_experimental_iter4,SAST_OK,semgrep
+2026-10-27T22:03:52+00:00,E10_experimental_iter5,SAST_OK,bandit
+2026-10-27T22:04:05+00:00,E10_experimental_iter5,SAST_OK,semgrep

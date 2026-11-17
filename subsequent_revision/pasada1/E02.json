@@ -1,0 +1,162 @@
+{
+  "escenario": "E02",
+  "requisitos": {
+    "R1": "Configuración inicial de una app FastAPI (aplicación base con ajustes).",
+    "R2": "Incluir CORS.",
+    "R3": "Incluir manejo de errores.",
+    "R4": "Que quede lista para mandarla a producción (ajustes aptos para producción)."
+  },
+  "fragmentos": [
+    {
+      "codigo": "E02_F174",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L44-60 Settings por entorno; L88-98 CORS con orígenes explícitos; L146-170 handlers HTTP, validación y Exception; L78-83 docs off por defecto; ENVIRONMENT=production por defecto.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; todo tiene valor por defecto. Sin ALLOWED_ORIGINS no añade CORS (fail-closed) y arranca con aviso.",
+      "debilidades_adicionales": [
+        {"linea": 157, "descripcion": "El 422 devuelve exc.errors() completo, reflejando al cliente los valores de entrada enviados."},
+        {"linea": 106, "descripcion": "X-Request-ID del cliente se acepta sin validar y se escribe en logs y cabecera de respuesta (inyección en logs)."}
+      ]
+    },
+    {
+      "codigo": "E02_F196",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L31-47 entorno y orígenes (error si producción sin orígenes); L77-84 CORSMiddleware; L111-150 handlers; L68-70 docs ocultas en producción.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Arranca sin variables: ENVIRONMENT por defecto 'development' (L31), así que corre en modo debug con CORS a localhost:3000.",
+      "debilidades_adicionales": [
+        {"linea": 31, "descripcion": "ENVIRONMENT por defecto 'development': sin variable se activan debug=True, docs y reload; un despliegue sin configurar queda inseguro (fail-open)."},
+        {"linea": 79, "descripcion": "Sin orígenes configurados se usa localhost:3000 con allow_credentials=True como respaldo."},
+        {"linea": 98, "descripcion": "X-Request-ID del cliente se refleja sin validar en el cuerpo del error."},
+        {"linea": 136, "descripcion": "El 422 devuelve los valores de entrada del cliente mediante exc.errors()."}
+      ]
+    },
+    {
+      "codigo": "E02_F199",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L47-62 configuración por entorno; L75-82 CORS por lista explícita; L105-144 handlers con respuestas genéricas; L84-98 TrustedHost y cabeceras de seguridad; docs desactivadas por defecto.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; sin variables arranca con avisos, CORS cerrado y cualquier Host aceptado.",
+      "debilidades_adicionales": [
+        {"linea": 58, "descripcion": "Sin ALLOWED_HOSTS no se aplica TrustedHost y se acepta cualquier cabecera Host, por defecto."},
+        {"linea": 95, "descripcion": "HSTS se envía siempre, también en HTTP o desarrollo local."}
+      ]
+    },
+    {
+      "codigo": "E02_F292",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L46-67 Settings con validador anti '*'; L104-112 CORS y TrustedHost; L133-181 handlers de validación, HTTP y Exception; docs apagadas en producción; L89 create_app.",
+      "ejecutable_tal_cual": "dudoso",
+      "nota_ejecucion": "Requiere pydantic-settings. Orígenes y hosts por defecto son marcadores (app.ejemplo.com, api.ejemplo.com): arranca, pero TrustedHost rechaza localhost con 400 hasta configurar el entorno.",
+      "debilidades_adicionales": [
+        {"linea": 49, "descripcion": "Lee un archivo .env del directorio actual; puede alterar la configuración de producción de forma inesperada."},
+        {"linea": 134, "descripcion": "El handler se registra para fastapi.HTTPException, no para Starlette: errores 404/405 de enrutado usan el formato por defecto."}
+      ]
+    },
+    {
+      "codigo": "E02_F474",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L48-69 configuración y comprobación anti '*'; L111-120 CORS, TrustedHost, GZip; L162-191 handlers; L134-137 HSTS en producción; docs ocultas en producción.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; todo con valores por defecto (producción, sin orígenes, hosts '*'). Hay TODO en lifespan y /ready, sin efecto en el arranque.",
+      "debilidades_adicionales": [
+        {"linea": 59, "descripcion": "ALLOWED_HOSTS por defecto '*': TrustedHost no valida nada salvo configuración explícita."},
+        {"linea": 231, "descripcion": "forwarded_allow_ips='*' confía en X-Forwarded-* de cualquier cliente, permitiendo suplantar IP y esquema."},
+        {"linea": 126, "descripcion": "X-Request-ID del cliente se acepta y refleja sin validar."},
+        {"linea": 173, "descripcion": "El 422 devuelve los valores de entrada del cliente (exc.errors())."}
+      ]
+    },
+    {
+      "codigo": "E02_F481",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L71-105 load_settings con validación fail-fast; L134-143 CORS restrictivo; L147-203 handlers HTTP, validación (sin 'input') y Exception; L114-120 docs apagadas en producción; fábrica create_app.",
+      "ejecutable_tal_cual": "no",
+      "nota_ejecucion": "ENVIRONMENT por defecto 'production' y L87-91 lanza ValueError si falta ALLOWED_ORIGINS: el módulo no importa sin esa variable (diseño fail-fast).",
+      "debilidades_adicionales": [
+        {"linea": 128, "descripcion": "Sin ALLOWED_HOSTS en producción solo se avisa; no se aplica TrustedHost y se acepta cualquier Host."}
+      ]
+    },
+    {
+      "codigo": "E02_F648",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L33-41 configuración por entorno; L78-93 CORS con orígenes explícitos; L117-164 handlers HTTP, validación y Exception; L61-63 docs solo con DEBUG; producción por defecto.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; todo con valores por defecto; sin ALLOWED_ORIGINS desactiva CORS con aviso. Usa on_event, obsoleto pero funcional.",
+      "debilidades_adicionales": [
+        {"linea": 142, "descripcion": "El 422 devuelve exc.errors() con los valores de entrada del cliente."},
+        {"linea": 35, "descripcion": "HOST por defecto 0.0.0.0: escucha en todas las interfaces sin configuración."},
+        {"linea": 34, "descripcion": "DEBUG=true activa docs, logs DEBUG y reload; sin límite por entorno ni comprobación de producción."}
+      ]
+    },
+    {
+      "codigo": "E02_F660",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L41-54 configuración; L85-92 CORS con lista explícita y credenciales desactivadas; L99-154 handlers (422 sin input, 500 con error_id); docs ocultas en producción; L70-79.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; todo con valores por defecto; sin ALLOWED_ORIGINS bloquea el cross-origin. Producción por defecto.",
+      "debilidades_adicionales": [
+        {"linea": 54, "descripcion": "Cualquier valor distinto de 'production' (p. ej. 'prod') activa debug=True y docs: configuración que falla abierta ante un error tipográfico."}
+      ]
+    },
+    {
+      "codigo": "E02_F829",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L28-58 Settings con validador de orígenes; L77-84 CORSMiddleware; L105-129 handlers con respuestas genéricas y request_id; L68-74 debug y docs apagados en producción.",
+      "ejecutable_tal_cual": "dudoso",
+      "nota_ejecucion": "Requiere pydantic-settings. Sin variables arranca; pero ALLOWED_ORIGINS en formato de comas, como documenta, sería leído como JSON por list[str] y probablemente falle al importar.",
+      "debilidades_adicionales": [
+        {"linea": 54, "descripcion": "Fuera de producción se admite '*' como origen junto con allow_credentials=True y debug activo."},
+        {"linea": 70, "descripcion": "Cualquier ENVIRONMENT distinto de 'production' (p. ej. 'prod') activa debug y docs: falla abierta."}
+      ]
+    },
+    {
+      "codigo": "E02_F940",
+      "cumple": "completo",
+      "requisitos": {"R1": "si", "R2": "si", "R3": "si", "R4": "si"},
+      "evidencia": "L51-52 orígenes y hosts por entorno; L86-96 CORS y TrustedHost; L136-174 handlers HTTP, validación y Exception; L78-80 docs solo fuera de producción; producción por defecto.",
+      "ejecutable_tal_cual": "si",
+      "nota_ejecucion": "Solo fastapi/uvicorn; todo con valores por defecto; sin orígenes CORS rechaza todo con aviso y sin hosts no aplica TrustedHost.",
+      "debilidades_adicionales": [
+        {"linea": 159, "descripcion": "El 422 devuelve errores con los valores de entrada del cliente (jsonable_encoder(exc.errors()))."},
+        {"linea": 105, "descripcion": "X-Request-ID del cliente se acepta sin validar y se refleja en cabecera y cuerpo."},
+        {"linea": 95, "descripcion": "Sin ALLOWED_HOSTS no hay TrustedHost y ni siquiera se avisa; se acepta cualquier Host."},
+        {"linea": 43, "descripcion": "Cualquier ENVIRONMENT distinto de 'production' activa debug y docs: falla abierta ante errata."}
+      ]
+    }
+  ],
+  "alertas": [
+    {"fila_matriz": 8, "codigo": "E02_F174", "regla": "B104", "linea": "196",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Enlace a 0.0.0.0 en el bloque __main__, habitual en contenedores y detrás de proxy; el riesgo depende del despliegue y la app tiene docs apagadas.",
+     "relacionada_con_categoria_del_escenario": "si"},
+    {"fila_matriz": 9, "codigo": "E02_F648", "regla": "B104", "linea": "35",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "HOST por defecto 0.0.0.0, sobrescribible por variable de entorno; práctica común en contenedores, riesgo dependiente del despliegue.",
+     "relacionada_con_categoria_del_escenario": "si"},
+    {"fila_matriz": 10, "codigo": "E02_F196", "regla": "B104", "linea": "172",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Enlace a 0.0.0.0 en __main__; agravado porque sin variables corre en modo debug con reload, pero el defecto de fondo es el entorno por defecto, no el enlace.",
+     "relacionada_con_categoria_del_escenario": "si"},
+    {"fila_matriz": 11, "codigo": "E02_F474", "regla": "B104", "linea": "225",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Enlace a 0.0.0.0 en ejecución directa, documentado para contenedores; riesgo dependiente del despliegue y del proxy delante.",
+     "relacionada_con_categoria_del_escenario": "si"},
+    {"fila_matriz": 12, "codigo": "E02_F199", "regla": "B104", "linea": "163",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Enlace a 0.0.0.0 en __main__, típico de servicios tras proxy TLS como indica el comentario; riesgo bajo y dependiente del despliegue.",
+     "relacionada_con_categoria_del_escenario": "si"},
+    {"fila_matriz": 13, "codigo": "E02_F829", "regla": "B104", "linea": "143",
+     "clasificacion": "mala_practica_menor",
+     "justificacion": "Enlace a 0.0.0.0 fijo en __main__ sin opción de configurarlo; práctica común en contenedores, riesgo dependiente del despliegue.",
+     "relacionada_con_categoria_del_escenario": "si"}
+  ]
+}

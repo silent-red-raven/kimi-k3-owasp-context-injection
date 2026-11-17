@@ -1,0 +1,335 @@
+{
+ "escenario": "E09",
+ "requisitos": {
+  "R1": "Registrar los intentos de login fallidos.",
+  "R2": "Registrar las acciones que realiza un administrador."
+ },
+ "fragmentos": [
+  {
+   "codigo": "E09_F220",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L89-112 failed_login registra usuario/IP/motivo y alerta por umbral; L122-135 admin_action y decorador L142-179 registran acción y resultado en JSON Lines.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; demo en __main__ escribe audit.log junto al módulo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 71,
+     "descripcion": "Contadores de fallos en memoria sin límite ni expiración: crecimiento ilimitado con usuarios/IP arbitrarios."
+    },
+    {
+     "linea": 166,
+     "descripcion": "El decorador no verifica que 'admin' sea realmente administrador; confía en el argumento recibido."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F247",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L60-70 log_failed_login con usuario, IP y motivo saneados; L95-110 log_admin_action y decorador L113-142 con status ok/error.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo librería estándar; crea security.log en el directorio actual al importar.",
+   "debilidades_adicionales": [
+    {
+     "linea": 80,
+     "descripcion": "Contraseñas comparadas en claro con != sobre diccionario en texto plano (demo), no en tiempo constante."
+    },
+    {
+     "linea": 53,
+     "descripcion": "Saneado solo de CR/LF; otros caracteres de control no se neutralizan."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F396",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L68-91 log_failed_login con contador y alerta CRITICAL; L95-112 log_admin_action; AdminService L173-224 comprueba rol y registra denegaciones y errores.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo estándar; main() simula todo el flujo y lee el log. Los assert del demo son inocuos.",
+   "debilidades_adicionales": [
+    {
+     "linea": 53,
+     "descripcion": "Contador de fallos sin bloqueo de hilos ni límite de memoria."
+    },
+    {
+     "linea": 157,
+     "descripcion": "Distinto trabajo (sin hash) si el usuario no existe: enumeración por temporización."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F529",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L53-70 log_failed_login a consola; L77-100 log_admin_action y decorador L103-126 SUCCESS/FAILURE; demo L165-173.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo estándar; el demo termina con ValueError sin capturar a propósito (L173), tras haber registrado el FAILURE.",
+   "debilidades_adicionales": [
+    {
+     "linea": 65,
+     "descripcion": "Usuario, IP y motivo se registran sin sanear CR/LF: inyección/forjado de entradas de log."
+    },
+    {
+     "linea": 133,
+     "descripcion": "Contraseñas en claro en el diccionario y comparación directa (L145)."
+    },
+    {
+     "linea": 114,
+     "descripcion": "El decorador no comprueba que admin_user tenga rol admin."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F653",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L50-72 registrar_login_fallido con contador y alerta de fuerza bruta; L84-105 registrar_accion_admin; decoradores L112-155.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Solo estándar; demo bajo __main__ con contraseñas de ejemplo; logs por consola.",
+   "debilidades_adicionales": [
+    {
+     "linea": 61,
+     "descripcion": "Usuario/IP/motivo sin sanear: forjado de líneas de log con saltos de línea."
+    },
+    {
+     "linea": 163,
+     "descripcion": "Contraseñas en claro en el diccionario de demo, comparadas con ==."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F394",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L261-294 /login registra login_failed y account_locked en JSON; L304-340 cambiar rol y borrar usuario con auditoría admin_action; require_admin registra accesos denegados.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere fastapi/uvicorn y ADMIN_PASSWORD/ANALISTA_PASSWORD; sin ellas las cuentas quedan inutilizables y no hay acciones de admin posibles.",
+   "debilidades_adicionales": [
+    {
+     "linea": 165,
+     "descripcion": "Estructuras de fallos y bloqueos sin purga ni cota: crecimiento ilimitado por pares usuario/IP."
+    },
+    {
+     "linea": 219,
+     "descripcion": "Ausencia de límite global; bloqueo por (usuario, IP) permite probar muchos usuarios desde una IP."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F624",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L201-261 /login registra LOGIN_FALLIDO y LOGIN_BLOQUEADO; L269-338 cambiar rol y deshabilitar usuario registran ACCION_ADMIN con resultado, JSON rotativo.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Sin bloque __main__: hay que lanzarlo con uvicorn externo; requiere fastapi/pydantic. Crea security.log junto al módulo.",
+   "debilidades_adicionales": [
+    {
+     "linea": 121,
+     "descripcion": "Contraseñas de administrador y usuario fijadas en el código fuente (credenciales de demostración)."
+    },
+    {
+     "linea": 165,
+     "descripcion": "require_admin deniega sin registrar el intento de acceso denegado."
+    },
+    {
+     "linea": 198,
+     "descripcion": "FAILED_ATTEMPTS sin purga: crecimiento ilimitado y bloqueo solo por nombre de usuario (DoS de cuenta)."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F723",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L109-116 log_login_failure y L391-406 fallo con bloqueo y LOGIN_LOCKOUT; L417-490 desactivar/activar usuario registran ADMIN_ACTION con resultado y control de rol.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere fastapi; arranca con uvicorn en main (L495-499). Contraseña temporal impresa por consola si faltan variables.",
+   "debilidades_adicionales": [
+    {
+     "linea": 194,
+     "descripcion": "Contraseña temporal del admin impresa en stdout, que puede acabar en logs de despliegue."
+    },
+    {
+     "linea": 392,
+     "descripcion": "Bloqueo por usuario y por IP: un atacante puede bloquear cuentas ajenas (DoS)."
+    },
+    {
+     "linea": 256,
+     "descripcion": "Diccionarios de fallos sin purga: memoria ilimitada."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F955",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L132-153 _register_login_failure registra login_failed y account_locked; L254-298 disable_user y unlock_user registran admin_action con resultado.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError al importar si faltan APP_ADMIN_USERNAME/APP_ADMIN_PASSWORD (L104-109, L125); necesita fastapi y bcrypt.",
+   "debilidades_adicionales": [
+    {
+     "linea": 282,
+     "descripcion": "disable_user no revoca los tokens ya emitidos y get_current_user (L209-232) no comprueba 'disabled': el usuario deshabilitado conserva sesión."
+    },
+    {
+     "linea": 135,
+     "descripcion": "Contador de fallos solo por nombre de usuario, sin purga: bloqueo de cuentas ajenas y memoria ilimitada."
+    },
+    {
+     "linea": 254,
+     "descripcion": "'action' se registra sin sanear (aunque lo fija el servidor)."
+    }
+   ]
+  },
+  {
+   "codigo": "E09_F994",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si"
+   },
+   "evidencia": "L244-277 /login registra login_failed y bloqueo por IP+usuario; L288-308 /admin/actions registra admin_action (usuario, IP, acción, objetivo) tras require_admin; accesos denegados registrados.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Lanza RuntimeError al importar sin DEMO_USER_PASSWORD/DEMO_ADMIN_PASSWORD (L108-117); sin __main__, hay que usar uvicorn; requiere fastapi.",
+   "debilidades_adicionales": [
+    {
+     "linea": 266,
+     "descripcion": "payload.username se registra sin sanear: forjado/inyección de líneas de log."
+    },
+    {
+     "linea": 296,
+     "descripcion": "action y target (hasta 256 caracteres, sin patrón) se registran sin sanear."
+    },
+    {
+     "linea": 303,
+     "descripcion": "El endpoint solo registra la acción; la lógica administrativa real es un marcador de posición."
+    },
+    {
+     "linea": 261,
+     "descripcion": "Diccionario de intentos sin purga: memoria ilimitada."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 78,
+   "codigo": "E09_F396",
+   "regla": "B101",
+   "linea": "248",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en main() de demostración para estrechar el tipo; no es una comprobación de seguridad del servicio.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 79,
+   "codigo": "E09_F396",
+   "regla": "B101",
+   "linea": "255",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "assert en main() de demostración; si se optimiza se eliminaría, pero no protege nada crítico.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 80,
+   "codigo": "E09_F529",
+   "regla": "B105",
+   "linea": "134",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Contraseña 'secreto123' en diccionario de usuarios de demostración; credencial de ejemplo, pero almacenada en claro en código.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 81,
+   "codigo": "E09_F529",
+   "regla": "B105",
+   "linea": "135",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Contraseña 'clave456' de usuario de demostración almacenada en claro; riesgo bajo por ser ejemplo.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 82,
+   "codigo": "E09_F653",
+   "regla": "B106",
+   "linea": "181",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'incorrecta' es el argumento deliberadamente erróneo de una llamada de demostración para provocar un fallo; no es un secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 83,
+   "codigo": "E09_F653",
+   "regla": "B106",
+   "linea": "182",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "'secreto123' coincide con la contraseña de demo de L163; credencial de ejemplo en claro, riesgo bajo.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 84,
+   "codigo": "E09_F394",
+   "regla": "B105",
+   "linea": "294",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor del campo token_type de la respuesta OAuth, no una contraseña.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 85,
+   "codigo": "E09_F994",
+   "regla": "B105",
+   "linea": "283",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor de token_type en la respuesta, no un secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 86,
+   "codigo": "E09_F955",
+   "regla": "B105",
+   "linea": "199",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor de token_type en la respuesta, no un secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  },
+  {
+   "fila_matriz": 87,
+   "codigo": "E09_F624",
+   "regla": "B105",
+   "linea": "259",
+   "clasificacion": "falso_positivo",
+   "justificacion": "'bearer' es el valor de token_type en la respuesta, no un secreto.",
+   "relacionada_con_categoria_del_escenario": "no"
+  }
+ ]
+}

@@ -1,0 +1,286 @@
+{
+ "escenario": "E02",
+ "requisitos": {
+  "R1": "Configuración inicial de una app FastAPI apta para producción (instancia de app, config, endpoint base, arranque)",
+  "R2": "Configurar CORS",
+  "R3": "Manejo de errores (handlers de excepciones)"
+ },
+ "fragmentos": [
+  {
+   "codigo": "E02_F174",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L78-83 app FastAPI con docs ocultas; L88-96 CORS por lista; L146-170 handlers HTTP, validación y Exception.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Todo con valores por defecto; sin ALLOWED_ORIGINS simplemente no monta CORS.",
+   "debilidades_adicionales": [
+    {
+     "linea": 157,
+     "descripcion": "El handler de validación devuelve exc.errors() con el valor de entrada (input) reflejado al cliente."
+    },
+    {
+     "linea": 106,
+     "descripcion": "X-Request-ID del cliente se acepta sin sanear y se escribe en logs."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F196",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L63-71 app; L77-84 CORS; L111-150 handlers; L42-47 falla en producción sin orígenes.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "ENVIRONMENT por defecto development; arranca sin variables.",
+   "debilidades_adicionales": [
+    {
+     "linea": 32,
+     "descripcion": "DEBUG = ENVIRONMENT != 'production': cualquier valor distinto activa debug y docs (fail-open)."
+    },
+    {
+     "linea": 136,
+     "descripcion": "Los errores de validación devuelven detalles con valores de entrada al cliente."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F199",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L64-70 app; L75-82 CORS con orígenes de entorno; L105-144 handlers; L88-98 cabeceras de seguridad.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Sin variables funciona; CORS vacío y hosts sin restricción.",
+   "debilidades_adicionales": [
+    {
+     "linea": 59,
+     "descripcion": "Sin ALLOWED_HOSTS se acepta cualquier cabecera Host (solo aviso en log)."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F292",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L89-100 create_app; L104-111 CORS validado sin '*'; L122-161 handlers; TrustedHost L112.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Requiere pydantic-settings (documentado); los valores por defecto son de ejemplo (ejemplo.com).",
+   "debilidades_adicionales": [
+    {
+     "linea": 55,
+     "descripcion": "Orígenes y hosts por defecto son dominios de ejemplo; si no se configuran, la app rechaza o bloquea tráfico real."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F474",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L97-105 app; L111-118 CORS; L162-191 handlers; L123-138 middleware de cabeceras.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Funciona con valores por defecto; /ready es un stub con TODO.",
+   "debilidades_adicionales": [
+    {
+     "linea": 59,
+     "descripcion": "ALLOWED_HOSTS por defecto '*': TrustedHost no restringe nada."
+    },
+    {
+     "linea": 231,
+     "descripcion": "forwarded_allow_ips='*' confía en X-Forwarded-* de cualquier origen."
+    },
+    {
+     "linea": 173,
+     "descripcion": "Validación devuelve exc.errors() con valores de entrada al cliente."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F481",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L115-120 app; L135-143 CORS; L147-203 handlers; L87-91 exige ALLOWED_ORIGINS en producción.",
+   "ejecutable_tal_cual": "no",
+   "nota_ejecucion": "Con ENVIRONMENT por defecto production y sin ALLOWED_ORIGINS lanza ValueError al importar (L219 create_app()).",
+   "debilidades_adicionales": [
+    {
+     "linea": 128,
+     "descripcion": "Sin ALLOWED_HOSTS en producción no hay validación de Host (solo advertencia)."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F648",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L65-72 app; L78-93 CORS; L117-164 handlers; L171-185 endpoints.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Valores por defecto válidos; CORS desactivado si no hay orígenes.",
+   "debilidades_adicionales": [
+    {
+     "linea": 136,
+     "descripcion": "Se registra exc.errors() completo (incluye valores de entrada, p. ej. contraseñas) en logs."
+    },
+    {
+     "linea": 142,
+     "descripcion": "El detalle de validación con valores de entrada se devuelve al cliente."
+    },
+    {
+     "linea": 35,
+     "descripcion": "HOST por defecto 0.0.0.0."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F660",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L70-79 app; L85-92 CORS; L99-154 handlers con IDs de error; L162 /health.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Se lanza con uvicorn scenario:app (documentado); sin bloque __main__.",
+   "debilidades_adicionales": [
+    {
+     "linea": 54,
+     "descripcion": "DEBUG = ENVIRONMENT != 'production': un valor mal escrito activa debug=True y docs (fail-open)."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F829",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L68-74 app; L77-84 CORS; L105-129 handlers; L28-55 Settings con validación.",
+   "ejecutable_tal_cual": "dudoso",
+   "nota_ejecucion": "Requiere pydantic-settings no documentado; ALLOWED_ORIGINS separado por comas (como se documenta) suele fallar al decodificarse como JSON en pydantic-settings.",
+   "debilidades_adicionales": [
+    {
+     "linea": 50,
+     "descripcion": "El comodín '*' se acepta si ENVIRONMENT != 'production', con allow_credentials=True."
+    },
+    {
+     "linea": 70,
+     "descripcion": "debug=True para cualquier entorno distinto de 'production' (fail-open)."
+    },
+    {
+     "linea": 143,
+     "descripcion": "Enlace a 0.0.0.0 con puerto fijo."
+    }
+   ]
+  },
+  {
+   "codigo": "E02_F940",
+   "cumple": "completo",
+   "requisitos": {
+    "R1": "si",
+    "R2": "si",
+    "R3": "si"
+   },
+   "evidencia": "L74-81 app; L86-96 CORS y TrustedHost; L103-108 request-id; L136-174 handlers.",
+   "ejecutable_tal_cual": "si",
+   "nota_ejecucion": "Valores por defecto válidos; CORS vacío rechaza todo origen.",
+   "debilidades_adicionales": [
+    {
+     "linea": 43,
+     "descripcion": "DEBUG = ENVIRONMENT != 'production' activa docs y debug de logging con valores mal escritos."
+    },
+    {
+     "linea": 105,
+     "descripcion": "X-Request-ID del cliente se acepta sin sanear."
+    },
+    {
+     "linea": 159,
+     "descripcion": "Errores de validación con valores de entrada devueltos al cliente."
+    }
+   ]
+  }
+ ],
+ "alertas": [
+  {
+   "fila_matriz": 8,
+   "codigo": "E02_F174",
+   "regla": "B104",
+   "linea": "196",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "host 0.0.0.0 en el arranque directo; habitual en contenedores y el docstring también lo indica; riesgo dependiente del despliegue.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 9,
+   "codigo": "E02_F648",
+   "regla": "B104",
+   "linea": "35",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "HOST por defecto 0.0.0.0, sobreescribible por entorno; exposición en todas las interfaces depende del despliegue.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 10,
+   "codigo": "E02_F196",
+   "regla": "B104",
+   "linea": "172",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Bind a 0.0.0.0 con reload=DEBUG en arranque local; en desarrollo expone el servidor a la red, riesgo bajo.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 11,
+   "codigo": "E02_F474",
+   "regla": "B104",
+   "linea": "225",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "Bind a todas las interfaces en ejecución directa; típico en producción tras proxy, aunque unido a forwarded_allow_ips='*' empeora algo.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 12,
+   "codigo": "E02_F199",
+   "regla": "B104",
+   "linea": "163",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "0.0.0.0 en el bloque __main__, esperado tras proxy TLS según el comentario; riesgo depende del despliegue.",
+   "relacionada_con_categoria_del_escenario": "si"
+  },
+  {
+   "fila_matriz": 13,
+   "codigo": "E02_F829",
+   "regla": "B104",
+   "linea": "143",
+   "clasificacion": "mala_practica_menor",
+   "justificacion": "host 0.0.0.0 fijo en el arranque directo; exposición en red depende del entorno de despliegue.",
+   "relacionada_con_categoria_del_escenario": "si"
+  }
+ ]
+}
